@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Clockwork</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="primary">#ac1d39</color>
+    <color name="pink">#eb123a</color>
+    <color name="grey">#e5e5e5</color>
+</resources>
