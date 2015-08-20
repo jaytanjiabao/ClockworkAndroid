@@ -9,4 +9,5 @@
     <color name="primary">#ac1d39</color>
     <color name="pink">#eb123a</color>
     <color name="grey">#e5e5e5</color>
+    <string name="title_activity_prelude">PreludeActivity</string>
 </resources>
