@@ -8,21 +8,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.clockwork.R;
+import com.android.clockwork.model.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3000;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        sessionManager = new SessionManager(getApplicationContext());
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
+                if(sessionManager.checkLogin()) {
+                    Intent alreadyLoggedIn = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(alreadyLoggedIn);
+                }else{
+                    Intent userLogIn = new Intent(SplashActivity.this, PreludeActivity.class);
+                    startActivity(userLogIn);
+                }
 
                 // close this activity
                 finish();
