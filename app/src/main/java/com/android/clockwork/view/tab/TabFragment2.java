@@ -20,7 +20,9 @@ public class TabFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         fragmentView = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        sessionManager = new SessionManager(getActivity().getApplicationContext());
         final Button logoutButton = (Button) fragmentView.findViewById(R.id.logOutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

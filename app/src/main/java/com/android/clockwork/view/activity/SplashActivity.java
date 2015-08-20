@@ -1,5 +1,6 @@
 package com.android.clockwork.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3000;
     SessionManager sessionManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+                System.out.println(sessionManager.checkLogin());
                 if(sessionManager.checkLogin()) {
                     Intent alreadyLoggedIn = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(alreadyLoggedIn);

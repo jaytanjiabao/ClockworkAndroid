@@ -1,5 +1,6 @@
 package com.android.clockwork.model;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -33,6 +34,8 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     SessionManager sessionManager;
     int statusCode;
     LoginListener listener;
+    Context currentContext;
+
 
     public void login(final String userEmail, final String userPassword, final LoginListener listener) {
         loginSession = new Session(userEmail, userPassword);
@@ -94,6 +97,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if(statusCode!=401) {
+            sessionManager = new SessionManager(currentContext.getApplicationContext());
             Gson gson = new Gson();
             Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
             HashMap userHash = gson.fromJson(result, hashType);
