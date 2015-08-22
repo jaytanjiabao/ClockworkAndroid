@@ -27,7 +27,9 @@ public class TabFragment2 extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println(sessionManager.checkNotLogin());
                 sessionManager.logoutUser();
+                System.out.println(sessionManager.checkNotLogin());
                 Intent userLogin = new Intent(view.getContext(), PreludeActivity.class);
                 startActivity(userLogin);
             }

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.clockwork.presenter.LoginListener;
+import com.android.clockwork.presenter.LoginPresenter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,6 +37,9 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     LoginListener listener;
     Context currentContext;
 
+    public LoginManager(Context currentContext) {
+        this.currentContext = currentContext;
+    }
 
     public void login(final String userEmail, final String userPassword, final LoginListener listener) {
         loginSession = new Session(userEmail, userPassword);
@@ -96,8 +100,9 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        System.out.println(result);
         if(statusCode!=401) {
-            sessionManager = new SessionManager(currentContext.getApplicationContext());
+            sessionManager = new SessionManager(currentContext);
             Gson gson = new Gson();
             Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
             HashMap userHash = gson.fromJson(result, hashType);
@@ -113,44 +118,6 @@ public class LoginManager extends AsyncTask<String, Void, String> {
         }else {
 
         }
-/*        if(statusCode == 401) {
-            //tx1.setText("The email / password is invalid, please try again.");
-        }else {
-            Gson gson = new Gson();
-            Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
-            HashMap userHash = gson.fromJson(result, hashType);
-            Double idDouble = (Double)userHash.get("id");
-            int id = idDouble.intValue();
-            String username = (String)userHash.get("username");
-            String email = (String)userHash.get("email");
-            String accountType = (String)userHash.get("account_type");
-            String authenticationToken = (String)userHash.get("authentication_token");
-            String passWord = userPassWord.getText().toString();
-
-            if(accountType.equals("job_seeker")) {
-                session.createUserLoginSession(id, username, email, accountType, passWord, authenticationToken);
-                // Starting MainActivity
-                Intent i = new Intent(getApplicationContext(), JobListsActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                // Add new Flag to start new Activity
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-
-                //finish();
-            }else {
-                session.createUserLoginSession(id, username, email, accountType, passWord, authenticationToken);
-                // Starting MainActivity
-                Intent i = new Intent(getApplicationContext(), EmployerDashboardActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                // Add new Flag to start new Activity
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-                //finish();
-
-            }
-        }*/
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
