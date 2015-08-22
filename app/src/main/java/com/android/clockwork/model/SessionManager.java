@@ -1,23 +1,9 @@
 package com.android.clockwork.model;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.util.Log;
 
-import com.android.clockwork.view.activity.MainActivity;
-import com.android.clockwork.view.activity.PreludeActivity;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 
 /**
@@ -102,21 +88,6 @@ public class SessionManager {
         // Check login status
         if(!this.isUserLoggedIn()){
 
-
-            // user is not logged in redirect him to Login Activity
-            //Intent i = new Intent(_context, MainMenuActivity.class);
-
-            //status = "notLoggedIn";
-
-            // Closing all the Activities from stack
-            //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            // Add new Flag to start new Activity
-            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            // Staring Login Activity
-            //_context.startActivity(i);
-
             return true;
         }
         return false;
@@ -170,23 +141,6 @@ public class SessionManager {
         // Clearing all user data from Shared Preferences
         editor.clear();
         editor.commit();
-        // After logout redirect user to Login Activity
-        Intent i = new Intent(_context, PreludeActivity.class);
-
-        status = "loggedOut";
-
-        // Closing all the Activities
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        // Add new Flag to start new Activity
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        // Staring Login Activity
-        _context.startActivity(i);
-
-
-
-
-        //new HttpAsyncTask().execute("https://clockwork-api.herokuapp.com/users/sign_out.json");
     }
 
     // Check for login
@@ -195,69 +149,4 @@ public class SessionManager {
         return pref.getBoolean(IS_USER_LOGIN, false);
     }
 
-    public static String DELETE(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            // 1. create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
-
-            // 2. make Delete request to the given URL
-            HttpDelete httpDelete = new HttpDelete(url);
-
-            // 3. build jsonObject
-
-            httpDelete.setHeader("Accept", "application/json");
-
-            // 8. Execute POST request to the given URL
-            HttpResponse httpResponse = httpclient.execute(httpDelete);
-
-            // 9. receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
-
-            // 10. convert inputstream to string
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
-
-        } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
-        }
-
-        // 11. return result
-        return result;
-    }
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            return DELETE(urls[0]);
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            //Gson gson = new Gson();
-            //Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
-            //HashMap userHash = gson.fromJson(result, hashType);
-            //String successfulLogout = (String)userHash.get("message");
-            status = result;
-
-        }
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-
-    }
 }

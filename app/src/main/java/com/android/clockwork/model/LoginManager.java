@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.clockwork.presenter.LoginListener;
-import com.android.clockwork.presenter.LoginPresenter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

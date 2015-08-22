@@ -7,36 +7,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.android.clockwork.R;
-import com.android.clockwork.model.SessionManager;
+import com.android.clockwork.presenter.LogoutPresenter;
 import com.android.clockwork.view.activity.PreludeActivity;
 
-public class TabFragment2 extends Fragment {
+public class TabFragment2 extends Fragment implements View.OnClickListener {
 
-    SessionManager sessionManager;
     View fragmentView;
+    LogoutPresenter logoutPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         fragmentView = inflater.inflate(R.layout.tab_fragment_2, container, false);
-        sessionManager = new SessionManager(getActivity().getApplicationContext());
-        final Button logoutButton = (Button) fragmentView.findViewById(R.id.logOutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println(sessionManager.checkNotLogin());
-                sessionManager.logoutUser();
-                System.out.println(sessionManager.checkNotLogin());
-                Intent userLogin = new Intent(view.getContext(), PreludeActivity.class);
-                startActivity(userLogin);
-            }
-        });
+        logoutPresenter = new LogoutPresenter(this);
+        fragmentView.findViewById(R.id.logOutButton).setOnClickListener(this);
 
         return fragmentView;
     }
 
+    public void navigateToLogin() {
+        startActivity(new Intent(fragmentView.getContext(), PreludeActivity.class));
+    }
+
+    @Override
+    public void onClick(View v) {
+        logoutPresenter.logOut();
+    }
 
 }
