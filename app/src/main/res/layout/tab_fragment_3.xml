@@ -24,9 +24,18 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Username"
-            android:id="@+id/textView2"
+            android:id="@+id/usernameText"
             android:layout_alignTop="@+id/imageView"
             android:layout_toEndOf="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Email Address"
+            android:id="@+id/emailText"
+            android:layout_below="@+id/usernameText"
+            android:layout_alignStart="@+id/usernameText" />
 
     </RelativeLayout>
 
@@ -61,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Edit Profile"
-            android:id="@+id/button3"
+            android:id="@+id/editButton"
             android:layout_alignTop="@+id/button2"
             android:layout_toEndOf="@+id/button2" />
 
@@ -87,7 +96,71 @@
         android:scrollbarStyle="outsideOverlay"
         android:verticalScrollbarPosition="right"
         android:scrollbars="vertical"
-        android:layout_below="@+id/textView3">
+        android:layout_below="@+id/textView3"
+        android:visibility="invisible">
     </GridView>
+
+    <LinearLayout
+        android:id="@+id/editProfile"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/textView3"
+        android:visibility="visible"
+        android:paddingTop="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rounded_corner">
+
+        <EditText
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Name"
+            android:ems="8"
+            android:id="@+id/nameText"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Address"
+            android:ems="8"
+            android:id="@+id/addressText"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Mobile Number"
+            android:ems="8"
+            android:id="@+id/contactText"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth"
+            android:ems="8"
+            android:id="@+id/dateText"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:id="@+id/updateButton"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 </RelativeLayout>
