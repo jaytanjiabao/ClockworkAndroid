@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.presenter.EditProfilePresenter;
@@ -21,6 +22,7 @@ public class ProfileFragment extends Fragment {
     View fragmentView;
     Button editButton, updateButton;
     EditText nameText, addressText, contactText, dateText;
+    TextView usernameText, emailText;
     Boolean status = false;
     LinearLayout editProfile;
     GridView grid;
@@ -28,15 +30,24 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.tab_fragment_3, container, false);
-        initializeEditProfile();
         editProfilePresenter = new EditProfilePresenter(getActivity(), dialog);
+        initializeEditProfile();
+        updatePersonalDetails();
 
         return fragmentView;
+    }
+
+    public void updatePersonalDetails() {
+        usernameText.setText(editProfilePresenter.getUsername());
+        emailText.setText(editProfilePresenter.getEmail());
     }
 
     public void initializeEditProfile() {
         editProfile = (LinearLayout) fragmentView.findViewById(R.id.editProfile);
         grid = (GridView) fragmentView.findViewById(R.id.grid);
+
+        usernameText = (TextView) fragmentView.findViewById(R.id.usernameText);
+        emailText = (TextView) fragmentView.findViewById(R.id.emailText);
 
         nameText = (EditText) fragmentView.findViewById(R.id.nameText);
         addressText = (EditText) fragmentView.findViewById(R.id.addressText);
