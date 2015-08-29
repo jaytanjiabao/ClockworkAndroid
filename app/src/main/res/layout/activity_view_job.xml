@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.android.clockwork.view.activity.ViewJobActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:background="@drawable/rounded_corner"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_margin="20dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/user_placeholder"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Job Title"
+            android:id="@+id/jobText"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Expiring on DATE HERE"
+            android:id="@+id/expiryText"
+            android:layout_below="@+id/jobText"
+            android:layout_alignStart="@+id/jobText" />
+
+        <TextView
+            android:id="@+id/salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            android:text="$10"
+            android:textSize="35dp"
+            android:textColor="@color/pink"
+            android:textStyle="bold"
+            android:layout_above="@+id/textView5"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            android:textSize="15dp"
+            android:textColor="@color/pink"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="per hour"
+            android:id="@+id/textView5"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rounded_corner" >
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Company Name"
+            android:id="@+id/companyText"
+            android:layout_below="@+id/jobText"
+            android:layout_toEndOf="@+id/imageView" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Location"
+            android:id="@+id/locationText"
+            android:layout_below="@+id/companyText"
+            android:layout_alignStart="@+id/companyText" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Job starts on DATE HERE"
+            android:id="@+id/startText" />
+
+        <ScrollView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Description"
+                android:id="@+id/descriptionText" />
+
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/applyButton"
+            android:text="Apply for Job"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/button"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -12,6 +12,7 @@ import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by jiabao.tan.2012 on 26/8/2015.
@@ -31,23 +32,27 @@ public class EditProfilePresenter implements EditProfileListener {
         this.sessionManager = new SessionManager(currentContext);
     }
 
-    public void updateProfile(String name, String address, String contact, String dob) {
-        editProfileManager.setProfileDetails(name, address, contact, dob);
+    public EditProfilePresenter(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
+        this.currentContext = fragmentActivity.getApplicationContext();
+        this.sessionManager = new SessionManager(currentContext);
+    }
+
+    public void updateProfile(String name, String address, String contact, String dob, String email, String authToken) {
+        Log.d("Manager", "Before executing..");
+        editProfileManager.setProfileDetails(name, address, contact, dob, email, authToken);
         editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        Log.d("Manager", "After executing..");
     }
 
-    public String getUsername() {
-        return sessionManager.KEY_NAME;
-    }
-
-    public String getEmail() {
-        return sessionManager.KEY_EMAIL;
+    public HashMap<String, String> getUserMap() {
+        return sessionManager.getUserDetails();
     }
 
     @Override
     public void onSuccess(String result) {
         // success
-        Toast.makeText(fragmentActivity.getBaseContext(), result, Toast.LENGTH_LONG).show();
+        Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully!", Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -3,15 +3,14 @@ package com.android.clockwork.model;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.android.clockwork.presenter.EditProfileListener;
-import com.android.clockwork.presenter.JobListingListener;
+import com.android.clockwork.presenter.ApplyJobListener;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -24,31 +23,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by jiabao.tan.2012 on 26/8/2015.
+ * Created by jiabao.tan.2012 on 29/8/2015.
  */
-public class EditProfileManager extends AsyncTask<String, Void, String> {
-    EditProfileListener editProfileListener;
+public class ApplyJobManager extends AsyncTask<String, Void, String> {
+    ApplyJobListener applyJobListener;
     ProgressDialog dialog;
-    String name, address, contact, dob, email, authToken;
+    String email, authToken, id;
 
-    public EditProfileManager(EditProfileListener editProfileListener, ProgressDialog dialog) {
-        this.editProfileListener = editProfileListener;
+    public ApplyJobManager(ApplyJobListener applyJobListener, ProgressDialog dialog) {
+        this.applyJobListener = applyJobListener;
         this.dialog = dialog;
     }
 
-    public void setProfileDetails(String name, String address, String contact, String dob, String email, String authToken) {
-        this.name = name;
-        this.address = address;
-        this.contact = contact;
-        this.dob = dob;
+    public void prepareAuthentication(String email, String authToken, int id) {
         this.email = email;
         this.authToken = authToken;
+        this.id = String.valueOf(id);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setTitle("Updating your profile");
+        dialog.setTitle("Applying for job");
         dialog.setMessage("Please wait");
         dialog.setIndeterminate(false);
         dialog.show();
@@ -61,8 +57,7 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        Log.d("Manager", result);
-        editProfileListener.onSuccess(result);
+        applyJobListener.onSuccess(result);
         dialog.dismiss();
     }
 
@@ -74,16 +69,13 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
             HttpPost httpPost = new HttpPost(url);
 
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-
+            nvps.add(new BasicNameValuePair("post_id", id));
             nvps.add(new BasicNameValuePair("email", email));
-            nvps.add(new BasicNameValuePair("username", name));
-            nvps.add(new BasicNameValuePair("address", address));
-            nvps.add(new BasicNameValuePair("contact_number", contact));
-            nvps.add(new BasicNameValuePair("date_of_birth", "" + dob));
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 
+            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
             httpPost.setHeader("Authentication-Token", authToken);
             HttpResponse httpResponse = httpclient.execute(httpPost);
+
             inputStream = httpResponse.getEntity().getContent();
             if(inputStream != null)
                 result = convertInputStreamToString(inputStream);
@@ -93,6 +85,8 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());
         }
+
+        // 9. return result
         return result;
     }
 

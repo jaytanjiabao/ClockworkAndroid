@@ -11,4 +11,6 @@
     <color name="grey">#e5e5e5</color>
     <string name="title_activity_prelude">PreludeActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="title_activity_view_job">ViewJobActivity</string>
 </resources>

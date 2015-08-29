@@ -47,14 +47,13 @@ public class ListingAdapter extends BaseAdapter {
         TextView hiringCo = (TextView) view.findViewById(R.id.hiringCo);
         TextView startDate = (TextView) view.findViewById(R.id.startDate);
         TextView salary = (TextView) view.findViewById(R.id.salary);
-        ImageView locationImage = (ImageView) view.findViewById(R.id.locationImage);
         TextView location = (TextView) view.findViewById(R.id.location);
 
         // set text
         jobTitle.setText(p.getHeader());
         hiringCo.setText(p.getCompany());
         startDate.setText("" + p.getJobDate());
-        salary.setText("$ " + p.getSalary() + " per hour");
+        salary.setText("$" + p.getSalary());
 
         location.setText(p.getLocation());
 

@@ -27,6 +27,14 @@
             android:name=".view.activity.PreludeActivity"
             android:label="PreludeActivity" >
         </activity>
+        <activity
+            android:name=".view.activity.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile" >
+        </activity>
+        <activity
+            android:name=".view.activity.ViewJobActivity"
+            android:label="@string/title_activity_view_job" >
+        </activity>
     </application>
 
 </manifest>
