@@ -66,6 +66,14 @@
                 android:layout_height="30dp"
                 android:background="@drawable/button"/>
 
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/fblogin_button"
+                android:layout_below="@+id/registerButton"
+                android:layout_marginBottom="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"/>
+
         </LinearLayout>
 
     </FrameLayout>

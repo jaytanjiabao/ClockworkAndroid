@@ -4,6 +4,10 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    repositories {
+        mavenCentral()
+    }
+
     defaultConfig {
         applicationId "com.android.clockwork"
         minSdkVersion 18
@@ -27,4 +31,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:design:22.2.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
 }

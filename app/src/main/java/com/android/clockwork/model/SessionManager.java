@@ -53,7 +53,7 @@ public class SessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(int id, String userName, String email, String accountType, String passWord, String authenticationToken){
+    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -64,7 +64,7 @@ public class SessionManager {
         editor.putString(KEY_ACCOUNTYPE, accountType);
 
         //Storing passWord in pref
-        editor.putString(KEY_PASSWORD, passWord);
+        //editor.putString(KEY_PASSWORD, passWord);
 
         //Storing authenticationToken in pref
         editor.putString(KEY_AUTHENTICATIONTOKEN, authenticationToken);
@@ -111,7 +111,7 @@ public class SessionManager {
 
         user.put(KEY_AUTHENTICATIONTOKEN, pref.getString(KEY_AUTHENTICATIONTOKEN, null));
 
-        user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
+        //user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
 
         // return user
         return user;

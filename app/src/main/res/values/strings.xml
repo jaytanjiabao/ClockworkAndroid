@@ -3,6 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="app_id">120004551681449</string>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

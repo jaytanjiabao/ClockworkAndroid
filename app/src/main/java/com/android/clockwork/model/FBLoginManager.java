@@ -1,12 +1,15 @@
 package com.android.clockwork.model;
 
 import android.content.Context;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.android.clockwork.presenter.LoginListener;
+
+import com.android.clockwork.presenter.FBLoginListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,25 +29,32 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Hoi Chuen on 20/8/2015.
+ * Created by Hoi Chuen on 28/8/2015.
  */
-public class LoginManager extends AsyncTask<String, Void, String> {
-    HttpResponse httpResponse;
-    Session loginSession;
-    SessionManager sessionManager;
-    int statusCode;
-    LoginListener listener;
-    Context currentContext;
+public class FBLoginManager extends AsyncTask<String, Void, String> {
 
-    public LoginManager(Context currentContext) {
+
+    Context currentContext;
+    String email, fb_Id, avatar_Path, account_Type, userName;
+    HttpResponse httpResponse;
+    SessionManager sessionManager;
+    FBLoginListener fbLoginListener;
+
+
+    public FBLoginManager (Context currentContext) {
         this.currentContext = currentContext;
     }
 
-    public void login(final String userEmail, final String userPassword, final LoginListener listener) {
-        loginSession = new Session(userEmail, userPassword);
-        this.listener = listener;
+    public void fbLogin(String email, String fb_Id, String avatar_Path, String account_Type, String userName,FBLoginListener fbLoginListener ) {
+        this.email = email;
+        this.fb_Id = fb_Id;
+        this.avatar_Path = avatar_Path;
+        this.account_Type = account_Type;
+        this.userName = userName;
+        this.fbLoginListener = fbLoginListener;
     }
-    public String POST(String url, Session loginSession){
+
+    public String POST(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -59,8 +69,12 @@ public class LoginManager extends AsyncTask<String, Void, String> {
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
 
-            pairs.add(new BasicNameValuePair("user[email]", loginSession.getEmail()));
-            pairs.add(new BasicNameValuePair("user[password]", loginSession.getPassword()));
+            pairs.add(new BasicNameValuePair("user[email]", email));
+            pairs.add(new BasicNameValuePair("user[facebook_id]", fb_Id));
+            pairs.add(new BasicNameValuePair("user[avatar_path]", avatar_Path));
+            pairs.add(new BasicNameValuePair("user[account_type]", account_Type));
+            pairs.add(new BasicNameValuePair("user[username]", userName));
+
 
             // 6. set httpPost Entity
             httpPost.setEntity(new UrlEncodedFormEntity(pairs));
@@ -70,7 +84,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
 
             // 8. Execute POST request to the given URL
             httpResponse = httpclient.execute(httpPost);
-            statusCode = httpResponse.getStatusLine().getStatusCode();
+            //statusCode = httpResponse.getStatusLine().getStatusCode();
 
 
             // 9. receive response as inputStream
@@ -89,34 +103,33 @@ public class LoginManager extends AsyncTask<String, Void, String> {
         // 11. return result
         return result;
     }
+
+
     protected String doInBackground(String... urls) {
         if(isCancelled()) {
             return "Cancelled";
         }
-        return POST(urls[0], loginSession);
+        return POST(urls[0]);
     }
 
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println(result);
-        if(statusCode!=401) {
-            sessionManager = new SessionManager(currentContext);
-            Gson gson = new Gson();
-            Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
-            HashMap userHash = gson.fromJson(result, hashType);
-            Double idDouble = (Double)userHash.get("id");
-            int id = idDouble.intValue();
-            String username = (String)userHash.get("username");
-            String email = (String)userHash.get("email");
-            String accountType = (String)userHash.get("account_type");
-            String authenticationToken = (String)userHash.get("authentication_token");
-            //String passWord = loginSession.getPassword();
-            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken);
-            listener.onSuccess();
-        }else {
+        sessionManager = new SessionManager(currentContext);
+        Gson gson = new Gson();
+        Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
+        HashMap userHash = gson.fromJson(result, hashType);
+        Double idDouble = (Double)userHash.get("id");
+        int id = idDouble.intValue();
+        String username = (String)userHash.get("username");
+        String email = (String)userHash.get("email");
+        String accountType = (String)userHash.get("account_type");
+        String authenticationToken = (String)userHash.get("authentication_token");
+        //String passWord = loginSession.getPassword();
+        sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken);
+        fbLoginListener.onSuccess();
 
-        }
+
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
@@ -130,4 +143,6 @@ public class LoginManager extends AsyncTask<String, Void, String> {
 
     }
 
+
 }
+

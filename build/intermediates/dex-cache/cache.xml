@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Hoi Chuen\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jar="C:\Users\Hoi Chuen\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-045856508b4fa365be9c934090a74beae3fa8c36.jar" />
-    </item>
-    <item
-        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-42f506a3b9f986e8fe86dcc895bf45db736b204b.jar" />
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-9feb228b6ab8c73d1f807553767930dc1b91fe8e.jar" />
     </item>
     <item
         jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
@@ -30,6 +23,27 @@
         <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\gson-2.3.1-836ca8af93d81c03947057633c0e12780e80ea6c.jar" />
     </item>
     <item
+        jar="C:\Users\Hoi Chuen\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-045856508b4fa365be9c934090a74beae3fa8c36.jar" />
+    </item>
+    <item
+        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-42f506a3b9f986e8fe86dcc895bf45db736b204b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\classes-fd9a38e3b4ed08c3b386c450cb37f12650b354c1.jar" />
+    </item>
+    <item
         jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -44,11 +58,11 @@
         <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\classes-704e3d1c3008e8e769cdfdeca1bd4280ddb7d8dc.jar" />
     </item>
     <item
-        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\classes-fd9a38e3b4ed08c3b386c450cb37f12650b354c1.jar" />
+        sha1="a78bfd2ec508b123ee7c03f4006ba7996ef9a8dc">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\classes-5fbf260a51e75f3ecb787aca88e91b27e9b00ea4.jar" />
     </item>
     <item
         jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
