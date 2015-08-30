@@ -14,4 +14,5 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_edit_profile">EditProfileActivity</string>
     <string name="title_activity_view_job">ViewJobActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
 </resources>

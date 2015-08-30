@@ -11,7 +11,7 @@ public class Post implements Parcelable {
     private int id;
     private String header;
     private String company;
-    private int salary;
+    private double salary;
     private String description;
     private String location;
     private String posting_date;
@@ -65,11 +65,11 @@ public class Post implements Parcelable {
         this.company = company;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
@@ -125,7 +125,7 @@ public class Post implements Parcelable {
         parcel.writeInt(id);
         parcel.writeString(header);
         parcel.writeString(company);
-        parcel.writeInt(salary);
+        parcel.writeDouble(salary);
         parcel.writeString(description);
         parcel.writeString(location);
         parcel.writeString(posting_date);
@@ -142,7 +142,7 @@ public class Post implements Parcelable {
             Post.id = source.readInt();
             Post.header = source.readString();
             Post.company = source.readString();
-            Post.salary = source.readInt();
+            Post.salary = source.readDouble();
             Post.description = source.readString();
             Post.location = source.readString();
             Post.posting_date = source.readString();
