@@ -111,7 +111,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-
+        System.out.println(result);
         if (statusCode == 201) {
             sessionManager = new SessionManager(currentContext);
             Gson gson = new Gson();

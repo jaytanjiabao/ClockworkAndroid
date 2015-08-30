@@ -1,5 +1,6 @@
 package com.android.clockwork.view.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        registerPresenter = new RegisterPresenter(this);
+
         emailText = (EditText)findViewById(R.id.emailText);
         nameText = (EditText)findViewById(R.id.nameText);
         pwText = (EditText)findViewById(R.id.pwText);
@@ -29,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerPresenter.register(emailText.getText().toString(),nameText.getText().toString(),pwText.getText().toString());
+                registerPresenter.register(emailText.getText().toString(),pwText.getText().toString(),nameText.getText().toString());
             }
         });
     }
@@ -54,5 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void navigateToHome() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
