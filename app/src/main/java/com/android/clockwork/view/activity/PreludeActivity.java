@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.clockwork.R;
@@ -108,7 +109,14 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
+        final Button registerButton = (Button)findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerType = new Intent(view.getContext(), RegisterActivity.class);
+                startActivity(registerType);
+            }
+        });
 
     }
 

@@ -21,7 +21,6 @@ public class FBLoginPresenter implements FBLoginListener {
 
     public void fbLogin(String email, String fb_Id, String avatar_Path, String account_Type, String userName){
         this.fbLoginManager = new FBLoginManager(currentContext);
-
         fbLoginManager.execute("https://clockwork-api.herokuapp.com/users.json");
         fbLoginManager.fbLogin(email, fb_Id, avatar_Path, account_Type, userName,this);
     }
