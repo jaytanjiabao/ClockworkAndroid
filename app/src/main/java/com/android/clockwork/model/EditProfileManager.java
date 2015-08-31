@@ -29,18 +29,17 @@ import java.util.List;
 public class EditProfileManager extends AsyncTask<String, Void, String> {
     EditProfileListener editProfileListener;
     ProgressDialog dialog;
-    String name, address, contact, dob, email, authToken;
+    String name, address, contact, email, authToken;
 
     public EditProfileManager(EditProfileListener editProfileListener, ProgressDialog dialog) {
         this.editProfileListener = editProfileListener;
         this.dialog = dialog;
     }
 
-    public void setProfileDetails(String name, String address, String contact, String dob, String email, String authToken) {
+    public void setProfileDetails(String name, String address, String contact, String email, String authToken) {
         this.name = name;
         this.address = address;
         this.contact = contact;
-        this.dob = dob;
         this.email = email;
         this.authToken = authToken;
     }
@@ -79,7 +78,6 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
             nvps.add(new BasicNameValuePair("username", name));
             nvps.add(new BasicNameValuePair("address", address));
             nvps.add(new BasicNameValuePair("contact_number", contact));
-            nvps.add(new BasicNameValuePair("date_of_birth", "" + dob));
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 
             httpPost.setHeader("Authentication-Token", authToken);

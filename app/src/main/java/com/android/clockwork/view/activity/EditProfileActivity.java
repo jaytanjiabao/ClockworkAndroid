@@ -41,7 +41,6 @@ public class EditProfileActivity extends AppCompatActivity {
         nameText = (EditText) findViewById(R.id.nameText);
         addressText = (EditText) findViewById(R.id.addressText);
         contactText = (EditText) findViewById(R.id.contactText);
-        dateText = (EditText) findViewById(R.id.dateText);
         editProfilePresenter = new EditProfilePresenter(this, dialog);
         updatePersonalDetails();
 
@@ -51,7 +50,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Activity", "Before executing..");
                 editProfilePresenter.updateProfile(nameText.getText().toString(), addressText.getText().toString(),
-                        contactText.getText().toString(), dateText.getText().toString(), email, authToken);
+                        contactText.getText().toString(), email, authToken);
                 Log.d("Activity", "After executing..");
                 Intent editProfile = new Intent(view.getContext(), MainActivity.class);
                 startActivity(editProfile);
@@ -62,6 +61,8 @@ public class EditProfileActivity extends AppCompatActivity {
     public void updatePersonalDetails() {
         HashMap<String, String> user = editProfilePresenter.getUserMap();
         nameText.setText(user.get(SessionManager.KEY_NAME));
+        // to implement address
+        // to implement contact
         email = user.get(SessionManager.KEY_EMAIL);
         authToken = user.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
     }

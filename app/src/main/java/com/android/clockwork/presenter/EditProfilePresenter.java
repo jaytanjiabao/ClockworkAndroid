@@ -38,9 +38,9 @@ public class EditProfilePresenter implements EditProfileListener {
         this.sessionManager = new SessionManager(currentContext);
     }
 
-    public void updateProfile(String name, String address, String contact, String dob, String email, String authToken) {
+    public void updateProfile(String name, String address, String contact, String email, String authToken) {
         Log.d("Manager", "Before executing..");
-        editProfileManager.setProfileDetails(name, address, contact, dob, email, authToken);
+        editProfileManager.setProfileDetails(name, address, contact, email, authToken);
         editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
         Log.d("Manager", "After executing..");
     }
@@ -52,7 +52,8 @@ public class EditProfilePresenter implements EditProfileListener {
     @Override
     public void onSuccess(String result) {
         // success
-        Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully!", Toast.LENGTH_LONG).show();
+        // update stored session
+        Toast.makeText(fragmentActivity.getBaseContext(), "Profile update successfully!", Toast.LENGTH_LONG).show();
     }
 
     @Override
