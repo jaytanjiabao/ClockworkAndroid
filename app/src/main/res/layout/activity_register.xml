@@ -1,47 +1,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register_bg"
+    android:alpha="1"
     tools:context="com.android.clockwork.view.activity.RegisterActivity">
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:ems="8"
-        android:id="@+id/nameText"
-        android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:alpha="0.85"
+            android:background="@drawable/rounded_corner">
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Email Address"
-        android:ems="8"
-        android:id="@+id/emailText"
-        android:layout_below="@+id/nameText"
-        android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logo_text"
+                android:src="@drawable/cw"
+                android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/emailText"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:ems="8"
-        android:id="@+id/pwText"
-        android:layout_gravity="center_horizontal" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/nameText"
+                android:layout_gravity="center" />
 
-    <Button
-        android:layout_below="@+id/pwText"
-        android:text="Sign me up!"
-        android:id="@+id/submitBtn"
-        style="@style/button_text"
-        android:layout_gravity="center_horizontal" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailText"
+                android:layout_gravity="center" />
 
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/pwText"
+                android:layout_gravity="center" />
 
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="Sign me up!"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/button"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
 </RelativeLayout>
