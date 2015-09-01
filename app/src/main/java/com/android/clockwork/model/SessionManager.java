@@ -43,6 +43,8 @@ public class SessionManager {
 
     public static final String KEY_ID = "id" ;
 
+    public static final String KEY_AVATAR = "avatarPath";
+
     public static String status = "";
 
     // Constructor
@@ -53,7 +55,7 @@ public class SessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken){
+    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken,String avatarPath){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -74,6 +76,8 @@ public class SessionManager {
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
+
+        editor.putString(KEY_AVATAR, avatarPath);
 
         // commit changes
         editor.commit();
@@ -110,6 +114,8 @@ public class SessionManager {
         user.put(KEY_ACCOUNTYPE, pref.getString(KEY_ACCOUNTYPE, null));
 
         user.put(KEY_AUTHENTICATIONTOKEN, pref.getString(KEY_AUTHENTICATIONTOKEN, null));
+
+        user.put(KEY_AVATAR, pref.getString(KEY_AVATAR, null));
 
         //user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
 

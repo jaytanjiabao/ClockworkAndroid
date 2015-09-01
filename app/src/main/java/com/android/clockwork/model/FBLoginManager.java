@@ -125,8 +125,9 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
         String email = (String)userHash.get("email");
         String accountType = (String)userHash.get("account_type");
         String authenticationToken = (String)userHash.get("authentication_token");
+        String avatar_path = (String) userHash.get("avatar_path");
         //String passWord = loginSession.getPassword();
-        sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken);
+        sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path);
         fbLoginListener.onSuccess();
 
 
