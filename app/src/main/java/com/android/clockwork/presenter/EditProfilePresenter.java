@@ -45,15 +45,27 @@ public class EditProfilePresenter implements EditProfileListener {
         Log.d("Manager", "After executing..");
     }
 
+    public void changePassword(String oldPassword, String newPassword, String retypedPassword, String email, String authToken) {
+        Log.d("Manager", "Before executing..");
+        editProfileManager.preparePasswordChange(true);
+        editProfileManager.setPasswordDetails(oldPassword, newPassword, retypedPassword, email, authToken);
+        editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        Log.d("Manager", "After executing..");
+    }
+
     public HashMap<String, String> getUserMap() {
         return sessionManager.getUserDetails();
     }
 
     @Override
-    public void onSuccess(String result) {
+    public void onSuccess(String result, boolean changePassword) {
         // success
         // update stored session
-        Toast.makeText(fragmentActivity.getBaseContext(), "Profile update successfully!", Toast.LENGTH_LONG).show();
+        if (changePassword) {
+            Toast.makeText(fragmentActivity.getBaseContext(), "Password changed successfully", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

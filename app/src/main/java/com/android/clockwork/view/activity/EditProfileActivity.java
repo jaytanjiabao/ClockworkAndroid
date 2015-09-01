@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
     Button updateButton;
-    EditText nameText, addressText, contactText, dateText;
+    EditText nameText, addressText, contactText;
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
     String email, authToken;

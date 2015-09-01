@@ -15,4 +15,5 @@
     <string name="title_activity_edit_profile">EditProfileActivity</string>
     <string name="title_activity_view_job">ViewJobActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
 </resources>
