@@ -13,11 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Session;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
+import com.android.clockwork.presenter.ProfilePicturePresenter;
 import com.android.clockwork.view.tab.ProfileFragment;
 
 import java.util.HashMap;
@@ -28,6 +30,10 @@ public class EditProfileActivity extends AppCompatActivity {
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
     String email, authToken;
+    HashMap<String, String> user;
+    ImageView pictureView;
+    ProfilePicturePresenter profilePicturePresenter;
+    HashMap<String, Integer> userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,18 @@ public class EditProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         dialog = new ProgressDialog(EditProfileActivity.this);
 
+        editProfilePresenter = new EditProfilePresenter(this, dialog);
+        user = editProfilePresenter.getUserMap();
+        userID = editProfilePresenter.getUserID();
         nameText = (EditText) findViewById(R.id.nameText);
         addressText = (EditText) findViewById(R.id.addressText);
         contactText = (EditText) findViewById(R.id.contactText);
-        editProfilePresenter = new EditProfilePresenter(this, dialog);
+        pictureView = (ImageView) findViewById(R.id.imageView);
+
+
+        profilePicturePresenter = new ProfilePicturePresenter(pictureView);
+        String avatar_path = user.get(SessionManager.KEY_AVATAR);
+        profilePicturePresenter.getProfilePicture(avatar_path);
         updatePersonalDetails();
 
         updateButton = (Button) findViewById(R.id.updateButton);
@@ -52,6 +66,10 @@ public class EditProfileActivity extends AppCompatActivity {
                 editProfilePresenter.updateProfile(nameText.getText().toString(), addressText.getText().toString(),
                         contactText.getText().toString(), email, authToken);
                 Log.d("Activity", "After executing..");
+                String accountType = user.get(SessionManager.KEY_ACCOUNTYPE);
+                String avatarPath = user.get(SessionManager.KEY_AVATAR);
+                int id = userID.get(SessionManager.KEY_ID);
+                editProfilePresenter.updateSession(id,nameText.getText().toString(),email,accountType,authToken,avatarPath,addressText.getText().toString(),contactText.getText().toString());
                 Intent editProfile = new Intent(view.getContext(), MainActivity.class);
                 startActivity(editProfile);
             }
@@ -59,10 +77,10 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void updatePersonalDetails() {
-        HashMap<String, String> user = editProfilePresenter.getUserMap();
+
         nameText.setText(user.get(SessionManager.KEY_NAME));
-        // to implement address
-        // to implement contact
+        addressText.setText(user.get(SessionManager.KEY_ADDRESS));
+        contactText.setText(user.get(SessionManager.KEY_CONTACT));
         email = user.get(SessionManager.KEY_EMAIL);
         authToken = user.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
     }

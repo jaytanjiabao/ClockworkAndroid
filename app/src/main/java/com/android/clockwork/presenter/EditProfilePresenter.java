@@ -57,6 +57,14 @@ public class EditProfilePresenter implements EditProfileListener {
         return sessionManager.getUserDetails();
     }
 
+    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact) {
+        sessionManager.updateSession(id,userName,email,accountType,authenticationToken,avatarPath,address,contact);
+    }
+
+    public HashMap<String, Integer> getUserID () {
+        return sessionManager.getUserID();
+    }
+
     @Override
     public void onSuccess(String result, boolean changePassword) {
         // success

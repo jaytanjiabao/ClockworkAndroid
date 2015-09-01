@@ -17,12 +17,12 @@ import android.widget.TextView;
 import com.android.clockwork.R;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
-<<<<<<< HEAD
+
 import com.android.clockwork.presenter.LogoutPresenter;
 import com.android.clockwork.presenter.ProfilePicturePresenter;
-=======
+
 import com.android.clockwork.view.activity.ChangePasswordActivity;
->>>>>>> origin/master
+
 import com.android.clockwork.view.activity.EditProfileActivity;
 import com.android.clockwork.view.activity.PreludeActivity;
 import java.util.HashMap;
