@@ -36,7 +36,7 @@ import java.util.HashMap;
 public class ProfileFragment extends Fragment {
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
-    Button editButton;
+    Button editButton, pwButton, logoutButton;
     View fragmentView;
     TextView usernameText, emailText;
     ImageView pictureView;
@@ -63,6 +63,22 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent editProfile = new Intent(view.getContext(), EditProfileActivity.class);
                 startActivity(editProfile);
+            }
+        });
+
+        pwButton = (Button) fragmentView.findViewById(R.id.pwButton);
+        pwButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //
+            }
+        });
+
+        logoutButton = (Button) fragmentView.findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //
             }
         });
 
