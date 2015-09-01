@@ -29,7 +29,8 @@ import java.util.List;
 public class EditProfileManager extends AsyncTask<String, Void, String> {
     EditProfileListener editProfileListener;
     ProgressDialog dialog;
-    String name, address, contact, email, authToken;
+    String name, address, contact, oldPassword, newPassword, retypedPassword, email, authToken;
+    boolean changePassword = false;
 
     public EditProfileManager(EditProfileListener editProfileListener, ProgressDialog dialog) {
         this.editProfileListener = editProfileListener;
@@ -40,6 +41,18 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
         this.name = name;
         this.address = address;
         this.contact = contact;
+        this.email = email;
+        this.authToken = authToken;
+    }
+
+    public void preparePasswordChange(boolean status) {
+        this.changePassword = status;
+    }
+
+    public void setPasswordDetails(String oldPassword, String newPassword, String retypedPassword, String email, String authToken) {
+        this.oldPassword = oldPassword;
+        this.newPassword = newPassword;
+        this.retypedPassword = retypedPassword;
         this.email = email;
         this.authToken = authToken;
     }
@@ -61,7 +74,8 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Log.d("Manager", result);
-        editProfileListener.onSuccess(result);
+        editProfileListener.onSuccess(result, changePassword);
+        changePassword = false;
         dialog.dismiss();
     }
 
@@ -75,9 +89,16 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
             nvps.add(new BasicNameValuePair("email", email));
-            nvps.add(new BasicNameValuePair("username", name));
-            nvps.add(new BasicNameValuePair("address", address));
-            nvps.add(new BasicNameValuePair("contact_number", contact));
+
+            if (changePassword) {
+                nvps.add(new BasicNameValuePair("password", newPassword));
+                nvps.add(new BasicNameValuePair("password_confirmation", retypedPassword));
+                nvps.add(new BasicNameValuePair("old_password", oldPassword));
+            } else {
+                nvps.add(new BasicNameValuePair("username", name));
+                nvps.add(new BasicNameValuePair("address", address));
+                nvps.add(new BasicNameValuePair("contact_number", contact));
+            }
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
 
             httpPost.setHeader("Authentication-Token", authToken);

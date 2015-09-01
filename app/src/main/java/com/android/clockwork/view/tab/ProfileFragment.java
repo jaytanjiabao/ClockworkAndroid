@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.android.clockwork.R;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
+import com.android.clockwork.view.activity.ChangePasswordActivity;
 import com.android.clockwork.view.activity.EditProfileActivity;
 import com.facebook.login.widget.ProfilePictureView;
 
@@ -70,7 +71,8 @@ public class ProfileFragment extends Fragment {
         pwButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
+                Intent changePassword = new Intent(view.getContext(), ChangePasswordActivity.class);
+                startActivity(changePassword);
             }
         });
 
