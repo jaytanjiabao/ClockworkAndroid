@@ -4,6 +4,7 @@ package com.android.clockwork.presenter;
 import android.content.Context;
 
 import com.android.clockwork.model.LogoutManager;
+import com.android.clockwork.view.tab.ProfileFragment;
 import com.android.clockwork.view.tab.TabFragment2;
 
 /**
@@ -11,13 +12,13 @@ import com.android.clockwork.view.tab.TabFragment2;
  */
 public class LogoutPresenter implements LogoutListener {
 
-    private TabFragment2 tabFragment2;
+    private ProfileFragment profileFragment;
     Context currentContext;
     private LogoutManager logoutManager;
 
-    public LogoutPresenter (TabFragment2 tabFragment2) {
-        this.tabFragment2 = tabFragment2;
-        this.currentContext = tabFragment2.getActivity().getApplicationContext();
+    public LogoutPresenter (ProfileFragment profileFragment) {
+        this.profileFragment = profileFragment;
+        this.currentContext = profileFragment.getActivity().getApplicationContext();
     }
 
     public void logOut (){
@@ -26,6 +27,6 @@ public class LogoutPresenter implements LogoutListener {
     }
 
     public void onSuccess () {
-        tabFragment2.navigateToLogin();
+        profileFragment.navigateToLogin();
     }
 }

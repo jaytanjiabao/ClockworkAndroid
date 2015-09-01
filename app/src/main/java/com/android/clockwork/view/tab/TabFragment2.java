@@ -30,7 +30,7 @@ public class TabFragment2 extends Fragment implements View.OnClickListener {
 
         sessionManager = new SessionManager(getActivity().getApplicationContext());
         fragmentView = inflater.inflate(R.layout.tab_fragment_2, container, false);
-        logoutPresenter = new LogoutPresenter(this);
+        //logoutPresenter = new LogoutPresenter(this);
         fragmentView.findViewById(R.id.logOutButton).setOnClickListener(this);
         TextView textView = (TextView)fragmentView.findViewById(R.id.textView);
         user = sessionManager.getUserDetails();
@@ -46,7 +46,7 @@ public class TabFragment2 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        logoutPresenter.logOut();
+
     }
 
 }
