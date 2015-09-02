@@ -128,8 +128,11 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             String address = (String) userHash.get("address");
             Double contactNo = (Double) userHash.get("contact_number");
             NumberFormat nm = NumberFormat.getNumberInstance();
-            String contact = nm.format(contactNo);
-            contact = contact.replace(",","");
+            String contact = "";
+            if (contactNo != null) {
+                contact = nm.format(contactNo);
+                contact = contact.replace(",", "");
+            }
             sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact);
             registerListener.onSuccess();
         }else {
