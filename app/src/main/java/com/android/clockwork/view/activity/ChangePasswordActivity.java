@@ -13,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
+import com.android.clockwork.presenter.ProfilePicturePresenter;
 
 import java.util.HashMap;
 
@@ -26,6 +28,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
     String email, authToken;
+    ImageView pictureView;
+    HashMap<String, String> user;
+    ProfilePicturePresenter profilePicturePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +43,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
         oldPwText = (EditText) findViewById(R.id.oldPwText);
         newPwText = (EditText) findViewById(R.id.newPwText);
         confirmPwText = (EditText) findViewById(R.id.confirmPwText);
-        oldPwText.requestFocus();
+        pictureView = (ImageView) findViewById(R.id.imageView);
+
         editProfilePresenter = new EditProfilePresenter(this, dialog);
+        user = editProfilePresenter.getUserMap();
+        profilePicturePresenter = new ProfilePicturePresenter(pictureView);
+        String avatar_path = user.get(SessionManager.KEY_AVATAR);
+        profilePicturePresenter.getProfilePicture(avatar_path);
+        oldPwText.requestFocus();
+
         updatePersonalDetails();
 
         updateButton = (Button) findViewById(R.id.updateButton);
@@ -133,7 +145,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
     public void updatePersonalDetails() {
-        HashMap<String, String> user = editProfilePresenter.getUserMap();
+
         // to implement address
         // to implement contact
         email = user.get(SessionManager.KEY_EMAIL);

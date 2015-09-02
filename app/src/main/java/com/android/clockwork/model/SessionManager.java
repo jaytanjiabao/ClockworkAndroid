@@ -45,6 +45,10 @@ public class SessionManager {
 
     public static final String KEY_AVATAR = "avatarPath";
 
+    public static final String KEY_ADDRESS = "address";
+
+    public static final String KEY_CONTACT = "contact";
+
     public static String status = "";
 
     // Constructor
@@ -55,7 +59,7 @@ public class SessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken,String avatarPath){
+    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -78,6 +82,41 @@ public class SessionManager {
         editor.putString(KEY_EMAIL, email);
 
         editor.putString(KEY_AVATAR, avatarPath);
+
+        editor.putString(KEY_ADDRESS, address);
+
+        editor.putString(KEY_CONTACT, contact);
+
+        // commit changes
+        editor.commit();
+    }
+
+
+    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact){
+
+        //Storing ID in pref
+        editor.putInt(KEY_ID, id);
+
+        //Storing accountType in pref
+        editor.putString(KEY_ACCOUNTYPE, accountType);
+
+        //Storing passWord in pref
+        //editor.putString(KEY_PASSWORD, passWord);
+
+        //Storing authenticationToken in pref
+        editor.putString(KEY_AUTHENTICATIONTOKEN, authenticationToken);
+
+        // Storing name in pref
+        editor.putString(KEY_NAME, userName);
+
+        // Storing email in pref
+        editor.putString(KEY_EMAIL, email);
+
+        editor.putString(KEY_AVATAR, avatarPath);
+
+        editor.putString(KEY_ADDRESS, address);
+
+        editor.putString(KEY_CONTACT, contact);
 
         // commit changes
         editor.commit();
@@ -116,6 +155,10 @@ public class SessionManager {
         user.put(KEY_AUTHENTICATIONTOKEN, pref.getString(KEY_AUTHENTICATIONTOKEN, null));
 
         user.put(KEY_AVATAR, pref.getString(KEY_AVATAR, null));
+
+        user.put(KEY_ADDRESS, pref.getString(KEY_ADDRESS, null));
+
+        user.put(KEY_CONTACT, pref.getString(KEY_CONTACT, null));
 
         //user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
 

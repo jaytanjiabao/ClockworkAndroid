@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,8 +125,12 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             String accountType = (String)userHash.get("account_type");
             String authenticationToken = (String)userHash.get("authentication_token");
             String avatar_path = (String) userHash.get("avatar_path");
-            //String passWord = loginSession.getPassword();
-            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path);
+            String address = (String) userHash.get("address");
+            Double contactNo = (Double) userHash.get("contact_number");
+            NumberFormat nm = NumberFormat.getNumberInstance();
+            String contact = nm.format(contactNo);
+            contact = contact.replace(",","");
+            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact);
             registerListener.onSuccess();
         }else {
 
