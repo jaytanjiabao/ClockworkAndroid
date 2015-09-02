@@ -90,7 +90,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void updatePersonalDetails() {
-
         usernameText.setText(user.get(SessionManager.KEY_NAME));
         emailText.setText(user.get(SessionManager.KEY_EMAIL));
     }

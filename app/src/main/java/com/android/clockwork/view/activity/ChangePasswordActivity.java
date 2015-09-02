@@ -59,10 +59,20 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // change password
-                editProfilePresenter.changePassword(oldPwText.getText().toString(), newPwText.getText().toString(),
-                        confirmPwText.getText().toString(), email, authToken);
-                Intent changePassword = new Intent(view.getContext(), MainActivity.class);
-                startActivity(changePassword);
+                if (oldPwText.length() <= 0) {
+                    oldPwText.setError("Password missing!");
+                } else if (oldPwText.length() < 8) {
+                    oldPwText.setError("Password must contain at least 8 characters!");
+                } else if (!newPwText.getText().toString().equals(confirmPwText.getText().toString())) {
+                    confirmPwText.setError("New passwords do not match!");
+                } else if (newPwText.length() < 8) {
+                    newPwText.setError("Password must contain at least 8 characters!");
+                } else {
+                    editProfilePresenter.changePassword(oldPwText.getText().toString(), newPwText.getText().toString(),
+                            confirmPwText.getText().toString(), email, authToken);
+                    Intent changePassword = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(changePassword);
+                }
             }
         });
         fieldValidation();
@@ -84,13 +94,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
                     oldPwText.setError("Password missing!");
-                    updateButton.setEnabled(false);
                 } else if (s.length() < 8) {
                     oldPwText.setError("Password must contain at least 8 characters!");
-                    updateButton.setEnabled(false);
-                }
-                else {
-                    updateButton.setEnabled(true);
                 }
             }
         };
@@ -111,12 +116,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
                     newPwText.setError("Password missing!");
-                    updateButton.setEnabled(false);
                 } else if (s.length() < 8) {
                     newPwText.setError("Password must contain at least 8 characters!");
-                    updateButton.setEnabled(false);
-                } else {
-                    updateButton.setEnabled(true);
                 }
             }
         };
@@ -137,9 +138,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!newPwText.getText().toString().equals(confirmPwText.getText().toString())) {
                     confirmPwText.setError("New passwords do not match!");
-                    updateButton.setEnabled(false);
-                } else {
-                    updateButton.setEnabled(true);
                 }
             }
         };
