@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.android.clockwork.model.LogoutManager;
 import com.android.clockwork.view.tab.ProfileFragment;
-import com.android.clockwork.view.tab.TabFragment2;
 
 /**
  * Created by Hoi Chuen on 22/8/2015.

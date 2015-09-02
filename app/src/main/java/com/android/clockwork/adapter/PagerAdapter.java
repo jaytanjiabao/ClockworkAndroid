@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.android.clockwork.view.tab.JobListingFragment;
-import com.android.clockwork.view.tab.TabFragment2;
+import com.android.clockwork.view.tab.DashboardFragment;
 import com.android.clockwork.view.tab.ProfileFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -24,7 +24,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 JobListingFragment tab1 = new JobListingFragment();
                 return tab1;
             case 1:
-                TabFragment2 tab2 = new TabFragment2();
+                DashboardFragment tab2 = new DashboardFragment();
                 return tab2;
             case 2:
                 ProfileFragment tab3 = new ProfileFragment();
