@@ -5,7 +5,7 @@ package com.android.clockwork.presenter;
  */
 public interface EditProfileListener {
 
-    public void onSuccess(String string, boolean passwordChange);
+    public void onSuccess(String string, boolean passwordChange, boolean profilePicChange);
 
     public void onError(String string);
 }

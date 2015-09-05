@@ -11,6 +11,7 @@ import com.android.clockwork.model.EditProfileManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,8 +28,8 @@ public class EditProfilePresenter implements EditProfileListener {
     public EditProfilePresenter(FragmentActivity fragmentActivity, ProgressDialog dialog) {
         this.fragmentActivity = fragmentActivity;
         this.dialog = dialog;
-        this.editProfileManager = new EditProfileManager(this, this.dialog);
         this.currentContext = fragmentActivity.getApplicationContext();
+        this.editProfileManager = new EditProfileManager(this, this.dialog,currentContext);
         this.sessionManager = new SessionManager(currentContext);
     }
 
@@ -53,7 +54,16 @@ public class EditProfilePresenter implements EditProfileListener {
         Log.d("Manager", "After executing..");
     }
 
+    public void changeProfilePicture(String email, File file, String authToken) {
+        Log.d("Manager", "Before executing..");
+        editProfileManager.prepareProfilePicChange(true);
+        editProfileManager.setProfilePictureDetails(email, file, authToken);
+        editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        Log.d("Manager", "After executing..");
+    }
+
     public HashMap<String, String> getUserMap() {
+
         return sessionManager.getUserDetails();
     }
 
@@ -66,12 +76,15 @@ public class EditProfilePresenter implements EditProfileListener {
     }
 
     @Override
-    public void onSuccess(String result, boolean changePassword) {
+    public void onSuccess(String result, boolean changePassword, boolean changeProfilePicture) {
         // success
         // update stored session
         if (changePassword) {
             Toast.makeText(fragmentActivity.getBaseContext(), "Password changed successfully", Toast.LENGTH_LONG).show();
-        } else {
+        } else if(changeProfilePicture) {
+            Toast.makeText(fragmentActivity.getBaseContext(), "Profile Picture changed successfully", Toast.LENGTH_LONG).show();
+        }
+        else{
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully", Toast.LENGTH_LONG).show();
         }
     }

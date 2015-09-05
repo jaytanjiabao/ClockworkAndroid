@@ -2,11 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\exploded-aar\com.baoyz.swipemenulistview\library\1.2.1\jars\classes.jar"
+        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\libs\httpmime-4.3.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="73784bc5c6aaa8c48746c80a8d238a0cfd74ef6c">
-        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\classes-32f986d385043a2b94443064f4740e5e8d34b5ec.jar" />
+        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\httpmime-4.3-caa9782651416a9f7f0650cc8dbd0e6a2f6c1bc0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\libs\httpcore-4.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="11393498b38e9695d0850cac26fde5613ae268b9">
+        <dex dex="C:\Users\Hoi Chuen\Documents\GitHub\ClockworkAndroid\app\build\intermediates\pre-dexed\debug\httpcore-4.3-d1d6517e78f02f91501a34d795fe9e811d1e727d.jar" />
     </item>
 
 </items>

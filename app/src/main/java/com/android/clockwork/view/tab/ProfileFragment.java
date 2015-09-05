@@ -1,9 +1,20 @@
 package com.android.clockwork.view.tab;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,19 +35,28 @@ import com.android.clockwork.presenter.ProfilePicturePresenter;
 import com.android.clockwork.view.activity.ChangePasswordActivity;
 
 import com.android.clockwork.view.activity.EditProfileActivity;
+import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.activity.PreludeActivity;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 
 public class ProfileFragment extends Fragment {
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
-    Button editButton, pwButton, logoutButton;
+    Button editButton, pwButton, logoutButton, changeProfilePictureButton;
     View fragmentView;
     TextView usernameText, emailText;
     ImageView pictureView;
     HashMap<String, String> user;
+    HashMap<String,Integer> userID;
     LogoutPresenter logoutPresenter;
     ProfilePicturePresenter profilePicturePresenter;
+    public static  boolean refresh = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,15 +64,30 @@ public class ProfileFragment extends Fragment {
         usernameText = (TextView) fragmentView.findViewById(R.id.usernameText);
         emailText = (TextView) fragmentView.findViewById(R.id.emailText);
         pictureView = (ImageView) fragmentView.findViewById(R.id.imageView);
+        dialog = new ProgressDialog(this.getActivity());
 
         // to remove editProfilePresenter
-        editProfilePresenter = new EditProfilePresenter(getActivity());
+        editProfilePresenter = new EditProfilePresenter(this.getActivity(),dialog);
         logoutPresenter = new LogoutPresenter(this);
         profilePicturePresenter = new ProfilePicturePresenter(pictureView);
         user = editProfilePresenter.getUserMap();
+        userID  = editProfilePresenter.getUserID();
         String avatar_path = user.get(SessionManager.KEY_AVATAR);
         profilePicturePresenter.getProfilePicture(avatar_path);
         updatePersonalDetails();
+
+        changeProfilePictureButton = (Button) fragmentView.findViewById(R.id.changeProfilePictureButton);
+        changeProfilePictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectImage();
+                if(refresh) {
+                    Intent editProfile = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(editProfile);
+                    refresh = false;
+                }
+            }
+        });
 
         editButton = (Button) fragmentView.findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -93,5 +128,109 @@ public class ProfileFragment extends Fragment {
         usernameText.setText(user.get(SessionManager.KEY_NAME));
         emailText.setText(user.get(SessionManager.KEY_EMAIL));
     }
+
+    //Change Profile Picture codes
+    private void selectImage() {
+
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    startActivityForResult(intent, 1);
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 2);
+
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) {
+                Log.d("Activity", "Before executing..");
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                for (File temp : f.listFiles()) {
+                    if (temp.getName().equals("temp.jpg")) {
+                        f = temp;
+                        break;
+                    }
+                }
+                try {
+                    Bitmap bitmap;
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                            bitmapOptions);
+
+                    File file = new File(getActivity().getApplicationContext().getCacheDir(), userID.get(SessionManager.KEY_ID) + "_avatar" + ".jpg");
+
+                    OutputStream outFile = null;
+
+                    try {
+                        outFile = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
+                        outFile.flush();
+                        editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), file, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
+                        Log.d("Activity", "After executing..");
+                        outFile.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == 2) {
+                Log.d("Activity", "Before executing..");
+                Uri selectedImage = data.getData();
+                String[] filePath = { MediaStore.Images.Media.DATA };
+                Cursor c = getActivity().getApplicationContext().getContentResolver().query(selectedImage, filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                Log.w("path of image from ***", picturePath + "");
+
+                File filesDir = getActivity().getApplicationContext().getFilesDir();
+                File imageFile = new File(filesDir, userID.get(SessionManager.KEY_ID) + "_avatar" + ".jpg");
+
+                OutputStream os;
+                try {
+                    os = new FileOutputStream(imageFile);
+                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    os.flush();
+                    editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), imageFile, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
+                    Log.d("Activity", "After executing..");
+                    os.close();
+
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                }
+            }
+        }
+    }
+
 
 }
