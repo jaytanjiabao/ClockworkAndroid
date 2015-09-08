@@ -116,6 +116,7 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        System.out.println(result);
         sessionManager = new SessionManager(currentContext);
         Gson gson = new Gson();
         Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();

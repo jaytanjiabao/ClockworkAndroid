@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,6 +38,9 @@ import com.android.clockwork.view.activity.ChangePasswordActivity;
 import com.android.clockwork.view.activity.EditProfileActivity;
 import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.activity.PreludeActivity;
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -113,7 +117,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //
+                FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
                 logoutPresenter.logOut();
+                if(AccessToken.getCurrentAccessToken()!= null) {
+                    LoginManager.getInstance().logOut();
+                }
             }
         });
 
@@ -179,6 +187,13 @@ public class ProfileFragment extends Fragment {
 
                     bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                             bitmapOptions);
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    float scaleWidth = ((float)1024)/width;
+                    float scaleHeight = ((float)1024)/height;
+                    Matrix matrix = new Matrix();
+                    matrix.postScale(scaleWidth,scaleHeight);
+                    Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,matrix,false);
 
                     File file = new File(getActivity().getApplicationContext().getCacheDir(), userID.get(SessionManager.KEY_ID) + "_avatar" + ".jpg");
 
@@ -186,7 +201,7 @@ public class ProfileFragment extends Fragment {
 
                     try {
                         outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
+                        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
                         outFile.flush();
                         editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), file, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
                         Log.d("Activity", "After executing..");
@@ -211,6 +226,15 @@ public class ProfileFragment extends Fragment {
                 String picturePath = c.getString(columnIndex);
                 c.close();
                 Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                int width = thumbnail.getWidth();
+                int height = thumbnail.getHeight();
+                float scaleWidth = ((float)1024)/width;
+                float scaleHeight = ((float)1024)/height;
+                Matrix matrix = new Matrix();
+                matrix.postScale(scaleWidth, scaleHeight);
+                Bitmap resizedBitmap = Bitmap.createBitmap(thumbnail, 0, 0, width, height,matrix,false);
+
+                //Bitmap resizedBitmap = Bitmap.createBitmap(thumbnail, 0, 0, 120, 120);
                 Log.w("path of image from ***", picturePath + "");
 
                 File filesDir = getActivity().getApplicationContext().getFilesDir();
@@ -219,7 +243,7 @@ public class ProfileFragment extends Fragment {
                 OutputStream os;
                 try {
                     os = new FileOutputStream(imageFile);
-                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
                     os.flush();
                     editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), imageFile, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
                     Log.d("Activity", "After executing..");
