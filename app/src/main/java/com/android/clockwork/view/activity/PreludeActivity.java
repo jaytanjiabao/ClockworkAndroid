@@ -86,7 +86,6 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
                                 email = object.optString("email");
                                 avatar_Path = object.optJSONObject("picture").optJSONObject("data").optString("url");
                                 account_Type = "job_seeker";
-                                //System.out.println(userName + email + userName + avatar_Path + account_Type);
                                 fbLoginPresenter.fbLogin(email, fb_Id, avatar_Path, account_Type, userName);
 
                             }
@@ -162,7 +161,12 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode,data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+         public void onBackPressed () {
+
     }
 
 
