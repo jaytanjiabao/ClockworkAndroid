@@ -63,7 +63,6 @@ public class EditProfilePresenter implements EditProfileListener {
     }
 
     public HashMap<String, String> getUserMap() {
-
         return sessionManager.getUserDetails();
     }
 

@@ -17,8 +17,9 @@ public class Post implements Parcelable {
     private String posting_date;
     private String job_date;
     private int applicant_count;
+    private String status;
 
-    public Post(int id, String header, String company, int salary, String description, String location, String posting_date, String job_date) {
+    public Post(int id, String header, String company, int salary, String description, String location, String posting_date, String job_date, String status) {
         this.id = id;
         this.header = header;
         this.company = company;
@@ -27,6 +28,7 @@ public class Post implements Parcelable {
         this.location = location;
         this.posting_date = posting_date;
         this.job_date = job_date;
+        this.setStatus(status);
     }
 
     public Post(String header, String company, int salary, String description, String location, String job_date) {
@@ -154,4 +156,12 @@ public class Post implements Parcelable {
             return new Post[size];
         }
     };
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
