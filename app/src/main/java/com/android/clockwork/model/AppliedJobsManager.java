@@ -56,6 +56,7 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        System.out.println(result);
         Log.d("Manager", result);
         dashboardListener.onSuccess(result);
         dialog.dismiss();

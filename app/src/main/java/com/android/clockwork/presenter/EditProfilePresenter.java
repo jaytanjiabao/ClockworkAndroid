@@ -1,11 +1,15 @@
 package com.android.clockwork.presenter;
 
+
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.clockwork.R;
 import com.android.clockwork.adapter.ListingAdapter;
 import com.android.clockwork.model.EditProfileManager;
 import com.android.clockwork.model.Post;
@@ -82,6 +86,12 @@ public class EditProfilePresenter implements EditProfileListener {
             Toast.makeText(fragmentActivity.getBaseContext(), "Password changed successfully", Toast.LENGTH_LONG).show();
         } else if(changeProfilePicture) {
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile Picture changed successfully", Toast.LENGTH_LONG).show();
+            /*Fragment profile = null;
+            profile = fragmentActivity.getFragmentManager().findFragmentByTag("ProfileFragment");
+            final FragmentTransaction ft = fragmentActivity.getFragmentManager().beginTransaction();
+            ft.detach(profile);
+            ft.attach(profile);
+            ft.commit();*/
         }
         else{
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully", Toast.LENGTH_LONG).show();

@@ -18,6 +18,8 @@ public class Post implements Parcelable {
     private String job_date;
     private int applicant_count;
     private String status;
+    private String comments;
+    private int rating;
 
     public Post(int id, String header, String company, int salary, String description, String location, String posting_date, String job_date, String status) {
         this.id = id;
@@ -48,7 +50,30 @@ public class Post implements Parcelable {
         this.job_date = job_date;
     }
 
+    public Post(String header, String company, String comments, int rating) {
+        this.header = header;
+        this.company = company;
+        this.comments = comments;
+        this.rating = rating;
+    }
+
     public Post() {
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getHeader() {

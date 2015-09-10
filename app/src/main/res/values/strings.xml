@@ -16,4 +16,5 @@
     <string name="title_activity_view_job">ViewJobActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="title_activity_view_completed_job">ViewCompletedJobActivity</string>
 </resources>

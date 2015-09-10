@@ -44,60 +44,9 @@
             android:text="Email Address"
             android:id="@+id/emailText"
             android:layout_below="@+id/usernameText"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Ratings"
-            android:id="@+id/feedbackButton"
-            android:layout_below="@+id/emailText"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/feedback_button"/>
+            android:layout_marginBottom="5dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit Profile"
-            android:id="@+id/editButton"
-            android:layout_below="@+id/feedbackButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Change Password"
-            android:id="@+id/pwButton"
-            android:layout_below="@+id/editButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Logout"
-            android:id="@+id/logoutButton"
-            android:layout_below="@+id/pwButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -111,5 +60,111 @@
 
     </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Logout"
+        android:id="@+id/logoutButton"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/profile_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Change Password"
+        android:id="@+id/pwButton"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/profile_button"
+        android:layout_above="@+id/logoutButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Edit Profile"
+        android:id="@+id/editButton"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/profile_button"
+        android:layout_above="@+id/pwButton"
+        android:layout_alignStart="@+id/pwButton"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="View Ratings"
+        android:id="@+id/feedbackButton"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/feedback_button"
+        android:layout_above="@+id/editButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"/>
+
+    <ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:src="@drawable/good"
+    android:id="@+id/imageView3"
+        android:layout_above="@+id/feedbackButton"
+        android:layout_toStartOf="@+id/editButton"
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/bad"
+        android:id="@+id/imageView4"
+        android:layout_alignEnd="@+id/editButton"
+        android:layout_alignTop="@+id/imageView5" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/neutral"
+        android:id="@+id/imageView5"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toStartOf="@+id/imageView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toStartOf="@+id/imageView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toEndOf="@+id/imageView4" />
 
 </RelativeLayout>

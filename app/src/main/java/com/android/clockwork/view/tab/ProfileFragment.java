@@ -28,17 +28,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.clockwork.R;
+import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
 
 import com.android.clockwork.presenter.LogoutPresenter;
 import com.android.clockwork.presenter.ProfilePicturePresenter;
 
+import com.android.clockwork.presenter.ViewCompletedJobPresenter;
 import com.android.clockwork.view.activity.ChangePasswordActivity;
 
 import com.android.clockwork.view.activity.EditProfileActivity;
 import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.activity.PreludeActivity;
+import com.android.clockwork.view.activity.ViewCompletedJobActivity;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
@@ -48,12 +51,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProfileFragment extends Fragment {
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
-    Button editButton, pwButton, logoutButton, changeProfilePictureButton;
+    Button editButton, pwButton, logoutButton, changeProfilePictureButton, viewCompletedJobButton;
     View fragmentView;
     TextView usernameText, emailText;
     ImageView pictureView;
@@ -61,6 +65,11 @@ public class ProfileFragment extends Fragment {
     HashMap<String,Integer> userID;
     LogoutPresenter logoutPresenter;
     ProfilePicturePresenter profilePicturePresenter;
+    ArrayList<Post> postList;
+    ViewCompletedJobPresenter viewCompletedJobPresenter;
+    int counter_good = 0;
+    int counter_neutral = 0;
+    int counter_bad = 0;
 
 
     @Override
@@ -70,6 +79,14 @@ public class ProfileFragment extends Fragment {
         emailText = (TextView) fragmentView.findViewById(R.id.emailText);
         pictureView = (ImageView) fragmentView.findViewById(R.id.imageView);
         dialog = new ProgressDialog(this.getActivity());
+
+        //to display ratings
+        postList = new ArrayList<Post>();
+        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,dialog,true);
+        viewCompletedJobPresenter.getCompletedJobList();
+
+
+
 
         // to remove editProfilePresenter
         editProfilePresenter = new EditProfilePresenter(this.getActivity(),dialog);
@@ -87,6 +104,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 selectImage();
+
+            }
+        });
+
+
+        viewCompletedJobButton = (Button) fragmentView.findViewById(R.id.feedbackButton);
+        viewCompletedJobButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewCompletedJob = new Intent(view.getContext(), ViewCompletedJobActivity.class);
+                startActivity(viewCompletedJob);
             }
         });
 
@@ -123,6 +151,25 @@ public class ProfileFragment extends Fragment {
         });
 
         return fragmentView;
+    }
+
+    public void setRatingsCounter(ArrayList<Post> ratingList) {
+        for (int i = 0 ;i < ratingList.size();  i++){
+            Post p = ratingList.get(i);
+            if(p.getRating()==-1) {
+                counter_bad += 1;
+            }else if(p.getRating()==0) {
+                counter_neutral += 1;
+            }else {
+                counter_good += 1;
+            }
+        }
+        TextView good = (TextView)fragmentView.findViewById(R.id.textView);
+        TextView neutral = (TextView)fragmentView.findViewById(R.id.textView2);
+        TextView bad = (TextView)fragmentView.findViewById(R.id.textView3);
+        good.setText(String.valueOf(counter_good));
+        neutral.setText(String.valueOf(counter_neutral));
+        bad.setText(String.valueOf(counter_bad));
     }
 
     public void navigateToLogin() {
