@@ -125,19 +125,11 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
                 contact = contact.replace(",", "");
             }
             sessionManager.updateSession(id,username,email,accountType,authenticationToken,avatar_path,address,contact);
-            ProfileFragment.refresh = true;
         }
         editProfileListener.onSuccess(result, changePassword, changeProfilePicture);
         changePassword = false;
         changeProfilePicture = false;
         dialog.dismiss();
-/*        if(refresh) {
-            Intent editProfile = new Intent(currentContext, MainActivity.class);
-            editProfile.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //currentContext.startActivity(editProfile);
-            refresh = false;
-        }*/
-
     }
 
     public String POST(String url){

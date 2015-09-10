@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -60,7 +61,7 @@ public class ProfileFragment extends Fragment {
     HashMap<String,Integer> userID;
     LogoutPresenter logoutPresenter;
     ProfilePicturePresenter profilePicturePresenter;
-    public static  boolean refresh = false;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,14 +83,10 @@ public class ProfileFragment extends Fragment {
 
         changeProfilePictureButton = (Button) fragmentView.findViewById(R.id.changeProfilePictureButton);
         changeProfilePictureButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 selectImage();
-                if(refresh) {
-                    Intent editProfile = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(editProfile);
-                    refresh = false;
-                }
             }
         });
 
