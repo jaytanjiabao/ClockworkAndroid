@@ -4,13 +4,12 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.android.clockwork.presenter.DashboardListener;
+import com.android.clockwork.presenter.JobActionListener;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,55 +22,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by jiabao.tan.2012 on 2/9/2015.
+ * Created by jiabao.tan.2012 on 8/9/2015.
  */
-public class AppliedJobsManager extends AsyncTask<String, Void, String> {
-    DashboardListener dashboardListener;
+public class WithdrawJobManager extends AsyncTask<String, Void, String> {
+    String authToken, email;
+    int id;
     ProgressDialog dialog;
-    String email, authToken;
+    JobActionListener jobActionListener;
 
-    public AppliedJobsManager(DashboardListener dashboardListener, ProgressDialog dialog) {
-        this.dashboardListener = dashboardListener;
+    public WithdrawJobManager(JobActionListener jobActionListener, ProgressDialog dialog) {
+        this.jobActionListener = jobActionListener;
         this.dialog = dialog;
     }
 
-    public void setCredentials(String email, String authToken) {
-        this.email = email;
+    public void setCredentials(String authToken, String email, int id) {
         this.authToken = authToken;
+        this.email = email;
+        this.id = id;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setTitle("Retrieving your applied jobs");
-        dialog.setMessage("Loading...");
+        dialog.setTitle("Withdrawing from Job");
+        dialog.setMessage("Please wait");
         dialog.setIndeterminate(false);
         dialog.show();
     }
 
     @Override
     protected String doInBackground(String... urls) {
-        return GET(urls[0]);
+        return POST(urls[0]);
     }
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        Log.d("Manager", result);
-        dashboardListener.onSuccess(result);
+        jobActionListener.onSuccess(result);
         dialog.dismiss();
     }
 
-    public String GET(String url){
+    // withdraw and pull both in here, to be separated
+    public String POST(String url){
         InputStream inputStream = null;
         String result = "";
         try {
+            // 1. create HttpClient
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
-
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
             nvps.add(new BasicNameValuePair("email", email));
+            nvps.add(new BasicNameValuePair("post_id", String.valueOf(id)));
+
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
             httpPost.setHeader("Authentication-Token", authToken);
+
             HttpResponse httpResponse = httpclient.execute(httpPost);
 
             inputStream = httpResponse.getEntity().getContent();
@@ -84,6 +88,7 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
             Log.d("InputStream", e.getLocalizedMessage());
         }
 
+        // 9. return result
         return result;
     }
 
@@ -97,4 +102,5 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
         inputStream.close();
         return result;
     }
+
 }
