@@ -2,9 +2,7 @@ package com.android.clockwork.model;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.ImageReader;
 import android.os.AsyncTask;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.IOException;

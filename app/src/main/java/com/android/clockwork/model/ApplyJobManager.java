@@ -3,7 +3,6 @@ package com.android.clockwork.model;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.clockwork.presenter.ApplyJobListener;
 

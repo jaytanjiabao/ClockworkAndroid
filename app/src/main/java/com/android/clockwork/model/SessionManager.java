@@ -49,6 +49,10 @@ public class SessionManager {
 
     public static final String KEY_CONTACT = "contact";
 
+    public static final String KEY_DOB = "dob";
+
+    public static final String KEY_NATIONALITY = "nationality";
+
     public static String status = "";
 
     // Constructor
@@ -59,12 +63,16 @@ public class SessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact){
+    public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact,String dob, String nationality){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
         //Storing ID in pref
         editor.putInt(KEY_ID, id);
+
+        editor.putString(KEY_DOB, dob);
+
+        editor.putString(KEY_NATIONALITY, nationality);
 
         //Storing accountType in pref
         editor.putString(KEY_ACCOUNTYPE, accountType);
@@ -92,7 +100,7 @@ public class SessionManager {
     }
 
 
-    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact){
+    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact, String dob, String nationality){
 
         //Storing ID in pref
         editor.putInt(KEY_ID, id);
@@ -117,6 +125,10 @@ public class SessionManager {
         editor.putString(KEY_ADDRESS, address);
 
         editor.putString(KEY_CONTACT, contact);
+
+        editor.putString(KEY_DOB, dob);
+
+        editor.putString(KEY_NATIONALITY, nationality);
 
         // commit changes
         editor.commit();
@@ -149,6 +161,10 @@ public class SessionManager {
 
         // user email id
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+
+        user.put(KEY_DOB, pref.getString(KEY_DOB, null));
+
+        user.put(KEY_NATIONALITY, pref.getString(KEY_NATIONALITY, null));
 
         user.put(KEY_ACCOUNTYPE, pref.getString(KEY_ACCOUNTYPE, null));
 

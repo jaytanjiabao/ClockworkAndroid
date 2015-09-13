@@ -112,7 +112,6 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println(result);
         if (statusCode == 201) {
             sessionManager = new SessionManager(currentContext);
             Gson gson = new Gson();
@@ -133,7 +132,9 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
                 contact = nm.format(contactNo);
                 contact = contact.replace(",", "");
             }
-            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact);
+            String dob = (String) userHash.get("date_of_birth");
+            String nationality = (String) userHash.get("nationality");
+            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             registerListener.onSuccess();
         }else {
 

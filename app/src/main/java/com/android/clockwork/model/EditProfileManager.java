@@ -2,13 +2,10 @@ package com.android.clockwork.model;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.clockwork.presenter.EditProfileListener;
-import com.android.clockwork.presenter.JobListingListener;
-import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.tab.ProfileFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,7 +14,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -45,7 +41,6 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
     String name, address, contact, oldPassword, newPassword, retypedPassword, email, authToken;
     boolean changePassword = false;
     boolean changeProfilePicture = false;
-    boolean refresh = false;
     File file;
     Context currentContext;
     SessionManager sessionManager;
@@ -124,7 +119,9 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
                 contact = nm.format(contactNo);
                 contact = contact.replace(",", "");
             }
-            sessionManager.updateSession(id,username,email,accountType,authenticationToken,avatar_path,address,contact);
+            String dob = (String) userHash.get("date_of_birth");
+            String nationality = (String) userHash.get("nationality");
+            sessionManager.updateSession(id,username,email,accountType,authenticationToken,avatar_path,address,contact,dob,nationality);
         }
         editProfileListener.onSuccess(result, changePassword, changeProfilePicture);
         changePassword = false;

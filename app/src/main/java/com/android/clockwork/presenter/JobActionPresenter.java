@@ -3,7 +3,6 @@ package com.android.clockwork.presenter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.android.clockwork.adapter.DashboardAdapter;

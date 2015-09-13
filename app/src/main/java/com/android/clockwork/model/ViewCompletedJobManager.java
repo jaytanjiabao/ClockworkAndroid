@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.android.clockwork.presenter.DashboardListener;
 import com.android.clockwork.presenter.ViewCompletedJobListener;
 
 import org.apache.http.HttpResponse;

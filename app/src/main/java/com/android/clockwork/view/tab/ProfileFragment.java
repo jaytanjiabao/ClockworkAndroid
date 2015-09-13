@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,8 +88,6 @@ public class ProfileFragment extends Fragment {
         viewCompletedJobPresenter.getCompletedJobList();
 
 
-
-
         // to remove editProfilePresenter
         editProfilePresenter = new EditProfilePresenter(this.getActivity(),dialog);
         logoutPresenter = new LogoutPresenter(this);
@@ -153,6 +153,9 @@ public class ProfileFragment extends Fragment {
         return fragmentView;
     }
 
+
+
+    //set ratings
     public void setRatingsCounter(ArrayList<Post> ratingList) {
         for (int i = 0 ;i < ratingList.size();  i++){
             Post p = ratingList.get(i);
@@ -191,20 +194,16 @@ public class ProfileFragment extends Fragment {
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Take Photo"))
-                {
+                if (options[item].equals("Take Photo")) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                     startActivityForResult(intent, 1);
-                }
-                else if (options[item].equals("Choose from Gallery"))
-                {
-                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                } else if (options[item].equals("Choose from Gallery")) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
 
-                }
-                else if (options[item].equals("Cancel")) {
+                } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
             }
@@ -298,6 +297,10 @@ public class ProfileFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void navigateToHome() {
+        startActivity(new Intent(fragmentView.getContext(), MainActivity.class));
     }
 
 

@@ -64,6 +64,10 @@
             android:name=".view.activity.ViewCompletedJobActivity"
             android:label="@string/title_activity_view_completed_job" >
         </activity>
+        <activity
+            android:name=".view.activity.CompleteProfileActivity"
+            android:label="@string/title_activity_complete_profile" >
+        </activity>
     </application>
 
 </manifest>

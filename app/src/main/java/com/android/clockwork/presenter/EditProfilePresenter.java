@@ -14,6 +14,7 @@ import com.android.clockwork.adapter.ListingAdapter;
 import com.android.clockwork.model.EditProfileManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
+import com.android.clockwork.view.tab.ProfileFragment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class EditProfilePresenter implements EditProfileListener {
     EditProfileManager editProfileManager;
     Context currentContext;
     SessionManager sessionManager;
+    ProfileFragment profileFragment;
 
     public EditProfilePresenter(FragmentActivity fragmentActivity, ProgressDialog dialog) {
         this.fragmentActivity = fragmentActivity;
@@ -70,8 +72,8 @@ public class EditProfilePresenter implements EditProfileListener {
         return sessionManager.getUserDetails();
     }
 
-    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact) {
-        sessionManager.updateSession(id,userName,email,accountType,authenticationToken,avatarPath,address,contact);
+    public void updateSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact, String dob, String nationality) {
+        sessionManager.updateSession(id,userName,email,accountType,authenticationToken,avatarPath,address,contact,dob,nationality);
     }
 
     public HashMap<String, Integer> getUserID () {
@@ -86,12 +88,7 @@ public class EditProfilePresenter implements EditProfileListener {
             Toast.makeText(fragmentActivity.getBaseContext(), "Password changed successfully", Toast.LENGTH_LONG).show();
         } else if(changeProfilePicture) {
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile Picture changed successfully", Toast.LENGTH_LONG).show();
-            /*Fragment profile = null;
-            profile = fragmentActivity.getFragmentManager().findFragmentByTag("ProfileFragment");
-            final FragmentTransaction ft = fragmentActivity.getFragmentManager().beginTransaction();
-            ft.detach(profile);
-            ft.attach(profile);
-            ft.commit();*/
+
         }
         else{
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully", Toast.LENGTH_LONG).show();

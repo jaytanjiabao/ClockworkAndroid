@@ -13,14 +13,19 @@ import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
+import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.ApplyJobPresenter;
 import com.android.clockwork.view.tab.JobListingFragment;
+
+import java.util.HashMap;
 
 public class ViewJobActivity extends AppCompatActivity {
     Post post;
     ProgressDialog dialog;
     Button applyButton;
     ApplyJobPresenter applyJobPresenter;
+    HashMap<String,String> user;
+    public final static String PAR_KEY = "KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +39,22 @@ public class ViewJobActivity extends AppCompatActivity {
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
 
         applyButton = (Button) findViewById(R.id.applyButton);
+        user = applyJobPresenter.getSessionInfo();
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                applyJobPresenter.applyJob(post.getId());
-                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                startActivity(backToListing);
+                if(user.get(SessionManager.KEY_CONTACT)== null || user.get(SessionManager.KEY_DOB) == null || user.get(SessionManager.KEY_NATIONALITY)== null){
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(PAR_KEY,post);
+                    Intent updateProfile = new Intent(view.getContext(), CompleteProfileActivity.class);
+                    updateProfile.putExtras(bundle);
+                    startActivity(updateProfile);
+
+                }else{
+                    applyJobPresenter.applyJob(post.getId());
+                    Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(backToListing);
+                }
             }
         });
     }

@@ -3,21 +3,16 @@ package com.android.clockwork.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
-import com.android.clockwork.presenter.JobActionPresenter;
-import com.android.clockwork.view.activity.MainActivity;
+
 
 import java.util.ArrayList;
 

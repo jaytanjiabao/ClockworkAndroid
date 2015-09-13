@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.android.clockwork.model.ApplyJobManager;
-import com.android.clockwork.model.Session;
 import com.android.clockwork.model.SessionManager;
 
 import java.util.HashMap;
@@ -51,5 +50,10 @@ public class ApplyJobPresenter implements ApplyJobListener {
     @Override
     public void onError(String string) {
 
+    }
+
+    public HashMap<String,String> getSessionInfo () {
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        return user;
     }
 }

@@ -2,15 +2,11 @@ package com.android.clockwork.presenter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 
 import com.android.clockwork.adapter.CompletedJobAdapter;
-import com.android.clockwork.adapter.DashboardAdapter;
-import com.android.clockwork.model.AppliedJobsManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.model.ViewCompletedJobManager;
-import com.android.clockwork.view.DashboardView;
 import com.android.clockwork.view.activity.ViewCompletedJobActivity;
 import com.android.clockwork.view.tab.ProfileFragment;
 import com.google.gson.Gson;

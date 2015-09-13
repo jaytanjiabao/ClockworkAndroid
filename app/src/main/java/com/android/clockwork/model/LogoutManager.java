@@ -74,7 +74,6 @@ public class LogoutManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println(result);
         sessionManager = new SessionManager(currentContext);
         sessionManager.logoutUser();
         listener.onSuccess();

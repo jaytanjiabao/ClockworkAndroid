@@ -70,7 +70,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 String accountType = user.get(SessionManager.KEY_ACCOUNTYPE);
                 String avatarPath = user.get(SessionManager.KEY_AVATAR);
                 int id = userID.get(SessionManager.KEY_ID);
-                editProfilePresenter.updateSession(id,nameText.getText().toString(),email,accountType,authToken,avatarPath,addressText.getText().toString(),contactText.getText().toString());
+                String dob = user.get(SessionManager.KEY_DOB);
+                String nationality = user.get(SessionManager.KEY_NATIONALITY);
+                editProfilePresenter.updateSession(id,nameText.getText().toString(),email,accountType,authToken,avatarPath,addressText.getText().toString(),contactText.getText().toString(),dob,nationality);
                 Intent editProfile = new Intent(view.getContext(), MainActivity.class);
                 startActivity(editProfile);
             }
