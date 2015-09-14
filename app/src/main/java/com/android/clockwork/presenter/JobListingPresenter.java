@@ -38,6 +38,11 @@ public class JobListingPresenter implements JobListingListener {
         jobListingManager.execute("https://clockwork-api.herokuapp.com/api/v1/posts/all.json");
     }
 
+    public void searchJobListing(String searchTerm) {
+        Log.d("Presenter", "Executing API call..");
+        jobListingManager.execute("https://clockwork-api.herokuapp.com/api/v1/posts/search?query=" + searchTerm);
+    }
+
     public ArrayList<Post> createGsonFromString(String string) {
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Post>>(){}.getType();

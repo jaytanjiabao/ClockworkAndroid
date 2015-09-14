@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.clockwork.R;
 import com.android.clockwork.adapter.ListingAdapter;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.presenter.JobListingPresenter;
 import com.android.clockwork.view.JobListingView;
+import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.activity.ViewJobActivity;
 
 import java.util.ArrayList;
@@ -35,10 +37,16 @@ public class JobListingFragment extends Fragment implements JobListingView {
         fragmentView = inflater.inflate(R.layout.tab_fragment_1, container, false);
         listView = (ListView) fragmentView.findViewById(R.id.list);
         postList = new ArrayList<Post>();
+        String search = MainActivity.searchTerm;
 
         Log.d("Fragment", "Creating Presenter");
         jobListingPresenter = new JobListingPresenter(this, postList, getActivity(), dialog);
-        jobListingPresenter.getAllJobListings();
+        if (search.equals("")) {
+            jobListingPresenter.getAllJobListings();
+        } else {
+            jobListingPresenter.searchJobListing(search);
+            MainActivity.searchTerm = "";
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
