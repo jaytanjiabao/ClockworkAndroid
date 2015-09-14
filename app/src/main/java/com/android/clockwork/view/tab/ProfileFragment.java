@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
 
 
         // to remove editProfilePresenter
-        editProfilePresenter = new EditProfilePresenter(this.getActivity(),dialog);
+        editProfilePresenter = new EditProfilePresenter(this,dialog);
         logoutPresenter = new LogoutPresenter(this);
         profilePicturePresenter = new ProfilePicturePresenter(pictureView);
         user = editProfilePresenter.getUserMap();
@@ -277,7 +277,6 @@ public class ProfileFragment extends Fragment {
                 matrix.postScale(scaleWidth, scaleHeight);
                 Bitmap resizedBitmap = Bitmap.createBitmap(thumbnail, 0, 0, width, height,matrix,false);
 
-                //Bitmap resizedBitmap = Bitmap.createBitmap(thumbnail, 0, 0, 120, 120);
                 Log.w("path of image from ***", picturePath + "");
 
                 File filesDir = getActivity().getApplicationContext().getFilesDir();

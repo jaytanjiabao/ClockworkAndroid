@@ -39,9 +39,11 @@ public class EditProfilePresenter implements EditProfileListener {
         this.sessionManager = new SessionManager(currentContext);
     }
 
-    public EditProfilePresenter(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
-        this.currentContext = fragmentActivity.getApplicationContext();
+    public EditProfilePresenter(ProfileFragment profileFragment,ProgressDialog dialog) {
+        this.profileFragment = profileFragment;
+        this.dialog = dialog;
+        this.currentContext = profileFragment.getActivity().getApplicationContext();
+        this.editProfileManager = new EditProfileManager(this, this.dialog,currentContext);
         this.sessionManager = new SessionManager(currentContext);
     }
 
@@ -87,8 +89,8 @@ public class EditProfilePresenter implements EditProfileListener {
         if (changePassword) {
             Toast.makeText(fragmentActivity.getBaseContext(), "Password changed successfully", Toast.LENGTH_LONG).show();
         } else if(changeProfilePicture) {
-            Toast.makeText(fragmentActivity.getBaseContext(), "Profile Picture changed successfully", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(currentContext, "Profile Picture changed successfully", Toast.LENGTH_LONG).show();
+            profileFragment.navigateToHome();
         }
         else{
             Toast.makeText(fragmentActivity.getBaseContext(), "Profile updated successfully", Toast.LENGTH_LONG).show();
