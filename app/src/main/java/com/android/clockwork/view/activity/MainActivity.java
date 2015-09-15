@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (item.getItemId()) {
             case R.id.action_search:
-                Toast.makeText(getBaseContext(), "Search!", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_settings:
                 return true;

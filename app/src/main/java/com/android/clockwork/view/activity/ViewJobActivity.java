@@ -77,7 +77,12 @@ public class ViewJobActivity extends AppCompatActivity {
         location.setText(post.getLocation());
         description.setText(post.getDescription());
         jobDate.setText("Job Date: " + post.getJobDate());
-        salary.setText("$" + post.getSalary());
+
+        if (post.getSalary() % 1 == 0) {
+            salary.setText("$" + (int) post.getSalary());
+        } else {
+            salary.setText("$" + post.getSalary());
+        }
     }
 
     @Override

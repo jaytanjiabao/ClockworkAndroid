@@ -11,7 +11,9 @@ import com.android.clockwork.view.JobListingView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -39,8 +41,14 @@ public class JobListingPresenter implements JobListingListener {
     }
 
     public void searchJobListing(String searchTerm) {
-        Log.d("Presenter", "Executing API call..");
-        jobListingManager.execute("https://clockwork-api.herokuapp.com/api/v1/posts/search?query=" + searchTerm);
+        try {
+            Log.d("Presenter", "Executing API call..");
+            String requestURL = "https://clockwork-api.herokuapp.com/api/v1/posts/search?query=";
+            requestURL += URLEncoder.encode(searchTerm, "UTF-8");
+            jobListingManager.execute(requestURL);
+        } catch (IOException ioException) {
+            // error handling, unlikely to happen
+        }
     }
 
     public ArrayList<Post> createGsonFromString(String string) {
