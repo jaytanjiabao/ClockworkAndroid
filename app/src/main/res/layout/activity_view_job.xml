@@ -77,6 +77,13 @@
             android:layout_alignBottom="@+id/imageView"
             android:layout_alignParentEnd="true" />
 
+        <com.facebook.share.widget.ShareButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shareButton"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignStart="@+id/jobText"/>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -112,6 +119,8 @@
             android:id="@+id/locationText"
             android:layout_below="@+id/companyText"
             android:layout_alignStart="@+id/companyText" />
+
+
 
         <TextView
             android:layout_marginLeft="20dp"
