@@ -46,11 +46,11 @@
         </activity>
         <activity
             android:name=".view.activity.EditProfileActivity"
-            android:label="Clockwork" >
+            android:label="Edit Profile" >
         </activity>
         <activity
             android:name=".view.activity.ViewJobActivity"
-            android:label="Clockwork" >
+            android:label="View Job" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activity.MainActivity" />
@@ -66,15 +66,15 @@
         </activity>
         <activity
             android:name=".view.activity.ChangePasswordActivity"
-            android:label="Clockwork" >
+            android:label="Change Password" >
         </activity>
         <activity
             android:name=".view.activity.ViewCompletedJobActivity"
-            android:label="Clockwork" >
+            android:label="My Reviews" >
         </activity>
         <activity
             android:name=".view.activity.CompleteProfileActivity"
-            android:label="Clockwork" >
+            android:label="Complete Profile" >
         </activity>
     </application>
 

@@ -1,8 +1,10 @@
 package com.android.clockwork.view.activity;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -25,6 +27,8 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_completed_job);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         dialog = new ProgressDialog(this);
         listView = (ListView) findViewById(R.id.list);
         postList = new ArrayList<Post>();
@@ -57,8 +61,11 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
     public void displayCompletedJobListing() {
         completedJobAdapter = viewCompletedJobPresenter.getCompletedJobAdapter();
         postList = viewCompletedJobPresenter.completedJobList();
-        System.out.println(postList.size());
-        listView.setAdapter(completedJobAdapter);
-    }
 
+        if(postList.size()!= 0) {
+            listView.setAdapter(completedJobAdapter);
+        }else {
+            listView.setBackground(getResources().getDrawable(R.drawable.register_bg));
+        }
+    }
 }
