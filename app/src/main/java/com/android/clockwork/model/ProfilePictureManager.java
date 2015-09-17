@@ -2,6 +2,12 @@ package com.android.clockwork.model;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
@@ -35,7 +41,8 @@ public class ProfilePictureManager extends AsyncTask<String, Void, Bitmap> {
     // Sets the Bitmap returned by doInBackground
     @Override
     protected void onPostExecute(Bitmap result) {
-        picture.setImageBitmap(result);
+        RoundImage roundImage = new RoundImage(result);
+        picture.setImageDrawable(roundImage);
     }
 
     // Creates Bitmap from InputStream and returns it
@@ -76,4 +83,5 @@ public class ProfilePictureManager extends AsyncTask<String, Void, Bitmap> {
         }
         return stream;
     }
+
 }

@@ -5,11 +5,6 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <FrameLayout
-    android:id="@+id/ProfileFragment"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -24,20 +19,21 @@
         android:layout_alignParentStart="true">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/imageView"
             android:src="@drawable/user_placeholder"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
             android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Full Name"
             android:id="@+id/usernameText"
@@ -51,18 +47,27 @@
             android:text="Email Address"
             android:id="@+id/emailText"
             android:layout_below="@+id/usernameText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"/>
+            android:layout_centerHorizontal="true" />
 
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&apos;"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/changeProfilePictureButton"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/usernameText" />
+            android:visibility="visible"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:background="@android:color/transparent"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/editProfilePicture"
+            android:background="@drawable/edit"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>
@@ -121,8 +126,8 @@
         android:layout_marginBottom="5dp"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/good"
         android:id="@+id/imageView3"
         android:layout_marginLeft="10dp"
@@ -130,8 +135,8 @@
         android:layout_alignStart="@+id/feedbackButton" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/bad"
         android:id="@+id/imageView4"
         android:layout_centerVertical="true"
@@ -139,8 +144,8 @@
         android:layout_marginLeft="20dp"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/neutral"
         android:id="@+id/imageView5"
         android:layout_marginLeft="20dp"
