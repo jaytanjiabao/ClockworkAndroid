@@ -20,8 +20,13 @@ public class Post implements Parcelable {
     private String status;
     private String comments;
     private int rating;
+    private int duration;
+    private String avatar_path;
+    private String start_time;
+    private String end_date;
+    private String end_time;
 
-    public Post(int id, String header, String company, int salary, String description, String location, String posting_date, String job_date, String status) {
+    public Post(int id, String header, String company, int salary, String description, String location, String posting_date, String job_date, String status, String avatar_path, String start_time, String end_date, String end_time, int duration) {
         this.id = id;
         this.header = header;
         this.company = company;
@@ -31,6 +36,11 @@ public class Post implements Parcelable {
         this.posting_date = posting_date;
         this.job_date = job_date;
         this.setStatus(status);
+        this.setAvatar_path(avatar_path);
+        this.setStart_time(start_time);
+        this.setEnd_date(end_date);
+        this.setEnd_time(end_time);
+        this.setDuration(duration);
     }
 
     public Post(String header, String company, int salary, String description, String location, String job_date) {
@@ -157,6 +167,7 @@ public class Post implements Parcelable {
         parcel.writeString(location);
         parcel.writeString(posting_date);
         parcel.writeString(job_date);
+        parcel.writeString(avatar_path);
     }
 
     public int describeContents() {
@@ -174,6 +185,7 @@ public class Post implements Parcelable {
             Post.location = source.readString();
             Post.posting_date = source.readString();
             Post.job_date = source.readString();
+            Post.avatar_path = source.readString();
             return Post;
         }
 
@@ -188,5 +200,45 @@ public class Post implements Parcelable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getAvatar_path() {
+        return avatar_path;
+    }
+
+    public void setAvatar_path(String avatar_path) {
+        this.avatar_path = avatar_path;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 }

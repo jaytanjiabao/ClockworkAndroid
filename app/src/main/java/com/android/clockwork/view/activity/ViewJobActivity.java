@@ -2,27 +2,36 @@ package com.android.clockwork.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.ApplyJobPresenter;
+import com.android.clockwork.presenter.ProfilePicturePresenter;
 import com.android.clockwork.view.tab.DashboardFragment;
 import com.android.clockwork.view.tab.JobListingFragment;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 public class ViewJobActivity extends AppCompatActivity {
@@ -32,6 +41,7 @@ public class ViewJobActivity extends AppCompatActivity {
     ApplyJobPresenter applyJobPresenter;
     HashMap<String,String> user;
     public final static String PAR_KEY = "KEY";
+    ProfilePicturePresenter profilePicturePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +110,10 @@ public class ViewJobActivity extends AppCompatActivity {
         TextView description = (TextView) findViewById(R.id.descriptionText);
         TextView jobDate = (TextView) findViewById(R.id.startText);
         TextView salary = (TextView) findViewById(R.id.salary);
+        ImageView logo = (ImageView) findViewById(R.id.imageView);
+
+        profilePicturePresenter = new ProfilePicturePresenter(logo);
+        profilePicturePresenter.getProfilePicture(post.getAvatar_path());
 
         title.setText(post.getHeader());
         hiringCo.setText(post.getCompany());
