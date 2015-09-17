@@ -34,6 +34,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complete_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         dialog = new ProgressDialog(CompleteProfileActivity.this);
         contactText = (EditText)findViewById(R.id.contactText);
         dobText = (EditText) findViewById(R.id.dob);

@@ -41,6 +41,7 @@ public class ViewJobActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         dialog = new ProgressDialog(ViewJobActivity.this);
 
         initializeScreen();
@@ -48,6 +49,8 @@ public class ViewJobActivity extends AppCompatActivity {
 
 
         ShareLinkContent content = new ShareLinkContent.Builder()
+                .setImageUrl(Uri.parse("https://s3-ap-southeast-1.amazonaws.com/media.clockworksmu.herokuapp.com/app/public/assets/cw+logo.jpg"))
+                .setContentTitle("I have applied to be " + post.getHeader() + " at " + post.getCompany() + ", come join me!")
                 .setContentUrl(Uri.parse("http://clockworksmu.herokuapp.com/post.jsp?id="+post.getId()))
                 .build();
         ShareButton shareButton = (ShareButton)findViewById(R.id.shareButton);
