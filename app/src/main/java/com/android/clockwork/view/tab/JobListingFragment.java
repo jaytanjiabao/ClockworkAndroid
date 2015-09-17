@@ -23,7 +23,7 @@ import com.android.clockwork.view.activity.ViewJobActivity;
 import java.util.ArrayList;
 
 public class JobListingFragment extends Fragment implements JobListingView {
-    public final static String PAR_KEY = "KEY";
+    public final static String PAR_KEY = "LISTING";
     JobListingPresenter jobListingPresenter;
     ListView listView;
     ListingAdapter listingAdapter;
@@ -56,6 +56,7 @@ public class JobListingFragment extends Fragment implements JobListingView {
                 bundle.putParcelable(PAR_KEY, (Post) listingAdapter.getItem(position));
 
                 Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);
+                viewJobActivity.putExtra("Activity", "jobListing");
                 viewJobActivity.putExtras(bundle);
                 startActivity(viewJobActivity);
             }

@@ -17,6 +17,7 @@ import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.ApplyJobPresenter;
+import com.android.clockwork.view.tab.DashboardFragment;
 import com.android.clockwork.view.tab.JobListingFragment;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
@@ -47,7 +48,6 @@ public class ViewJobActivity extends AppCompatActivity {
         initializeScreen();
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
 
-
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setImageUrl(Uri.parse("https://s3-ap-southeast-1.amazonaws.com/media.clockworksmu.herokuapp.com/app/public/assets/cw+logo.jpg"))
                 .setContentTitle("I have applied to be " + post.getHeader() + " at " + post.getCompany() + ", come join me!")
@@ -56,32 +56,43 @@ public class ViewJobActivity extends AppCompatActivity {
         ShareButton shareButton = (ShareButton)findViewById(R.id.shareButton);
         shareButton.setShareContent(content);
 
-
-
-
-        applyButton = (Button) findViewById(R.id.applyButton);
         user = applyJobPresenter.getSessionInfo();
-        applyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(user.get(SessionManager.KEY_CONTACT)== null || user.get(SessionManager.KEY_DOB) == null || user.get(SessionManager.KEY_NATIONALITY)== null){
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(PAR_KEY,post);
-                    Intent updateProfile = new Intent(view.getContext(), CompleteProfileActivity.class);
-                    updateProfile.putExtras(bundle);
-                    startActivity(updateProfile);
-
-                }else{
-                    applyJobPresenter.applyJob(post.getId());
-                    Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(backToListing);
-                }
-            }
-        });
     }
 
     public void initializeScreen() {
-        post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
+        Intent intent = getIntent();
+        String activity = intent.getStringExtra("Activity");
+        if (activity.equals("jobListing")) {
+            post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
+            applyButton = (Button) findViewById(R.id.applyButton);
+            applyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(user.get(SessionManager.KEY_CONTACT)== null || user.get(SessionManager.KEY_DOB) == null || user.get(SessionManager.KEY_NATIONALITY)== null){
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(PAR_KEY, post);
+                        Intent updateProfile = new Intent(view.getContext(), CompleteProfileActivity.class);
+                        updateProfile.putExtras(bundle);
+                        startActivity(updateProfile);
+                    }else{
+                        applyJobPresenter.applyJob(post.getId());
+                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        startActivity(backToListing);
+                    }
+                }
+            });
+        } else {
+            post = getIntent().getParcelableExtra(DashboardFragment.PAR_KEY);
+            applyButton = (Button) findViewById(R.id.applyButton);
+            if (post.getStatus().equalsIgnoreCase("pending")) {
+                    applyButton.setText("Withdraw Application");
+                    //jobActionPresenter.withdrawJobApplication(post.getId(), appliedList, position);
+                } else if (post.getStatus().equalsIgnoreCase("offered")) {
+                    applyButton.setText("Accept Job offer");
+                    //jobActionPresenter.acceptJobOffer(post.getId(), appliedList, position);
+                }
+        }
+
         TextView title = (TextView) findViewById(R.id.jobText);
         TextView expiry = (TextView) findViewById(R.id.expiryText);
         TextView hiringCo = (TextView) findViewById(R.id.companyText);

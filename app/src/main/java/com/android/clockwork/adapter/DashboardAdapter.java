@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.clockwork.R;
@@ -50,31 +54,40 @@ public class DashboardAdapter extends BaseAdapter {
 
         TextView jobTitle = (TextView) view.findViewById(R.id.jobTitle);
         TextView hiringCo = (TextView) view.findViewById(R.id.hiringCo);
+        TextView status = (TextView) view.findViewById(R.id.status);
         TextView salary = (TextView) view.findViewById(R.id.salary);
-        TextView actionButton = (TextView) view.findViewById(R.id.actionButton);
+        ImageButton popup = (ImageButton) view.findViewById(R.id.popup);
+
+        popup.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewMenu(v);
+            }
+        }));
+        popup.setFocusable(false);
 
         // set text
         jobTitle.setText(p.getHeader());
-        hiringCo.setText(p.getStatus());
-        salary.setText("$" + p.getSalary());
+        hiringCo.setText(p.getCompany());
+        String appStatusUpper = p.getStatus().substring(0, 1).toUpperCase();
+        String fullStatus = appStatusUpper + p.getStatus().substring(1);
 
-        if (p.getStatus().equalsIgnoreCase("pending")) {
-            actionButton.setVisibility(View.VISIBLE);
-            actionButton.setBackgroundColor(Color.parseColor("#4183D7"));
-            actionButton.setText("Withdraw Job Application: " + p.getId());
-        } else if (p.getStatus().equalsIgnoreCase("offered")) {
-            actionButton.setVisibility(View.VISIBLE);
-            actionButton.setBackgroundColor(Color.parseColor("#87D37C"));
-            actionButton.setText("Accept Job Offer: " + p.getId());
-        } else if (p.getStatus().equalsIgnoreCase("hired")) {
-            actionButton.setVisibility(View.INVISIBLE);
-        } else if (p.getStatus().equalsIgnoreCase("completed")) {
-            // completed
+        status.setText("Application Status: " + fullStatus);
+
+        if (p.getSalary() % 1 == 0) {
+            salary.setText("$" + (int) p.getSalary());
         } else {
-            // all else
+            salary.setText("$" + p.getSalary());
         }
 
         return view;
+    }
+
+    public void viewMenu(View v) {
+        PopupMenu popup = new PopupMenu(v.getContext(), v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_dashboard_item, popup.getMenu());
+        popup.show();
     }
 
     @Override

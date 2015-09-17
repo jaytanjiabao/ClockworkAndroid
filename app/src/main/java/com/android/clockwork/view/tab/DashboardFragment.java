@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.PopupMenu;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,7 +33,7 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment implements DashboardView {
-    public final static String PAR_KEY = "KEY";
+    public final static String PAR_KEY = "DASHBOARD";
     View fragmentView;
     ArrayList<Post> appliedList;
     ListView listView;
@@ -53,13 +55,14 @@ public class DashboardFragment extends Fragment implements DashboardView {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView adptView, View view, int position, long arg3) {
-                jobActionPresenter = new JobActionPresenter(dashboardAdapter, getActivity(), dialog);
-                Post p = appliedList.get(position);
-                if (p.getStatus().equalsIgnoreCase("pending")) {
-                    jobActionPresenter.withdrawJobApplication(p.getId(), appliedList, position);
-                } else if (p.getStatus().equalsIgnoreCase("offered")) {
-                    jobActionPresenter.acceptJobOffer(p.getId(), appliedList, position);
-                }
+                Bundle bundle = new Bundle();
+                dashboardAdapter = (DashboardAdapter) listView.getAdapter();
+                bundle.putParcelable(PAR_KEY, (Post) dashboardAdapter.getItem(position));
+
+                Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);
+                viewJobActivity.putExtra("Activity", "dashboard");
+                viewJobActivity.putExtras(bundle);
+                startActivity(viewJobActivity);
             }
         });
 

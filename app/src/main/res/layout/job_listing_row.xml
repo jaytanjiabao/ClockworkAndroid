@@ -15,11 +15,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:descendantFocusability="blocksDescendants"
             >
 
             <!-- Job Title -->
@@ -30,7 +30,7 @@
                 android:text="JOB TITLE"
                 android:textColor="@color/pink"
                 android:typeface="sans"
-                android:textSize="20dip"
+                android:textSize="15dip"
                 android:textStyle="bold"/>
 
             <!-- Hiring Company -->
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#343434"
-                android:textSize="15dip"
+                android:textSize="10dip"
                 android:text="HIRING COMPANY"
                 android:layout_below="@+id/jobTitle"
                 android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="START DATE"
                 android:textColor="@color/pink"
-                android:textSize="15dip"
+                android:textSize="10dip"
                 android:id="@+id/startDate"
                 android:layout_below="@+id/location"
                 android:layout_alignParentStart="true" />
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="LOCATION"
-                android:textSize="15dip"
+                android:textSize="10dip"
                 android:textColor="@color/pink"
                 android:textStyle="bold"
                 android:layout_below="@+id/hiringCo"
@@ -78,7 +78,7 @@
                 android:gravity="right"
                 android:text="$10"
                 android:layout_marginRight="5dp"
-                android:textSize="35dp"
+                android:textSize="25dp"
                 android:textColor="@color/pink"
                 android:textStyle="bold"/>
 
@@ -88,7 +88,7 @@
                 android:layout_alignParentRight="true"
                 android:gravity="right"
                 android:layout_marginRight="5dp"
-                android:textSize="15dp"
+                android:textSize="10dp"
                 android:textColor="@color/pink"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="per hour"
