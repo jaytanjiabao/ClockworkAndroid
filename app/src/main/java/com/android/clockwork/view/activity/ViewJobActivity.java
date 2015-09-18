@@ -104,23 +104,23 @@ public class ViewJobActivity extends AppCompatActivity {
         }
 
         TextView title = (TextView) findViewById(R.id.jobText);
-        TextView expiry = (TextView) findViewById(R.id.expiryText);
         TextView hiringCo = (TextView) findViewById(R.id.companyText);
         TextView location = (TextView) findViewById(R.id.locationText);
         TextView description = (TextView) findViewById(R.id.descriptionText);
         TextView jobDate = (TextView) findViewById(R.id.startText);
         TextView salary = (TextView) findViewById(R.id.salary);
+        TextView duration = (TextView) findViewById(R.id.startTime);
         ImageView logo = (ImageView) findViewById(R.id.imageView);
 
         profilePicturePresenter = new ProfilePicturePresenter(logo);
         profilePicturePresenter.getProfilePicture(post.getAvatar_path());
 
-        title.setText(post.getHeader());
-        hiringCo.setText(post.getCompany());
-        expiry.setText("Posted on " + post.getPosting_Date());
+        title.setText(post.getHeader().toUpperCase());
+        hiringCo.setText(post.getCompany().toUpperCase());
         location.setText(post.getLocation());
         description.setText(post.getDescription());
-        jobDate.setText("Job Date: " + post.getJobDate());
+        jobDate.setText(post.getDuration() + " days starting on " + post.getJobDate());
+        duration.setText(post.getStart_time() + " to " + post.getEnd_time());
 
         if (post.getSalary() % 1 == 0) {
             salary.setText("$" + (int) post.getSalary());

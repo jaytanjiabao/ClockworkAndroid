@@ -168,6 +168,9 @@ public class Post implements Parcelable {
         parcel.writeString(posting_date);
         parcel.writeString(job_date);
         parcel.writeString(avatar_path);
+        parcel.writeString(String.valueOf(duration));
+        parcel.writeString(start_time);
+        parcel.writeString(end_time);
     }
 
     public int describeContents() {
@@ -186,6 +189,9 @@ public class Post implements Parcelable {
             Post.posting_date = source.readString();
             Post.job_date = source.readString();
             Post.avatar_path = source.readString();
+            Post.duration = Integer.parseInt(source.readString());
+            Post.start_time = source.readString();
+            Post.end_time = source.readString();
             return Post;
         }
 

@@ -3,11 +3,14 @@ package com.android.clockwork.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
+import com.android.clockwork.view.activity.ViewJobActivity;
 
 
 import java.util.ArrayList;
@@ -24,12 +28,14 @@ import java.util.ArrayList;
  * Created by jiabao.tan.2012 on 2/9/2015.
  */
 public class DashboardAdapter extends BaseAdapter {
+    public final static String PAR_KEY = "DASHBOARD";
     private Activity activity;
     private ArrayList<Post> postList = new ArrayList<Post>();
     private static LayoutInflater inflater = null;
     ProgressDialog dialog;
     Post p;
     int arrayPosition;
+    View view;
 
     public DashboardAdapter(Activity activity, ArrayList<Post> arrayList) {
         this.activity = activity;
@@ -84,8 +90,30 @@ public class DashboardAdapter extends BaseAdapter {
     }
 
     public void viewMenu(View v) {
+        view = v;
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         MenuInflater inflater = popup.getMenuInflater();
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.view:
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(PAR_KEY, p);
+
+                        Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);
+                        viewJobActivity.putExtra("Activity", "dashboard");
+                        viewJobActivity.putExtras(bundle);
+                        view.getContext().startActivity(viewJobActivity);
+                        return true;
+                    case R.id.acceptOrWithdraw:
+                        //
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
         inflater.inflate(R.menu.menu_dashboard_item, popup.getMenu());
         popup.show();
     }

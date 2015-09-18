@@ -46,11 +46,11 @@
         </activity>
         <activity
             android:name=".view.activity.EditProfileActivity"
-            android:label="Edit Profile" >
+            android:label="Profile" >
         </activity>
         <activity
             android:name=".view.activity.ViewJobActivity"
-            android:label="View Job" >
+            android:label="Job Listings" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activity.MainActivity" />
@@ -62,19 +62,19 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".view.activity.RegisterActivity"
-            android:label="Clockwork" >
+            android:label="Back" >
         </activity>
         <activity
             android:name=".view.activity.ChangePasswordActivity"
-            android:label="Change Password" >
+            android:label="Profile" >
         </activity>
         <activity
             android:name=".view.activity.ViewCompletedJobActivity"
-            android:label="My Reviews" >
+            android:label="Profile" >
         </activity>
         <activity
             android:name=".view.activity.CompleteProfileActivity"
-            android:label="Complete Profile" >
+            android:label="Back" >
         </activity>
     </application>
 

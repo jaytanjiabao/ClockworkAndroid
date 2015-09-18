@@ -48,11 +48,17 @@ public class ListingAdapter extends BaseAdapter {
         TextView startDate = (TextView) view.findViewById(R.id.startDate);
         TextView salary = (TextView) view.findViewById(R.id.salary);
         TextView location = (TextView) view.findViewById(R.id.location);
+        TextView days = (TextView) view.findViewById(R.id.days);
 
         // set text
-        jobTitle.setText(p.getHeader());
-        hiringCo.setText(p.getCompany());
+        jobTitle.setText(p.getHeader().toUpperCase());
+        hiringCo.setText(p.getCompany().toUpperCase());
         startDate.setText("" + p.getJobDate());
+        if (p.getDuration() > 1) {
+            days.setText(p.getDuration() + " days");
+        } else {
+            days.setText(p.getDuration() + " day");
+        }
 
         if (p.getSalary() % 1 == 0) {
             salary.setText("$" + (int) p.getSalary());

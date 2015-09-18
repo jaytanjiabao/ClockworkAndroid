@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
-        android:id="@+id/menu_red"
+        android:id="@+id/view"
         android:orderInCategory="1"
         android:title="View"/>
     <item
-        android:id="@+id/menu_green"
+        android:id="@+id/acceptOrWithdraw"
         android:orderInCategory="2"
         android:title="Withdraw"/>
 </menu>

@@ -39,22 +39,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#343434"
-                android:textSize="10dip"
+                android:textSize="12dip"
+                android:textStyle="bold"
                 android:text="HIRING COMPANY"
                 android:layout_below="@+id/jobTitle"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <!-- Start Date -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="START DATE"
-                android:textColor="@color/pink"
-                android:textSize="10dip"
-                android:id="@+id/startDate"
-                android:layout_below="@+id/location"
-                android:layout_alignParentStart="true" />
 
             <!-- Location Text -->
             <TextView
@@ -64,8 +55,7 @@
                 android:gravity="right"
                 android:text="LOCATION"
                 android:textSize="10dip"
-                android:textColor="@color/pink"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_below="@+id/hiringCo"
                 android:layout_alignParentStart="true" />
 
@@ -95,6 +85,44 @@
                 android:id="@+id/textView2"
                 android:layout_below="@+id/salary"
                 android:layout_alignParentEnd="true" />
+
+            <!-- Location Text -->
+            <TextView
+                android:id="@+id/days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="10 days"
+                android:textSize="12dip"
+                android:textColor="@color/pink"
+                android:textStyle="bold"
+                android:layout_below="@+id/location"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/starting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="starting on"
+                android:textSize="12dip"
+                android:textColor="@color/black"
+                android:paddingLeft="3dp"
+                android:layout_alignTop="@+id/days"
+                android:layout_toEndOf="@+id/days" />
+
+
+            <!-- Start Date -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="START DATE"
+                android:textColor="@color/black"
+                android:textSize="12dip"
+                android:paddingLeft="3dp"
+                android:id="@+id/startDate"
+                android:layout_alignBottom="@+id/starting"
+                android:layout_toEndOf="@+id/starting" />
 
         </RelativeLayout>
 
