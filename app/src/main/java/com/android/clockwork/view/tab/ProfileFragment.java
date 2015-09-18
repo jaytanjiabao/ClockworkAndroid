@@ -95,7 +95,9 @@ public class ProfileFragment extends Fragment {
         user = editProfilePresenter.getUserMap();
         userID  = editProfilePresenter.getUserID();
         String avatar_path = user.get(SessionManager.KEY_AVATAR);
-        profilePicturePresenter.getProfilePicture(avatar_path);
+        if (avatar_path != null) {
+            profilePicturePresenter.getProfilePicture(avatar_path);
+        }
         updatePersonalDetails();
 
         changeProfilePictureButton = (Button) fragmentView.findViewById(R.id.changeProfilePictureButton);
