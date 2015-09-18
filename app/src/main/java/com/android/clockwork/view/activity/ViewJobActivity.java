@@ -21,6 +21,7 @@ import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.ApplyJobPresenter;
+import com.android.clockwork.presenter.JobActionPresenter;
 import com.android.clockwork.presenter.ProfilePicturePresenter;
 import com.android.clockwork.view.tab.DashboardFragment;
 import com.android.clockwork.view.tab.JobListingFragment;
@@ -42,6 +43,8 @@ public class ViewJobActivity extends AppCompatActivity {
     HashMap<String,String> user;
     public final static String PAR_KEY = "KEY";
     ProfilePicturePresenter profilePicturePresenter;
+    JobActionPresenter jobActionPresenter;
+    String activity = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class ViewJobActivity extends AppCompatActivity {
         dialog = new ProgressDialog(ViewJobActivity.this);
 
         initializeScreen();
+        jobActionPresenter = new JobActionPresenter(this, dialog);
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
 
         ShareLinkContent content = new ShareLinkContent.Builder()
@@ -71,7 +75,7 @@ public class ViewJobActivity extends AppCompatActivity {
 
     public void initializeScreen() {
         Intent intent = getIntent();
-        String activity = intent.getStringExtra("Activity");
+        activity = intent.getStringExtra("Activity");
         if (activity.equals("jobListing")) {
             post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
             applyButton = (Button) findViewById(R.id.applyButton);
@@ -95,12 +99,19 @@ public class ViewJobActivity extends AppCompatActivity {
             post = getIntent().getParcelableExtra(DashboardFragment.PAR_KEY);
             applyButton = (Button) findViewById(R.id.applyButton);
             if (post.getStatus().equalsIgnoreCase("pending")) {
-                    applyButton.setText("Withdraw Application");
-                    //jobActionPresenter.withdrawJobApplication(post.getId(), appliedList, position);
-                } else if (post.getStatus().equalsIgnoreCase("offered")) {
-                    applyButton.setText("Accept Job offer");
-                    //jobActionPresenter.acceptJobOffer(post.getId(), appliedList, position);
-                }
+                    applyButton.setText("WITHDRAW APPLICATION");
+                    applyButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            jobActionPresenter.withdrawJobApplication(post.getId());
+                            Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                            startActivity(backToListing);
+                        }
+                    });
+            } else if (post.getStatus().equalsIgnoreCase("offered")) {
+                applyButton.setText("ACCEPT JOB OFFER");
+                //jobActionPresenter.acceptJobOffer(post.getId(), appliedList, position);
+            }
         }
 
         TextView title = (TextView) findViewById(R.id.jobText);

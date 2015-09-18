@@ -171,6 +171,7 @@ public class Post implements Parcelable {
         parcel.writeString(String.valueOf(duration));
         parcel.writeString(start_time);
         parcel.writeString(end_time);
+        parcel.writeString(status);
     }
 
     public int describeContents() {
@@ -192,6 +193,7 @@ public class Post implements Parcelable {
             Post.duration = Integer.parseInt(source.readString());
             Post.start_time = source.readString();
             Post.end_time = source.readString();
+            Post.status = source.readString();
             return Post;
         }
 

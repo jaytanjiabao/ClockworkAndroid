@@ -39,11 +39,27 @@ public class JobActionPresenter implements JobActionListener{
         this.sessionManager = new SessionManager(currentContext);
     }
 
+    public JobActionPresenter(Activity activity, ProgressDialog dialog) {
+        this.activity = activity;
+        this.dialog = dialog;
+        this.currentContext = activity.getApplicationContext();
+        this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);
+        this.acceptJobManager = new AcceptJobManager(this, this.dialog);
+        this.sessionManager = new SessionManager(currentContext);
+    }
+
     public void withdrawJobApplication(int id, ArrayList<Post> postList, int position){
         HashMap<String, String> usermap = getUserMap();
         action = "withdraw";
         this.postList = postList;
         this.position = position;
+        withdrawJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
+        withdrawJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/withdraw");
+    }
+
+    public void withdrawJobApplication(int id){
+        HashMap<String, String> usermap = getUserMap();
+        action = "withdrawFromViewJobActivity";
         withdrawJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
         withdrawJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/withdraw");
     }
