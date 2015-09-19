@@ -63,7 +63,7 @@ public class JobListingPresenter implements JobListingListener {
         Log.d("Presenter", result);
         ArrayList<Post> postList = createGsonFromString(result);
         setListingAdapter(new ListingAdapter(fragmentActivity, postList));
-        jobListingView.displayJobListing();
+        jobListingView.displayJobListing(this);
     }
 
     @Override
