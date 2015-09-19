@@ -73,7 +73,6 @@ public class ProfileFragment extends Fragment {
     int counter_neutral = 0;
     int counter_bad = 0;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.tab_fragment_3, container, false);

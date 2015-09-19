@@ -12,6 +12,7 @@ import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     ArrayList<Post> appliedList;
     ListView listView;
     DashboardPresenter dashboardPresenter;
-    JobActionPresenter jobActionPresenter;
     ProgressDialog dialog;
     DashboardAdapter dashboardAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
