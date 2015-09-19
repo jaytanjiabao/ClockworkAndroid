@@ -1,6 +1,7 @@
 package com.android.clockwork.presenter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,10 @@ public class LoginPresenter implements LoginListener {
     }
 
     public void onFailure() {
-        Toast.makeText(preludeActivity.getApplicationContext(), "Invalid Email/Password!", Toast.LENGTH_LONG).show();
+        try {
+            wait(3000);
+            statusText.setVisibility(View.GONE);
+        }catch (Exception e) {}
+
     }
 }

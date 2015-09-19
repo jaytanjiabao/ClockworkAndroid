@@ -57,7 +57,8 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         progressBar.setVisibility(View.VISIBLE);
-        statusText.setText("Logging In...");
+        statusText.setVisibility(View.VISIBLE);
+        statusText.setText("   Logging In...   ");
     }
 
 
@@ -132,6 +133,7 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.GONE);
+        statusText.setVisibility(View.GONE);
         statusText.setText("");
         sessionManager = new SessionManager(currentContext);
         Gson gson = new Gson();

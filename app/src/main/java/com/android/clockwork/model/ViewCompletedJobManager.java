@@ -26,12 +26,12 @@ import java.util.List;
  */
 public class ViewCompletedJobManager extends AsyncTask<String, Void, String> {
     ViewCompletedJobListener viewCompletedJobListener;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
     String email, authToken;
 
-    public ViewCompletedJobManager(ViewCompletedJobListener viewCompletedJobListener, ProgressDialog dialog) {
+    public ViewCompletedJobManager(ViewCompletedJobListener viewCompletedJobListener) {
         this.viewCompletedJobListener = viewCompletedJobListener;
-        this.dialog = dialog;
+        //this.dialog = dialog;
     }
 
     public void setCredentials(String email, String authToken) {
@@ -42,10 +42,10 @@ public class ViewCompletedJobManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setTitle("Retrieving your completed jobs");
+/*        dialog.setTitle("Retrieving your completed jobs");
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(false);
-        dialog.show();
+        dialog.show();*/
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ViewCompletedJobManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Log.d("Manager", result);
         viewCompletedJobListener.onSuccess(result);
-        dialog.dismiss();
+        //dialog.dismiss();
     }
 
     public String GET(String url){

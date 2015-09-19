@@ -26,12 +26,12 @@ import java.util.List;
  */
 public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     DashboardListener dashboardListener;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
     String email, authToken;
 
-    public AppliedJobsManager(DashboardListener dashboardListener, ProgressDialog dialog) {
+    public AppliedJobsManager(DashboardListener dashboardListener) {
         this.dashboardListener = dashboardListener;
-        this.dialog = dialog;
+        //this.dialog = dialog;
     }
 
     public void setCredentials(String email, String authToken) {
@@ -42,10 +42,10 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setTitle("Retrieving your applied jobs");
+/*        dialog.setTitle("Retrieving your applied jobs");
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(false);
-        dialog.show();
+        dialog.show();*/
     }
 
     @Override
@@ -57,7 +57,7 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Log.d("Manager", result);
         dashboardListener.onSuccess(result);
-        dialog.dismiss();
+        //dialog.dismiss();
     }
 
     public String GET(String url){

@@ -25,13 +25,13 @@ public class JobListingPresenter implements JobListingListener {
     ArrayList<Post> postList;
     ListingAdapter listingAdapter;
     FragmentActivity fragmentActivity;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
 
-    public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity, ProgressDialog dialog) {
+    public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity) {
         this.jobListingView = jobListingView;
         this.postList = postList;
-        this.dialog = dialog;
-        this.jobListingManager = new JobListingManager(this, this.dialog);
+        //this.dialog = dialog;
+        this.jobListingManager = new JobListingManager(this);
         this.fragmentActivity = fragmentActivity;
     }
 

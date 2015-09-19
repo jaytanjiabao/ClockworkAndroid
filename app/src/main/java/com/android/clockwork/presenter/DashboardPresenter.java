@@ -31,11 +31,11 @@ public class DashboardPresenter implements DashboardListener {
     DashboardAdapter dashboardAdapter;
     DashboardView dashboardView;
 
-    public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity, ProgressDialog dialog) {
+    public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity) {
         this.dashboardView = dashboardView;
         this.appliedList = appliedList;
-        this.dialog = dialog;
-        this.appliedJobsManager = new AppliedJobsManager(this, this.dialog);
+        //this.dialog = dialog;
+        this.appliedJobsManager = new AppliedJobsManager(this);
         this.fragmentActivity = fragmentActivity;
         this.currentContext = fragmentActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);

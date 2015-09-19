@@ -41,7 +41,7 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     ArrayList<Post> appliedList;
     ListView listView;
     DashboardPresenter dashboardPresenter;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
     DashboardAdapter dashboardAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -52,8 +52,8 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
         listView = (ListView) fragmentView.findViewById(R.id.listView);
         appliedList = new ArrayList<Post>();
 
-        dialog = new ProgressDialog(getActivity());
-        dashboardPresenter = new DashboardPresenter(this, appliedList, getActivity(), dialog);
+        //dialog = new ProgressDialog(getActivity());
+        dashboardPresenter = new DashboardPresenter(this, appliedList, getActivity());
         dashboardPresenter.getAppliedJobList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,7 +86,7 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        DashboardPresenter presenter= new DashboardPresenter(this, appliedList, getActivity(), dialog);
+        DashboardPresenter presenter= new DashboardPresenter(this, appliedList, getActivity());
         presenter.getAppliedJobList();
     }
 

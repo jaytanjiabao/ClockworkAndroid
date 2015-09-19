@@ -59,7 +59,8 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         progressBar.setVisibility(View.VISIBLE);
-        statusText.setText("Logging In...");
+        statusText.setVisibility(View.VISIBLE);
+        statusText.setText("   Logging In...   ");
     }
 
 
@@ -119,6 +120,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.GONE);
+        statusText.setVisibility(View.GONE);
         statusText.setText("");
         if(statusCode!=401) {
             sessionManager = new SessionManager(currentContext);
@@ -145,6 +147,8 @@ public class LoginManager extends AsyncTask<String, Void, String> {
             sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             listener.onSuccess();
         }else {
+            statusText.setVisibility(View.VISIBLE);
+            statusText.setText("   Invalid Email/Password!   ");
             listener.onFailure();
         }
     }

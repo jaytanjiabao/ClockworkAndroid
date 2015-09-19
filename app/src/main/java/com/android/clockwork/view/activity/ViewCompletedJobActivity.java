@@ -17,7 +17,7 @@ import com.android.clockwork.presenter.ViewCompletedJobPresenter;
 import java.util.ArrayList;
 
 public class ViewCompletedJobActivity extends AppCompatActivity {
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
     ArrayList<Post> postList;
     ListView listView;
     ViewCompletedJobPresenter viewCompletedJobPresenter;
@@ -29,10 +29,10 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_completed_job);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dialog = new ProgressDialog(this);
+        //dialog = new ProgressDialog(this);
         listView = (ListView) findViewById(R.id.list);
         postList = new ArrayList<Post>();
-        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,dialog,false);
+        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,false);
         viewCompletedJobPresenter.getCompletedJobList();
     }
 

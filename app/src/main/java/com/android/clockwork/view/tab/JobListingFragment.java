@@ -35,7 +35,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        showProgress();
+        //showProgress();
         fragmentView = inflater.inflate(R.layout.tab_fragment_1, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) fragmentView.findViewById(R.id.swipeRefresh);
         listView = (ListView) fragmentView.findViewById(R.id.list);
@@ -43,7 +43,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
         String search = MainActivity.searchTerm;
 
         Log.d("Fragment", "Creating Presenter");
-        jobListingPresenter = new JobListingPresenter(this, postList, getActivity(), dialog);
+        jobListingPresenter = new JobListingPresenter(this, postList, getActivity());
         if (search.equals("")) {
             jobListingPresenter.getAllJobListings();
         } else {
@@ -80,7 +80,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity(), dialog);
+        JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity());
         presenter.getAllJobListings();
     }
 
@@ -92,6 +92,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
         swipeRefreshLayout.setRefreshing(false);
     }
 
+/*
     @Override public void showProgress() {
         dialog = new ProgressDialog(getActivity());
     }
@@ -100,6 +101,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
     public void hideProgress() {
         dialog.dismiss();
     }
+*/
 
     @Override
     public void onNoListingError() {

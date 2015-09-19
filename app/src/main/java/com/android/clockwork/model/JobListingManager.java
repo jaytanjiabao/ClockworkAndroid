@@ -25,20 +25,20 @@ import java.util.List;
  */
 public class JobListingManager extends AsyncTask<String, Void, String> {
     JobListingListener jobListingListener;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
 
-    public JobListingManager(JobListingListener jobListingListener, ProgressDialog dialog) {
+    public JobListingManager(JobListingListener jobListingListener) {
         this.jobListingListener = jobListingListener;
-        this.dialog = dialog;
+        //this.dialog = dialog;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setTitle("Retrieving job listings");
+/*        dialog.setTitle("Retrieving job listings");
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(false);
-        dialog.show();
+        dialog.show();*/
     }
 
     @Override
@@ -50,7 +50,7 @@ public class JobListingManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Log.d("Manager onPostExecute", result);
         jobListingListener.onSuccess(result);
-        dialog.dismiss();
+        //dialog.dismiss();
     }
 
     public String GET(String url){

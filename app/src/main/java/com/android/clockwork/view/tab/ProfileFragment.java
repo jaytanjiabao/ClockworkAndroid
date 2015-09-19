@@ -83,7 +83,7 @@ public class ProfileFragment extends Fragment {
 
         //to display ratings
         postList = new ArrayList<Post>();
-        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,dialog,true);
+        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,true);
         viewCompletedJobPresenter.getCompletedJobList();
 
 

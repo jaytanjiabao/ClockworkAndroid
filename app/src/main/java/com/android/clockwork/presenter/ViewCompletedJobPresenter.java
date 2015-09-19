@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
     ArrayList<Post> completedList;
     ViewCompletedJobActivity viewCompletedJobActivity;
-    ProgressDialog dialog;
+    //ProgressDialog dialog;
     SessionManager sessionManager;
     Context currentContext;
     ViewCompletedJobManager viewCompletedJobManager;
@@ -32,20 +32,20 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
     boolean rating = false;
 
 
-    public ViewCompletedJobPresenter(ArrayList<Post> completedList, ViewCompletedJobActivity viewCompletedJobActivity, ProgressDialog dialog, boolean rating) {
+    public ViewCompletedJobPresenter(ArrayList<Post> completedList, ViewCompletedJobActivity viewCompletedJobActivity, boolean rating) {
         this.completedList = completedList;
-        this.dialog = dialog;
-        this.viewCompletedJobManager = new ViewCompletedJobManager(this, this.dialog);
+        //this.dialog = dialog;
+        this.viewCompletedJobManager = new ViewCompletedJobManager(this);
         this.viewCompletedJobActivity = viewCompletedJobActivity;
         currentContext = viewCompletedJobActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
         this.rating = rating;
     }
 
-    public ViewCompletedJobPresenter(ArrayList<Post> completedList, ProfileFragment viewCompletedJobActivity,ProgressDialog dialog, boolean rating) {
+    public ViewCompletedJobPresenter(ArrayList<Post> completedList, ProfileFragment viewCompletedJobActivity, boolean rating) {
         this.completedList = completedList;
-        this.dialog = dialog;
-        this.viewCompletedJobManager = new ViewCompletedJobManager(this, this.dialog);
+        //this.dialog = dialog;
+        this.viewCompletedJobManager = new ViewCompletedJobManager(this);
         this.fragmentActivity = viewCompletedJobActivity;
         currentContext = viewCompletedJobActivity.getActivity().getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
