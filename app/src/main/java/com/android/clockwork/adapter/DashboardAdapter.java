@@ -35,7 +35,6 @@ public class DashboardAdapter extends BaseAdapter {
     private ArrayList<Post> postList = new ArrayList<Post>();
     private static LayoutInflater inflater = null;
     ProgressDialog dialog;
-    Post p;
     int arrayPosition;
     View view;
     JobActionPresenter jobActionPresenter;
@@ -59,7 +58,7 @@ public class DashboardAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.dashboard_listing_row, null);
         }
 
-        p = postList.get(position);
+        final Post p = postList.get(position);
         arrayPosition = position;
 
         TextView jobTitle = (TextView) view.findViewById(R.id.jobTitle);
@@ -71,7 +70,7 @@ public class DashboardAdapter extends BaseAdapter {
         popup.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewMenu(v);
+                viewMenu(v, p);
             }
         }));
         popup.setFocusable(false);
@@ -93,8 +92,9 @@ public class DashboardAdapter extends BaseAdapter {
         return view;
     }
 
-    public void viewMenu(View v) {
+    public void viewMenu(View v, Post post) {
         view = v;
+        final Post p = post;
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         MenuInflater inflater = popup.getMenuInflater();
         Menu m = popup.getMenu();
