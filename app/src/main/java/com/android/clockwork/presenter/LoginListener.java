@@ -5,4 +5,6 @@ package com.android.clockwork.presenter;
  */
 public interface LoginListener {
     public void onSuccess();
+
+    public void onFailure();
 }

@@ -5,4 +5,6 @@ package com.android.clockwork.presenter;
  */
 public interface LogoutListener {
     public void onSuccess();
+
+
 }

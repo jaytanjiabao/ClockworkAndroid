@@ -4,6 +4,9 @@ import android.content.Context;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 import com.android.clockwork.presenter.FBLoginListener;
@@ -40,11 +43,23 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
     HttpResponse httpResponse;
     SessionManager sessionManager;
     FBLoginListener fbLoginListener;
+    ProgressBar progressBar;
+    TextView statusText;
 
 
-    public FBLoginManager (Context currentContext) {
+    public FBLoginManager (Context currentContext, ProgressBar progressBar, TextView statusText) {
         this.currentContext = currentContext;
+        this.progressBar = progressBar;
+        this.statusText = statusText;
     }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressBar.setVisibility(View.VISIBLE);
+        statusText.setText("Logging In...");
+    }
+
 
     public void fbLogin(String email, String fb_Id, String avatar_Path, String account_Type, String userName,FBLoginListener fbLoginListener ) {
         this.email = email;
@@ -116,6 +131,8 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        progressBar.setVisibility(View.GONE);
+        statusText.setText("");
         sessionManager = new SessionManager(currentContext);
         Gson gson = new Gson();
         Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();

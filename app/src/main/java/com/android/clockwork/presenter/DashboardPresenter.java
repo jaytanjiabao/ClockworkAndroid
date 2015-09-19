@@ -8,7 +8,6 @@ import android.util.Log;
 import com.android.clockwork.adapter.DashboardAdapter;
 import com.android.clockwork.model.AppliedJobsManager;
 import com.android.clockwork.model.Post;
-import com.android.clockwork.model.Session;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.view.DashboardView;
 import com.google.gson.Gson;

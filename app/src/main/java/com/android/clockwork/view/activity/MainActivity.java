@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_search:
                 return true;
-            case R.id.action_settings:
-                return true;
+            //case R.id.action_settings:
+            //    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

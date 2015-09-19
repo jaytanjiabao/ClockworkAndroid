@@ -1,7 +1,5 @@
 package com.android.clockwork.view.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
@@ -14,15 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.android.clockwork.R;
-import com.android.clockwork.model.Session;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.EditProfilePresenter;
 import com.android.clockwork.presenter.ProfilePicturePresenter;
-import com.android.clockwork.view.tab.ProfileFragment;
 
 import java.util.HashMap;
 

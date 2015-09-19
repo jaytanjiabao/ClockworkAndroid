@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.presenter.FBLoginPresenter;
@@ -27,7 +29,7 @@ import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
 
-public class PreludeActivity extends AppCompatActivity implements View.OnClickListener{
+public class PreludeActivity extends AppCompatActivity {
 
     private EditText userEmail,userPassword;
     private LoginPresenter loginPresenter;
@@ -37,6 +39,8 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
     private AccessTokenTracker mTokenTracker;
     private ProfileTracker mProfileTracker;
     private String email, fb_Id, avatar_Path, account_Type, userName;
+    ProgressBar progressBar;
+    TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,12 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
 
         userEmail = (EditText) findViewById(R.id.emailText);
         userPassword = (EditText) findViewById(R.id.passwordText);
-        findViewById(R.id.loginButton).setOnClickListener(this);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        statusText = (TextView) findViewById(R.id.statusText);
 
-        loginPresenter = new LoginPresenter(this);
-        fbLoginPresenter = new FBLoginPresenter(this);
+
+        loginPresenter = new LoginPresenter(this,progressBar,statusText);
+        fbLoginPresenter = new FBLoginPresenter(this,progressBar,statusText);
 
 
         mCallbackManager = CallbackManager.Factory.create();
@@ -108,6 +114,15 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        final Button loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                loginPresenter.validateCredentials(userEmail.getText().toString(), userPassword.getText().toString());
+
+            }
+        });
+
         final Button registerButton = (Button)findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +131,7 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(registerType);
             }
         });
+
 
     }
 
@@ -134,21 +150,17 @@ public class PreludeActivity extends AppCompatActivity implements View.OnClickLi
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
 
     public void navigateToHome() {
+
         startActivity(new Intent(this, MainActivity.class));
         finish();
-    }
-
-    @Override
-    public void onClick(View v) {
-        loginPresenter.validateCredentials(userEmail.getText().toString(), userPassword.getText().toString());
     }
 
     @Override

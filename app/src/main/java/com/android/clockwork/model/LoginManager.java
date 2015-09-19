@@ -3,8 +3,12 @@ package com.android.clockwork.model;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.clockwork.presenter.LoginListener;
+import com.android.clockwork.presenter.LoginPresenter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,21 +35,35 @@ import java.util.List;
  */
 public class LoginManager extends AsyncTask<String, Void, String> {
     HttpResponse httpResponse;
-    Session loginSession;
     SessionManager sessionManager;
     int statusCode;
     LoginListener listener;
     Context currentContext;
+    ProgressBar progressBar;
+    String userEmail, userPassword;
+    TextView statusText;
 
-    public LoginManager(Context currentContext) {
+    public LoginManager(Context currentContext,ProgressBar progressBar,TextView statusText) {
         this.currentContext = currentContext;
+        this.progressBar = progressBar;
+        this.statusText = statusText;
     }
 
     public void login(final String userEmail, final String userPassword, final LoginListener listener) {
-        loginSession = new Session(userEmail, userPassword);
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
         this.listener = listener;
     }
-    public String POST(String url, Session loginSession){
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressBar.setVisibility(View.VISIBLE);
+        statusText.setText("Logging In...");
+    }
+
+
+    public String POST(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -60,8 +78,8 @@ public class LoginManager extends AsyncTask<String, Void, String> {
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
 
-            pairs.add(new BasicNameValuePair("user[email]", loginSession.getEmail()));
-            pairs.add(new BasicNameValuePair("user[password]", loginSession.getPassword()));
+            pairs.add(new BasicNameValuePair("user[email]", userEmail));
+            pairs.add(new BasicNameValuePair("user[password]", userPassword));
 
             // 6. set httpPost Entity
             httpPost.setEntity(new UrlEncodedFormEntity(pairs));
@@ -94,12 +112,14 @@ public class LoginManager extends AsyncTask<String, Void, String> {
         if(isCancelled()) {
             return "Cancelled";
         }
-        return POST(urls[0], loginSession);
+        return POST(urls[0]);
     }
 
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        progressBar.setVisibility(View.GONE);
+        statusText.setText("");
         if(statusCode!=401) {
             sessionManager = new SessionManager(currentContext);
             Gson gson = new Gson();
@@ -125,7 +145,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
             sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             listener.onSuccess();
         }else {
-
+            listener.onFailure();
         }
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
