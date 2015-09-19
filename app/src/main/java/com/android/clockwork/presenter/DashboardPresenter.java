@@ -3,6 +3,7 @@ package com.android.clockwork.presenter;
 import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 import android.content.Context;
+import android.util.Log;
 
 import com.android.clockwork.adapter.DashboardAdapter;
 import com.android.clockwork.model.AppliedJobsManager;
@@ -55,6 +56,7 @@ public class DashboardPresenter implements DashboardListener {
     }
 
     public ArrayList<Post> createGsonFromString(String string) {
+        Log.d("Dashboard Listing", string);
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Post>>(){}.getType();
         appliedList = gson.fromJson(string, listType);

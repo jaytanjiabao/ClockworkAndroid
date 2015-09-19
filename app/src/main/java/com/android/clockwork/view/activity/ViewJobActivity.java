@@ -58,9 +58,9 @@ public class ViewJobActivity extends AppCompatActivity {
 
         dialog = new ProgressDialog(ViewJobActivity.this);
 
-        initializeScreen();
         jobActionPresenter = new JobActionPresenter(this, dialog);
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
+        initializeScreen();
 
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setImageUrl(Uri.parse("http://s3-ap-southeast-1.amazonaws.com/media.clockworksmu.herokuapp.com/app/public/assets/cw+logo.jpg"))
@@ -82,13 +82,13 @@ public class ViewJobActivity extends AppCompatActivity {
             applyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(user.get(SessionManager.KEY_CONTACT)== null || user.get(SessionManager.KEY_DOB) == null || user.get(SessionManager.KEY_NATIONALITY)== null){
+                    if (user.get(SessionManager.KEY_CONTACT)== null || user.get(SessionManager.KEY_DOB) == null || user.get(SessionManager.KEY_NATIONALITY)== null){
                         Bundle bundle = new Bundle();
                         bundle.putParcelable(PAR_KEY, post);
                         Intent updateProfile = new Intent(view.getContext(), CompleteProfileActivity.class);
                         updateProfile.putExtras(bundle);
                         startActivity(updateProfile);
-                    }else{
+                    } else{
                         applyJobPresenter.applyJob(post.getId());
                         Intent backToListing = new Intent(view.getContext(), MainActivity.class);
                         startActivity(backToListing);
@@ -110,7 +110,16 @@ public class ViewJobActivity extends AppCompatActivity {
                     });
             } else if (post.getStatus().equalsIgnoreCase("offered")) {
                 applyButton.setText("ACCEPT JOB OFFER");
-                //jobActionPresenter.acceptJobOffer(post.getId(), appliedList, position);
+                applyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        jobActionPresenter.acceptJobOffer(post.getId());
+                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        startActivity(backToListing);
+                    }
+                });
+            } else if (post.getStatus().equalsIgnoreCase("hired")) {
+                applyButton.setText("YOU HAVE BEEN HIRED");
             }
         }
 
@@ -124,7 +133,9 @@ public class ViewJobActivity extends AppCompatActivity {
         ImageView logo = (ImageView) findViewById(R.id.imageView);
 
         profilePicturePresenter = new ProfilePicturePresenter(logo);
-        profilePicturePresenter.getProfilePicture(post.getAvatar_path());
+        if (post.getAvatar_path() != null) {
+            profilePicturePresenter.getProfilePicture(post.getAvatar_path());
+        }
 
         title.setText(post.getHeader().toUpperCase());
         hiringCo.setText(post.getCompany().toUpperCase());

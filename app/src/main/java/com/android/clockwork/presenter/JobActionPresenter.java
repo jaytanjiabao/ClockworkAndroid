@@ -64,11 +64,9 @@ public class JobActionPresenter implements JobActionListener{
         withdrawJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/withdraw");
     }
 
-    public void acceptJobOffer(int id, ArrayList<Post> postList, int position){
+    public void acceptJobOffer(int id){
         HashMap<String, String> usermap = getUserMap();
         action = "accept";
-        this.postList = postList;
-        this.position = position;
         acceptJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
         acceptJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/accept");
     }
@@ -90,8 +88,6 @@ public class JobActionPresenter implements JobActionListener{
             adapter.notifyDataSetChanged();
         } else if (action.equalsIgnoreCase("accept")) {
             Toast.makeText(activity.getBaseContext(), "You have accepted the job and will be contacted by the employer shortly!", Toast.LENGTH_LONG).show();
-            Post acceptedPost = postList.get(position);
-            acceptedPost.setStatus("hired");
             adapter.notifyDataSetChanged();
         }
     }

@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -57,6 +58,7 @@ public class DashboardFragment extends Fragment implements DashboardView {
             public void onItemClick(AdapterView adptView, View view, int position, long arg3) {
                 Bundle bundle = new Bundle();
                 dashboardAdapter = (DashboardAdapter) listView.getAdapter();
+                Post p = (Post) dashboardAdapter.getItem(position);
                 bundle.putParcelable(PAR_KEY, (Post) dashboardAdapter.getItem(position));
 
                 Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);

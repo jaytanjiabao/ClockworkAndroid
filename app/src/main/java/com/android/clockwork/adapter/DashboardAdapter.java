@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
+import com.android.clockwork.presenter.JobActionPresenter;
 import com.android.clockwork.view.activity.ViewJobActivity;
 
 
@@ -36,6 +38,7 @@ public class DashboardAdapter extends BaseAdapter {
     Post p;
     int arrayPosition;
     View view;
+    JobActionPresenter jobActionPresenter;
 
     public DashboardAdapter(Activity activity, ArrayList<Post> arrayList) {
         this.activity = activity;
@@ -46,6 +49,7 @@ public class DashboardAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
+        jobActionPresenter = new JobActionPresenter(activity, dialog);
 
         if (inflater == null) {
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -93,6 +97,18 @@ public class DashboardAdapter extends BaseAdapter {
         view = v;
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         MenuInflater inflater = popup.getMenuInflater();
+        Menu m = popup.getMenu();
+        inflater.inflate(R.menu.menu_dashboard_item, m);
+        if (p.getStatus().equalsIgnoreCase("pending")) {
+            Log.d("Status", p.getStatus());
+            m.removeItem(R.id.accept);
+        } else if (p.getStatus().equalsIgnoreCase("offered")) {
+            Log.d("Status", p.getStatus());
+            m.removeItem(R.id.withdraw);
+        } else if (p.getStatus().equalsIgnoreCase("hired")) {
+            m.removeItem(R.id.withdraw);
+            m.removeItem(R.id.accept);
+        }
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
@@ -106,17 +122,23 @@ public class DashboardAdapter extends BaseAdapter {
                         viewJobActivity.putExtras(bundle);
                         view.getContext().startActivity(viewJobActivity);
                         return true;
-                    case R.id.acceptOrWithdraw:
-                        //
+                    case R.id.withdraw:
+                        jobActionPresenter.withdrawJobApplication(p.getId());
+                        postList.remove(arrayPosition);
+                        notifyDataSetChanged();
+                        return true;
+                    case R.id.accept:
+                        jobActionPresenter.acceptJobOffer(p.getId());
+                        notifyDataSetChanged();
                         return true;
                     default:
                         return false;
                 }
             }
         });
-        inflater.inflate(R.menu.menu_dashboard_item, popup.getMenu());
         popup.show();
     }
+
 
     @Override
     public int getCount() {

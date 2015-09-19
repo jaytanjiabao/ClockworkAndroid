@@ -2,9 +2,13 @@
     <item
         android:id="@+id/view"
         android:orderInCategory="1"
-        android:title="View"/>
+        android:title="View Job"/>
     <item
-        android:id="@+id/acceptOrWithdraw"
+        android:id="@+id/withdraw"
         android:orderInCategory="2"
-        android:title="Withdraw"/>
+        android:title="Withdraw Application"/>
+    <item
+        android:id="@+id/accept"
+        android:orderInCategory="3"
+        android:title="Accept Job Offer"/>
 </menu>
