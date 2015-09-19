@@ -66,7 +66,7 @@ public class DashboardPresenter implements DashboardListener {
     public void onSuccess(String result) {
         this.appliedList = createGsonFromString(result);
         setListingAdapter(new DashboardAdapter(fragmentActivity, appliedList));
-        dashboardView.displayAppliedJobListing();
+        dashboardView.displayAppliedJobListing(this);
     }
 
     public ArrayList<Post> appliedJobList() {

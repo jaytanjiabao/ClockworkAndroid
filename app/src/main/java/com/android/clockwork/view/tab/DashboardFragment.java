@@ -7,10 +7,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +35,20 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import java.util.ArrayList;
 
-public class DashboardFragment extends Fragment implements DashboardView {
+public class DashboardFragment extends Fragment implements DashboardView, SwipeRefreshLayout.OnRefreshListener {
     public final static String PAR_KEY = "DASHBOARD";
     View fragmentView;
     ArrayList<Post> appliedList;
     ListView listView;
     DashboardPresenter dashboardPresenter;
-    JobActionPresenter jobActionPresenter;
     ProgressDialog dialog;
     DashboardAdapter dashboardAdapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) fragmentView.findViewById(R.id.swipeRefresh);
         listView = (ListView) fragmentView.findViewById(R.id.listView);
         appliedList = new ArrayList<Post>();
 
@@ -68,7 +71,23 @@ public class DashboardFragment extends Fragment implements DashboardView {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //swipeRefreshLayout.setRefreshing(true);
+                                    }
+                                }
+        );
+
         return fragmentView;
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        DashboardPresenter presenter= new DashboardPresenter(this, appliedList, getActivity(), dialog);
+        presenter.getAppliedJobList();
     }
 
     @Override
@@ -82,9 +101,10 @@ public class DashboardFragment extends Fragment implements DashboardView {
     }
 
     @Override
-    public void displayAppliedJobListing() {
-        dashboardAdapter = dashboardPresenter.getDashboardAdapter();
+    public void displayAppliedJobListing(DashboardPresenter presenter) {
+        dashboardAdapter = presenter.getDashboardAdapter();
         appliedList = dashboardPresenter.appliedJobList();
         listView.setAdapter(dashboardAdapter);
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

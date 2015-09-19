@@ -22,7 +22,6 @@ import com.android.clockwork.adapter.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     public static String searchTerm = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             searchTerm = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
