@@ -50,7 +50,8 @@
             android:text="Email Address"
             android:id="@+id/emailText"
             android:layout_below="@+id/usernameText"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"/>
 
 
         <Button
@@ -80,9 +81,8 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:background="@drawable/profile_button"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"/>
+            android:layout_below="@+id/pwButton"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:background="@drawable/profile_button"
-            android:layout_above="@+id/logoutButton"
+            android:layout_below="@+id/editButton"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"/>
 
@@ -106,7 +106,7 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:background="@drawable/profile_button"
-            android:layout_above="@+id/pwButton"
+            android:layout_below="@+id/feedbackButton"
             android:layout_alignStart="@+id/pwButton"
             android:layout_marginBottom="5dp"/>
 
@@ -119,7 +119,7 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:background="@drawable/feedback_button"
-            android:layout_above="@+id/editButton"
+            android:layout_below="@+id/good_Rating"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"/>
 
@@ -127,64 +127,67 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/good"
-            android:id="@+id/imageView3"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/feedbackButton" />
+            android:id="@+id/image_Smiley"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/good_Rating"
+            android:layout_toRightOf="@+id/good_Rating" />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/bad"
-            android:id="@+id/imageView4"
+            android:id="@+id/image_Bad"
+            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/textView3"
-            android:layout_marginLeft="20dp"/>
+            android:layout_alignTop="@+id/bad_Rating"
+            android:layout_toRightOf="@+id/bad_Rating"/>
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/neutral"
-            android:id="@+id/imageView5"
+            android:id="@+id/image_Neutral"
             android:layout_marginLeft="20dp"
-            android:layout_alignTop="@+id/textView2"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignTop="@+id/neutral_Rating"
+            android:layout_toRightOf="@+id/neutral_Rating" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="0"
-            android:id="@+id/textView"
+            android:id="@+id/good_Rating"
             android:textStyle="bold"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
             android:textSize="20dp"
-            android:layout_alignTop="@+id/imageView3"
-            android:layout_toEndOf="@+id/imageView3" />
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/feedbackButton"
+            android:layout_below="@id/emailText"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="0"
-            android:id="@+id/textView2"
+            android:id="@+id/neutral_Rating"
             android:textStyle="bold"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
             android:textSize="20dp"
-            android:layout_alignTop="@+id/imageView4"
-            android:layout_toEndOf="@+id/imageView5" />
+            android:layout_alignTop="@+id/image_Smiley"
+            android:layout_toRightOf="@+id/image_Smiley" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="0"
-            android:id="@+id/textView3"
+            android:id="@+id/bad_Rating"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:layout_alignTop="@+id/imageView4"
-            android:layout_alignEnd="@+id/feedbackButton"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/image_Neutral"
+            android:layout_toRightOf="@+id/image_Neutral" />
 
     </RelativeLayout>
 

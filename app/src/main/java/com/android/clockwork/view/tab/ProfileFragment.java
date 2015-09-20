@@ -168,9 +168,9 @@ public class ProfileFragment extends Fragment {
                 counter_good += 1;
             }
         }
-        TextView good = (TextView)fragmentView.findViewById(R.id.textView);
-        TextView neutral = (TextView)fragmentView.findViewById(R.id.textView2);
-        TextView bad = (TextView)fragmentView.findViewById(R.id.textView3);
+        TextView good = (TextView)fragmentView.findViewById(R.id.good_Rating);
+        TextView neutral = (TextView)fragmentView.findViewById(R.id.neutral_Rating);
+        TextView bad = (TextView)fragmentView.findViewById(R.id.bad_Rating);
         good.setText(String.valueOf(counter_good));
         neutral.setText(String.valueOf(counter_neutral));
         bad.setText(String.valueOf(counter_bad));
