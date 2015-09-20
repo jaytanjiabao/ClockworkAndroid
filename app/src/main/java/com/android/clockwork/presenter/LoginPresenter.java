@@ -9,6 +9,10 @@ import android.widget.Toast;
 import com.android.clockwork.model.LoginManager;
 import com.android.clockwork.view.activity.PreludeActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+
 /**
  * Created by Hoi Chuen on 20/8/2015.
  */
@@ -36,11 +40,4 @@ public class LoginPresenter implements LoginListener {
         preludeActivity.navigateToHome();
     }
 
-    public void onFailure() {
-        try {
-            wait(3000);
-            statusText.setVisibility(View.GONE);
-        }catch (Exception e) {}
-
-    }
 }

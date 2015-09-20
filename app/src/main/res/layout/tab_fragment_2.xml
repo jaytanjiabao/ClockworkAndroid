@@ -15,4 +15,13 @@
             android:divider="@null"
             android:dividerHeight="0dp"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/progressBar3"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.android.clockwork.presenter;
 import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.adapter.ListingAdapter;
 import com.android.clockwork.model.JobListingManager;
@@ -26,13 +27,16 @@ public class JobListingPresenter implements JobListingListener {
     ListingAdapter listingAdapter;
     FragmentActivity fragmentActivity;
     //ProgressDialog dialog;
+    ProgressBar progressBar;
 
-    public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity) {
+    public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.jobListingView = jobListingView;
         this.postList = postList;
         //this.dialog = dialog;
-        this.jobListingManager = new JobListingManager(this);
+        this.progressBar = progressBar;
+        this.jobListingManager = new JobListingManager(this, progressBar);
         this.fragmentActivity = fragmentActivity;
+
     }
 
     public void getAllJobListings() {

@@ -3,6 +3,8 @@ package com.android.clockwork.model;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.presenter.DashboardListener;
 
@@ -28,9 +30,11 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     DashboardListener dashboardListener;
     //ProgressDialog dialog;
     String email, authToken;
+    ProgressBar progressBar;
 
-    public AppliedJobsManager(DashboardListener dashboardListener) {
+    public AppliedJobsManager(DashboardListener dashboardListener, ProgressBar progressBar) {
         this.dashboardListener = dashboardListener;
+        this.progressBar = progressBar;
         //this.dialog = dialog;
     }
 
@@ -42,6 +46,7 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressBar.setVisibility(View.VISIBLE);
 /*        dialog.setTitle("Retrieving your applied jobs");
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(false);
@@ -56,6 +61,7 @@ public class AppliedJobsManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Log.d("Manager", result);
+        progressBar.setVisibility(View.GONE);
         dashboardListener.onSuccess(result);
         //dialog.dismiss();
     }

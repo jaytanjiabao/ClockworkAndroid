@@ -3,6 +3,8 @@ package com.android.clockwork.model;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.presenter.JobListingListener;
 
@@ -26,15 +28,18 @@ import java.util.List;
 public class JobListingManager extends AsyncTask<String, Void, String> {
     JobListingListener jobListingListener;
     //ProgressDialog dialog;
+    ProgressBar progressBar;
 
-    public JobListingManager(JobListingListener jobListingListener) {
+    public JobListingManager(JobListingListener jobListingListener, ProgressBar progressBar) {
         this.jobListingListener = jobListingListener;
+        this.progressBar = progressBar;
         //this.dialog = dialog;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressBar.setVisibility(View.VISIBLE);
 /*        dialog.setTitle("Retrieving job listings");
         dialog.setMessage("Loading...");
         dialog.setIndeterminate(false);
@@ -49,6 +54,7 @@ public class JobListingManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Log.d("Manager onPostExecute", result);
+        progressBar.setVisibility(View.GONE);
         jobListingListener.onSuccess(result);
         //dialog.dismiss();
     }
