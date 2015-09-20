@@ -300,7 +300,9 @@ public class ProfileFragment extends Fragment {
     }
 
     public void navigateToHome() {
-        startActivity(new Intent(fragmentView.getContext(), MainActivity.class));
+        Intent backToListing = new Intent(fragmentView.getContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "profile");
+        startActivity(backToListing);
     }
 
 

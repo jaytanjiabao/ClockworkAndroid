@@ -110,7 +110,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
     }
 
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        Intent backToListing = new Intent(this, MainActivity.class);
+        backToListing.putExtra("Previous", "dashboard");
+        startActivity(backToListing);
+        //finish();
     }
 }

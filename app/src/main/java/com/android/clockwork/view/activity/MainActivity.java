@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Job Listings"));
-        tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Dashboard"));
         tabLayout.addTab(tabLayout.newTab().setText("My Profile"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             previous = getIntent().getStringExtra("Previous");
             if (previous.equalsIgnoreCase("dashboard")) {
                 viewPager.setCurrentItem(1);
+            } else if(previous.equalsIgnoreCase("profile")){
+                viewPager.setCurrentItem(2);
+            }else {
+                viewPager.setCurrentItem(0);
             }
         }
 

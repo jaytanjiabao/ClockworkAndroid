@@ -91,6 +91,7 @@ public class ViewJobActivity extends AppCompatActivity {
                     } else{
                         applyJobPresenter.applyJob(post.getId());
                         Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        backToListing.putExtra("Previous", "dashboard");
                         startActivity(backToListing);
                     }
                 }
@@ -116,6 +117,7 @@ public class ViewJobActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         jobActionPresenter.acceptJobOffer(post.getId());
                         Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        backToListing.putExtra("Previous", "dashboard");
                         startActivity(backToListing);
                     }
                 });

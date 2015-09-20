@@ -71,6 +71,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     editProfilePresenter.changePassword(oldPwText.getText().toString(), newPwText.getText().toString(),
                             confirmPwText.getText().toString(), email, authToken);
                     Intent changePassword = new Intent(view.getContext(), MainActivity.class);
+                    changePassword.putExtra("Previous", "profile");
                     startActivity(changePassword);
                 }
             }

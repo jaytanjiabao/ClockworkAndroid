@@ -71,6 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 String nationality = user.get(SessionManager.KEY_NATIONALITY);
                 editProfilePresenter.updateSession(id,nameText.getText().toString(),email,accountType,authToken,avatarPath,addressText.getText().toString(),contactText.getText().toString(),dob,nationality);
                 Intent editProfile = new Intent(view.getContext(), MainActivity.class);
+                editProfile.putExtra("Previous", "profile");
                 startActivity(editProfile);
             }
         });
