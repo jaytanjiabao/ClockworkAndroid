@@ -85,12 +85,13 @@
             android:text="Apply for Job"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
+            android:layout_margin="10dp"
+            android:background="@drawable/view_job_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:color="#8C8C8C"
-            android:layout_below="@+id/textView5"
             android:layout_alignEnd="@+id/textView5"
-            android:layout_toEndOf="@+id/imageView" />
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_below="@+id/textView5" />
 
     </RelativeLayout>
 
