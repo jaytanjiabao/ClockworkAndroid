@@ -149,7 +149,6 @@ public class LoginManager extends AsyncTask<String, Void, String> {
         }else {
             statusText.setVisibility(View.VISIBLE);
             statusText.setText("   Invalid Email/Password!   ");
-            listener.onFailure();
         }
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {

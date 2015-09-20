@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.adapter.DashboardAdapter;
 import com.android.clockwork.model.AppliedJobsManager;
@@ -30,12 +31,14 @@ public class DashboardPresenter implements DashboardListener {
     HashMap<String, String> usermap;
     DashboardAdapter dashboardAdapter;
     DashboardView dashboardView;
+    ProgressBar progressBar;
 
-    public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity) {
+    public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.dashboardView = dashboardView;
         this.appliedList = appliedList;
         //this.dialog = dialog;
-        this.appliedJobsManager = new AppliedJobsManager(this);
+        this.progressBar = progressBar;
+        this.appliedJobsManager = new AppliedJobsManager(this,progressBar);
         this.fragmentActivity = fragmentActivity;
         this.currentContext = fragmentActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);

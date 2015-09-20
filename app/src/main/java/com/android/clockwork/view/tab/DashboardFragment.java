@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.R;
 import com.android.clockwork.adapter.DashboardAdapter;
@@ -44,16 +45,18 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     //ProgressDialog dialog;
     DashboardAdapter dashboardAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.tab_fragment_2, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) fragmentView.findViewById(R.id.swipeRefresh);
         listView = (ListView) fragmentView.findViewById(R.id.listView);
+        progressBar = (ProgressBar) fragmentView.findViewById(R.id.progressBar3);
         appliedList = new ArrayList<Post>();
 
         //dialog = new ProgressDialog(getActivity());
-        dashboardPresenter = new DashboardPresenter(this, appliedList, getActivity());
+        dashboardPresenter = new DashboardPresenter(this, appliedList, getActivity(),progressBar);
         dashboardPresenter.getAppliedJobList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,7 +89,7 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        DashboardPresenter presenter= new DashboardPresenter(this, appliedList, getActivity());
+        DashboardPresenter presenter= new DashboardPresenter(this, appliedList, getActivity(),progressBar);
         presenter.getAppliedJobList();
     }
 

@@ -12,11 +12,14 @@
         android:id="@+id/scrollView2"
         android:fillViewport="false">
 
+    </ScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relativeLayout"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
 
         <ImageView
             android:layout_width="150dp"
@@ -68,124 +71,122 @@
             android:background="@drawable/edit"
             android:layout_alignBottom="@+id/imageView"
             android:layout_centerHorizontal="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Logout"
+            android:id="@+id/logoutButton"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="@drawable/profile_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Change Password"
+            android:id="@+id/pwButton"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="@drawable/profile_button"
+            android:layout_above="@+id/logoutButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit Profile"
+            android:id="@+id/editButton"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="@drawable/profile_button"
+            android:layout_above="@+id/pwButton"
+            android:layout_alignStart="@+id/pwButton"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View Ratings"
+            android:id="@+id/feedbackButton"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="@drawable/feedback_button"
+            android:layout_above="@+id/editButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/good"
+            android:id="@+id/imageView3"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/feedbackButton" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/bad"
+            android:id="@+id/imageView4"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/textView3"
+            android:layout_marginLeft="20dp"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/neutral"
+            android:id="@+id/imageView5"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/imageView3"
+            android:layout_toEndOf="@+id/imageView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/textView2"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_toEndOf="@+id/imageView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/textView3"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_alignEnd="@+id/feedbackButton"
+            android:layout_marginLeft="5dp"/>
 
     </RelativeLayout>
-    </ScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Logout"
-        android:id="@+id/logoutButton"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:background="@drawable/profile_button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Change Password"
-        android:id="@+id/pwButton"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:background="@drawable/profile_button"
-        android:layout_above="@+id/logoutButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Edit Profile"
-        android:id="@+id/editButton"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:background="@drawable/profile_button"
-        android:layout_above="@+id/pwButton"
-        android:layout_alignStart="@+id/pwButton"
-        android:layout_marginBottom="5dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="View Ratings"
-        android:id="@+id/feedbackButton"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:background="@drawable/feedback_button"
-        android:layout_above="@+id/editButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"/>
-
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/good"
-        android:id="@+id/imageView3"
-        android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/feedbackButton" />
-
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/bad"
-        android:id="@+id/imageView4"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/textView3"
-        android:layout_marginLeft="20dp"/>
-
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/neutral"
-        android:id="@+id/imageView5"
-        android:layout_marginLeft="20dp"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="00"
-        android:id="@+id/textView"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/imageView3"
-        android:layout_toEndOf="@+id/imageView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="00"
-        android:id="@+id/textView2"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toEndOf="@+id/imageView5" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="00"
-        android:id="@+id/textView3"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_alignEnd="@+id/feedbackButton"
-        android:layout_marginLeft="5dp"/>
 
 </RelativeLayout>

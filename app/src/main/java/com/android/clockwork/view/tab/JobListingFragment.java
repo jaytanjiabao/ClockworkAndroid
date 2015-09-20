@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.clockwork.R;
@@ -32,6 +33,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
     ProgressDialog dialog;
     View fragmentView;
     SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
         fragmentView = inflater.inflate(R.layout.tab_fragment_1, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) fragmentView.findViewById(R.id.swipeRefresh);
         listView = (ListView) fragmentView.findViewById(R.id.list);
+        progressBar = (ProgressBar) fragmentView.findViewById(R.id.progressBar2);
         postList = new ArrayList<Post>();
         String search = MainActivity.searchTerm;
 
         Log.d("Fragment", "Creating Presenter");
-        jobListingPresenter = new JobListingPresenter(this, postList, getActivity());
+        jobListingPresenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
         if (search.equals("")) {
             jobListingPresenter.getAllJobListings();
         } else {
@@ -80,7 +83,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity());
+        JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
         presenter.getAllJobListings();
     }
 
