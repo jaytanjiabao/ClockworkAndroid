@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.clockwork.presenter.CompleteProfileListener;
 
@@ -15,6 +17,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,12 +35,15 @@ public class CompleteProfileManager extends AsyncTask<String, Void, String> {
     ProgressDialog dialog;
     String email, nationality, gender, mobileNo, dob, authToken;
     Context currentContext;
+    TextView statusText;
     int postID = 0;
+    int statusCode;
 
-    public CompleteProfileManager(CompleteProfileListener completeProfileListener, ProgressDialog dialog, Context currentContext) {
+    public CompleteProfileManager(CompleteProfileListener completeProfileListener, ProgressDialog dialog, Context currentContext,TextView statusText) {
         this.completeProfileListener = completeProfileListener;
         this.dialog = dialog;
         this.currentContext = currentContext;
+        this.statusText = statusText;
     }
 
     public void completeProfile(int postID, String email, String nationality,String gender, String mobileNo, String dob, String authToken) {
@@ -66,8 +72,15 @@ public class CompleteProfileManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        completeProfileListener.onSuccess(result,postID);
-        dialog.dismiss();
+        if(statusCode == 200) {
+            completeProfileListener.onSuccess(result, postID);
+            dialog.dismiss();
+        }else{
+            dialog.dismiss();
+            statusText.setVisibility(View.VISIBLE);
+            statusText.setText("   You must at least 15 years old to apply for a job in Singapore!   ");
+
+        }
     }
 
     public String POST(String url){
@@ -88,6 +101,7 @@ public class CompleteProfileManager extends AsyncTask<String, Void, String> {
 
             httpPost.setHeader("Authentication-Token", authToken);
             HttpResponse httpResponse = httpclient.execute(httpPost);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
             inputStream = httpResponse.getEntity().getContent();
             if(inputStream != null)
                 result = convertInputStreamToString(inputStream);

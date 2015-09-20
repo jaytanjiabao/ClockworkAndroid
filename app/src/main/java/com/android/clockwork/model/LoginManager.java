@@ -121,6 +121,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.GONE);
         statusText.setVisibility(View.GONE);
+        System.out.println("Jay is a " + result);
         statusText.setText("");
         if(statusCode!=401) {
             sessionManager = new SessionManager(currentContext);
@@ -132,20 +133,25 @@ public class LoginManager extends AsyncTask<String, Void, String> {
             String username = (String)userHash.get("username");
             String email = (String)userHash.get("email");
             String accountType = (String)userHash.get("account_type");
-            String authenticationToken = (String)userHash.get("authentication_token");
-            String avatar_path = (String) userHash.get("avatar_path");
-            String address = (String) userHash.get("address");
-            Double contactNo = (Double) userHash.get("contact_number");
-            NumberFormat nm = NumberFormat.getNumberInstance();
-            String contact = "";
-            if (contactNo != null) {
-                contact = nm.format(contactNo);
-                contact = contact.replace(",", "");
+            if(accountType.equalsIgnoreCase("job_seeker")) {
+                String authenticationToken = (String) userHash.get("authentication_token");
+                String avatar_path = (String) userHash.get("avatar_path");
+                String address = (String) userHash.get("address");
+                Double contactNo = (Double) userHash.get("contact_number");
+                NumberFormat nm = NumberFormat.getNumberInstance();
+                String contact = "";
+                if (contactNo != null) {
+                    contact = nm.format(contactNo);
+                    contact = contact.replace(",", "");
+                }
+                String dob = (String) userHash.get("date_of_birth");
+                String nationality = (String) userHash.get("nationality");
+                sessionManager.createUserLoginSession(id, username, email, accountType, authenticationToken, avatar_path, address, contact, dob, nationality);
+                listener.onSuccess();
+            }else {
+                statusText.setVisibility(View.VISIBLE);
+                statusText.setText("   Employers, please use the web version!  ");
             }
-            String dob = (String) userHash.get("date_of_birth");
-            String nationality = (String) userHash.get("nationality");
-            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
-            listener.onSuccess();
         }else {
             statusText.setVisibility(View.VISIBLE);
             statusText.setText("   Invalid Email/Password!   ");
