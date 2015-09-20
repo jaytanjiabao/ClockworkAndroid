@@ -5,21 +5,13 @@
     tools:context="com.android.clockwork.view.activity.SplashActivity">
 
     <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="195dp" />
-    <ImageView
         android:id="@+id/imgLogo2"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cw"
-        android:layout_below="@+id/imgLogo"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
