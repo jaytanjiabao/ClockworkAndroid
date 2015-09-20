@@ -12,184 +12,186 @@
     android:id="@+id/scrollView2"
     android:fillViewport="false">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/user_placeholder"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Full Name"
+                android:id="@+id/usernameText"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Email Address"
+                android:id="@+id/emailText"
+                android:layout_below="@+id/usernameText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"/>
+
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/changeProfilePictureButton"
+                android:visibility="visible"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignStart="@+id/imageView"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_alignEnd="@+id/imageView" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:id="@+id/editProfilePicture"
+                android:background="@drawable/edit"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Logout"
+                android:id="@+id/logoutButton"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:background="@drawable/profile_button"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/pwButton"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Change Password"
+                android:id="@+id/pwButton"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:background="@drawable/profile_button"
+                android:layout_below="@+id/editButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit Profile"
+                android:id="@+id/editButton"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:background="@drawable/profile_button"
+                android:layout_below="@+id/feedbackButton"
+                android:layout_alignStart="@+id/pwButton"
+                android:layout_marginBottom="5dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Ratings"
+                android:id="@+id/feedbackButton"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:background="@drawable/feedback_button"
+                android:layout_below="@+id/good_Rating"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"/>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/good"
+                android:id="@+id/image_Smiley"
+                android:layout_marginLeft="20dp"
+                android:layout_alignTop="@+id/good_Rating"
+                android:layout_toRightOf="@+id/good_Rating" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/bad"
+                android:id="@+id/image_Bad"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignTop="@+id/bad_Rating"
+                android:layout_toRightOf="@+id/bad_Rating"/>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/neutral"
+                android:id="@+id/image_Neutral"
+                android:layout_marginLeft="20dp"
+                android:layout_alignTop="@+id/neutral_Rating"
+                android:layout_toRightOf="@+id/neutral_Rating" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/good_Rating"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/feedbackButton"
+                android:layout_below="@id/emailText"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/neutral_Rating"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:layout_alignTop="@+id/image_Smiley"
+                android:layout_toRightOf="@+id/image_Smiley" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/bad_Rating"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignTop="@+id/image_Neutral"
+                android:layout_toRightOf="@+id/image_Neutral" />
+
+        </RelativeLayout>
+
 </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relativeLayout"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/imageView"
-            android:src="@drawable/user_placeholder"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Full Name"
-            android:id="@+id/usernameText"
-            android:layout_below="@+id/imageView"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Email Address"
-            android:id="@+id/emailText"
-            android:layout_below="@+id/usernameText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"/>
-
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/changeProfilePictureButton"
-            android:visibility="visible"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_alignStart="@+id/imageView"
-            android:background="@android:color/transparent"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_alignEnd="@+id/imageView" />
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:id="@+id/editProfilePicture"
-            android:background="@drawable/edit"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_centerHorizontal="true" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Logout"
-            android:id="@+id/logoutButton"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/pwButton"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Change Password"
-            android:id="@+id/pwButton"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"
-            android:layout_below="@+id/editButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit Profile"
-            android:id="@+id/editButton"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/profile_button"
-            android:layout_below="@+id/feedbackButton"
-            android:layout_alignStart="@+id/pwButton"
-            android:layout_marginBottom="5dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Ratings"
-            android:id="@+id/feedbackButton"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:background="@drawable/feedback_button"
-            android:layout_below="@+id/good_Rating"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"/>
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/good"
-            android:id="@+id/image_Smiley"
-            android:layout_marginLeft="20dp"
-            android:layout_alignTop="@+id/good_Rating"
-            android:layout_toRightOf="@+id/good_Rating" />
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/bad"
-            android:id="@+id/image_Bad"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignTop="@+id/bad_Rating"
-            android:layout_toRightOf="@+id/bad_Rating"/>
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/neutral"
-            android:id="@+id/image_Neutral"
-            android:layout_marginLeft="20dp"
-            android:layout_alignTop="@+id/neutral_Rating"
-            android:layout_toRightOf="@+id/neutral_Rating" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="0"
-            android:id="@+id/good_Rating"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/feedbackButton"
-            android:layout_below="@id/emailText"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="0"
-            android:id="@+id/neutral_Rating"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            android:layout_alignTop="@+id/image_Smiley"
-            android:layout_toRightOf="@+id/image_Smiley" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="0"
-            android:id="@+id/bad_Rating"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignTop="@+id/image_Neutral"
-            android:layout_toRightOf="@+id/image_Neutral" />
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
