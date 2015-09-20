@@ -7,10 +7,10 @@
 
 
     <ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/scrollView2"
-    android:fillViewport="false">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView2"
+        android:fillViewport="false">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -80,7 +80,8 @@
                 android:textSize="15sp"
                 android:background="@drawable/profile_button"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/pwButton"/>
+                android:layout_below="@+id/pwButton"
+                android:layout_marginBottom="20dp"/>
 
             <Button
                 android:layout_width="wrap_content"
