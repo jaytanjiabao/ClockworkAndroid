@@ -66,7 +66,7 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
         if(postList.size()!= 0) {
             listView.setAdapter(completedJobAdapter);
         }else {
-            listView.setBackground(getResources().getDrawable(R.drawable.register_bg));
+            listView.setBackground(getResources().getDrawable(R.drawable.ratings_new));
         }
     }
 }

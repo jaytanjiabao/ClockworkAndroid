@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.CompleteProfileManager;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.view.activity.CompleteProfileActivity;
@@ -28,6 +29,7 @@ public class CompleteProfilePresenter implements CompleteProfileListener {
     ApplyJobPresenter applyJobPresenter;
     CompleteProfileActivity completeProfileActivity;
     TextView statusText;
+    APIManager apiManager;
 
     public CompleteProfilePresenter(FragmentActivity fragmentActivity, ProgressDialog dialog, TextView statusText) {
         this.dialog = dialog;
@@ -37,6 +39,7 @@ public class CompleteProfilePresenter implements CompleteProfileListener {
         sessionManager = new SessionManager(currentContext);
         applyJobPresenter = new ApplyJobPresenter(fragmentActivity,dialog);
         completeProfileManager = new CompleteProfileManager(this,dialog,currentContext,statusText);
+        apiManager = new APIManager();
     }
 
 
@@ -46,7 +49,7 @@ public class CompleteProfilePresenter implements CompleteProfileListener {
         String email = user.get(SessionManager.KEY_EMAIL);
         String authToken = user.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
         completeProfileManager.completeProfile(postID,email,nationality,gender,mobileNo,dob,authToken);
-        completeProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/complete_profile");
+        completeProfileManager.execute(apiManager.completeProfile());
     }
 
     @Override

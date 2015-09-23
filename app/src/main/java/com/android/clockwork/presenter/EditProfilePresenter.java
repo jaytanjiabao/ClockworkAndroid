@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.android.clockwork.R;
 import com.android.clockwork.adapter.ListingAdapter;
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.EditProfileManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
@@ -30,6 +31,7 @@ public class EditProfilePresenter implements EditProfileListener {
     Context currentContext;
     SessionManager sessionManager;
     ProfileFragment profileFragment;
+    APIManager apiManager;
 
     public EditProfilePresenter(FragmentActivity fragmentActivity, ProgressDialog dialog) {
         this.fragmentActivity = fragmentActivity;
@@ -37,6 +39,7 @@ public class EditProfilePresenter implements EditProfileListener {
         this.currentContext = fragmentActivity.getApplicationContext();
         this.editProfileManager = new EditProfileManager(this, this.dialog,currentContext);
         this.sessionManager = new SessionManager(currentContext);
+        this.apiManager = new APIManager();
     }
 
     public EditProfilePresenter(ProfileFragment profileFragment,ProgressDialog dialog) {
@@ -50,7 +53,7 @@ public class EditProfilePresenter implements EditProfileListener {
     public void updateProfile(String name, String address, String contact, String email, String authToken) {
         Log.d("Manager", "Before executing..");
         editProfileManager.setProfileDetails(name, address, contact, email, authToken);
-        editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        editProfileManager.execute(apiManager.editProfile());
         Log.d("Manager", "After executing..");
     }
 
@@ -58,7 +61,7 @@ public class EditProfilePresenter implements EditProfileListener {
         Log.d("Manager", "Before executing..");
         editProfileManager.preparePasswordChange(true);
         editProfileManager.setPasswordDetails(oldPassword, newPassword, retypedPassword, email, authToken);
-        editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        editProfileManager.execute(apiManager.editProfile());
         Log.d("Manager", "After executing..");
     }
 
@@ -66,7 +69,7 @@ public class EditProfilePresenter implements EditProfileListener {
         Log.d("Manager", "Before executing..");
         editProfileManager.prepareProfilePicChange(true);
         editProfileManager.setProfilePictureDetails(email, file, authToken);
-        editProfileManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/update");
+        editProfileManager.execute(apiManager.editProfile());
         Log.d("Manager", "After executing..");
     }
 

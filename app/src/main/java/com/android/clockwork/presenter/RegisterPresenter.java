@@ -2,6 +2,7 @@ package com.android.clockwork.presenter;
 
 import android.content.Context;
 
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.FBLoginManager;
 import com.android.clockwork.model.RegisterManager;
 import com.android.clockwork.view.activity.PreludeActivity;
@@ -15,15 +16,17 @@ public class RegisterPresenter implements RegisterListener {
     private RegisterActivity registerActivity;
     private RegisterManager registerManager;
     Context currentContext;
+    APIManager apiManager;
 
     public RegisterPresenter(RegisterActivity registerActivity){
         this.registerActivity = registerActivity;
         this.currentContext = registerActivity.getApplicationContext();
+        apiManager = new APIManager();
     }
 
     public void register(String email, String passWord, String name) {
         this.registerManager = new RegisterManager(currentContext);
-        registerManager.execute("https://clockwork-api.herokuapp.com/users.json");
+        registerManager.execute(apiManager.fbLogin_Register());
         registerManager.register(email,passWord,name,this);
 
     }

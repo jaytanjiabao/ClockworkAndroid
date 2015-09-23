@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.android.clockwork.adapter.ListingAdapter;
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.JobListingManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.view.JobListingView;
@@ -28,6 +29,7 @@ public class JobListingPresenter implements JobListingListener {
     FragmentActivity fragmentActivity;
     //ProgressDialog dialog;
     ProgressBar progressBar;
+    APIManager apiManager;
 
     public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.jobListingView = jobListingView;
@@ -36,18 +38,19 @@ public class JobListingPresenter implements JobListingListener {
         this.progressBar = progressBar;
         this.jobListingManager = new JobListingManager(this, progressBar);
         this.fragmentActivity = fragmentActivity;
+        apiManager = new APIManager();
 
     }
 
     public void getAllJobListings() {
         Log.d("Presenter", "Executing API call..");
-        jobListingManager.execute("https://clockwork-api.herokuapp.com/api/v1/posts/all.json");
+        jobListingManager.execute(apiManager.jobListing());
     }
 
     public void searchJobListing(String searchTerm) {
         try {
             Log.d("Presenter", "Executing API call..");
-            String requestURL = "https://clockwork-api.herokuapp.com/api/v1/posts/search?query=";
+            String requestURL = apiManager.searchJob();
             requestURL += URLEncoder.encode(searchTerm, "UTF-8");
             jobListingManager.execute(requestURL);
         } catch (IOException ioException) {

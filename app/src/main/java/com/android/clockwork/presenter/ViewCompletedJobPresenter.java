@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.android.clockwork.adapter.CompletedJobAdapter;
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.model.ViewCompletedJobManager;
@@ -30,7 +31,7 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
     CompletedJobAdapter completedJobAdapter;
     ProfileFragment fragmentActivity;
     boolean rating = false;
-
+    APIManager apiManager;
 
     public ViewCompletedJobPresenter(ArrayList<Post> completedList, ViewCompletedJobActivity viewCompletedJobActivity, boolean rating) {
         this.completedList = completedList;
@@ -40,6 +41,7 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
         currentContext = viewCompletedJobActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
         this.rating = rating;
+        apiManager = new APIManager();
     }
 
     public ViewCompletedJobPresenter(ArrayList<Post> completedList, ProfileFragment viewCompletedJobActivity, boolean rating) {
@@ -50,6 +52,7 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
         currentContext = viewCompletedJobActivity.getActivity().getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
         this.rating = rating;
+        apiManager = new APIManager();
     }
 
     public void getCompletedJobList() {
@@ -57,7 +60,7 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
         String email = usermap.get(SessionManager.KEY_EMAIL);
         String authToken = usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
         viewCompletedJobManager.setCredentials(email, authToken);
-        viewCompletedJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/get_completed_jobs");
+        viewCompletedJobManager.execute (apiManager.getCompletedJobs());
     }
 
     public ArrayList<Post> createGsonFromString(String string) {

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.android.clockwork.adapter.DashboardAdapter;
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.AppliedJobsManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
@@ -32,6 +33,7 @@ public class DashboardPresenter implements DashboardListener {
     DashboardAdapter dashboardAdapter;
     DashboardView dashboardView;
     ProgressBar progressBar;
+    APIManager apiManager;
 
     public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.dashboardView = dashboardView;
@@ -42,6 +44,7 @@ public class DashboardPresenter implements DashboardListener {
         this.fragmentActivity = fragmentActivity;
         this.currentContext = fragmentActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
+        apiManager = new APIManager();
     }
 
     public void getAppliedJobList() {
@@ -49,7 +52,7 @@ public class DashboardPresenter implements DashboardListener {
         String email = usermap.get(SessionManager.KEY_EMAIL);
         String authToken = usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
         appliedJobsManager.setCredentials(email, authToken);
-        appliedJobsManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/get_applied_jobs");
+        appliedJobsManager.execute(apiManager.dashboard());
     }
 
     @Override

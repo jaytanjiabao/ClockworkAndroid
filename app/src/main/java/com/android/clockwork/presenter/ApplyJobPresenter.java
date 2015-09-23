@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.ApplyJobManager;
 import com.android.clockwork.model.SessionManager;
 
@@ -20,6 +21,7 @@ public class ApplyJobPresenter implements ApplyJobListener {
     Context currentContext;
     SessionManager sessionManager;
     String email, authToken;
+    APIManager apiManager;
 
     public ApplyJobPresenter(FragmentActivity fragmentActivity, ProgressDialog dialog) {
         this.fragmentActivity = fragmentActivity;
@@ -27,13 +29,14 @@ public class ApplyJobPresenter implements ApplyJobListener {
         this.applyJobManager = new ApplyJobManager(this, this.dialog);
         this.currentContext = fragmentActivity.getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
+        apiManager = new APIManager();
     }
 
     public void applyJob(int id) {
         // set details
         setAuthenticationDetails();
         applyJobManager.prepareAuthentication(email, authToken, id);
-        applyJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/apply");
+        applyJobManager.execute(apiManager.applyJob());
     }
 
     public void setAuthenticationDetails() {

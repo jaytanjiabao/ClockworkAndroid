@@ -6,6 +6,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.android.clockwork.adapter.DashboardAdapter;
+import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.AcceptJobManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
@@ -28,6 +29,7 @@ public class JobActionPresenter implements JobActionListener{
     ArrayList<Post> postList;
     String action;
     int position;
+    APIManager apiManager;
 
     public JobActionPresenter(DashboardAdapter adapter, Activity activity, ProgressDialog dialog) {
         this.adapter = adapter;
@@ -46,6 +48,7 @@ public class JobActionPresenter implements JobActionListener{
         this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);
         this.acceptJobManager = new AcceptJobManager(this, this.dialog);
         this.sessionManager = new SessionManager(currentContext);
+        apiManager = new APIManager();
     }
 
     public void withdrawJobApplication(int id, ArrayList<Post> postList, int position){
@@ -54,21 +57,21 @@ public class JobActionPresenter implements JobActionListener{
         this.postList = postList;
         this.position = position;
         withdrawJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
-        withdrawJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/withdraw");
+        withdrawJobManager.execute(apiManager.withdrawJob());
     }
 
     public void withdrawJobApplication(int id){
         HashMap<String, String> usermap = getUserMap();
         action = "withdrawFromViewJobActivity";
         withdrawJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
-        withdrawJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/withdraw");
+        withdrawJobManager.execute(apiManager.withdrawJob());
     }
 
     public void acceptJobOffer(int id){
         HashMap<String, String> usermap = getUserMap();
         action = "accept";
         acceptJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
-        acceptJobManager.execute("https://clockwork-api.herokuapp.com/api/v1/users/accept");
+        acceptJobManager.execute(apiManager.acceptJob());
     }
 
     public HashMap<String, String> getUserMap() {

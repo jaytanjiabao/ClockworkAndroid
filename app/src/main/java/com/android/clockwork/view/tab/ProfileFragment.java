@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
 
         // to remove editProfilePresenter
         editProfilePresenter = new EditProfilePresenter(this,dialog);
-        logoutPresenter = new LogoutPresenter(this);
+        logoutPresenter = new LogoutPresenter(this,dialog);
         profilePicturePresenter = new ProfilePicturePresenter(pictureView);
         user = editProfilePresenter.getUserMap();
         userID  = editProfilePresenter.getUserID();

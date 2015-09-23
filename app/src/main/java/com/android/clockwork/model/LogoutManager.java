@@ -1,5 +1,6 @@
 package com.android.clockwork.model;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -24,10 +25,12 @@ public class LogoutManager extends AsyncTask<String, Void, String> {
     Context currentContext;
     SessionManager sessionManager;
     LogoutListener listener;
+    ProgressDialog dialog;
 
-    public LogoutManager (Context currentContext, final LogoutListener listener) {
+    public LogoutManager (Context currentContext, final LogoutListener listener, ProgressDialog dialog) {
         this.currentContext = currentContext;
         this.listener = listener;
+        this.dialog = dialog;
     }
     public static String DELETE(String url){
         InputStream inputStream = null;
@@ -71,12 +74,22 @@ public class LogoutManager extends AsyncTask<String, Void, String> {
         return DELETE(urls[0]);
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        dialog.setTitle("Logging Out...");
+        dialog.setMessage("Please wait");
+        dialog.setIndeterminate(false);
+        dialog.show();
+    }
+
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
         sessionManager = new SessionManager(currentContext);
         sessionManager.logoutUser();
         listener.onSuccess();
+        dialog.dismiss();
     }
 
 
