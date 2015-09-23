@@ -39,6 +39,7 @@ public class JobActionPresenter implements JobActionListener{
         this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);
         this.acceptJobManager = new AcceptJobManager(this, this.dialog);
         this.sessionManager = new SessionManager(currentContext);
+        apiManager = new APIManager();
     }
 
     public JobActionPresenter(Activity activity, ProgressDialog dialog) {

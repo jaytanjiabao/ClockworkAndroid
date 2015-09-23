@@ -39,7 +39,7 @@ public class EditProfilePresenter implements EditProfileListener {
         this.currentContext = fragmentActivity.getApplicationContext();
         this.editProfileManager = new EditProfileManager(this, this.dialog,currentContext);
         this.sessionManager = new SessionManager(currentContext);
-        this.apiManager = new APIManager();
+        apiManager = new APIManager();
     }
 
     public EditProfilePresenter(ProfileFragment profileFragment,ProgressDialog dialog) {
@@ -48,6 +48,7 @@ public class EditProfilePresenter implements EditProfileListener {
         this.currentContext = profileFragment.getActivity().getApplicationContext();
         this.editProfileManager = new EditProfileManager(this, this.dialog,currentContext);
         this.sessionManager = new SessionManager(currentContext);
+        apiManager = new APIManager();
     }
 
     public void updateProfile(String name, String address, String contact, String email, String authToken) {
