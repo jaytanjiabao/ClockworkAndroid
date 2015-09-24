@@ -63,4 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), PreludeActivity.class);
+        startActivity(backToListing);
+    }
 }

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_bg"
+    android:background="@drawable/bg"
     android:alpha="1"
     tools:context="com.android.clockwork.view.activity.RegisterActivity">
 
@@ -14,18 +14,12 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="100dp"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:alpha="0.85"
             android:background="@drawable/rounded_corner">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/logo_text"
-                android:src="@drawable/cw"
-                android:layout_gravity="center_horizontal" />
 
             <EditText
                 android:layout_width="fill_parent"

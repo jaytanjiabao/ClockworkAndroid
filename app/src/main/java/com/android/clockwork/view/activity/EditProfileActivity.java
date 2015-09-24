@@ -22,7 +22,7 @@ import com.android.clockwork.presenter.ProfilePicturePresenter;
 import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
-    Button updateButton;
+    Button updateButton,backButton;
     EditText nameText, addressText, contactText;
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
@@ -46,6 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
         user = editProfilePresenter.getUserMap();
         userID = editProfilePresenter.getUserID();
         nameText = (EditText) findViewById(R.id.nameText);
+        backButton = (Button) findViewById(R.id.backButton);
         addressText = (EditText) findViewById(R.id.addressText);
         contactText = (EditText) findViewById(R.id.contactText);
         pictureView = (ImageView) findViewById(R.id.imageView);
@@ -55,6 +56,15 @@ public class EditProfileActivity extends AppCompatActivity {
         String avatar_path = user.get(SessionManager.KEY_AVATAR);
         profilePicturePresenter.getProfilePicture(avatar_path);
         updatePersonalDetails();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                backToListing.putExtra("Previous", "profile");
+                startActivity(backToListing);
+            }
+        });
 
         updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -101,5 +111,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "profile");
+        startActivity(backToListing);
     }
 }

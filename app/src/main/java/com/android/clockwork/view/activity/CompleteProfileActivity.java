@@ -169,4 +169,12 @@ public class CompleteProfileActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         datePickerDialog.show();
     }
+
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "home");
+        startActivity(backToListing);
+    }
 }

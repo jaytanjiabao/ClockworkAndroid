@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.SessionManager;
@@ -23,7 +24,7 @@ import com.android.clockwork.presenter.ProfilePicturePresenter;
 import java.util.HashMap;
 
 public class ChangePasswordActivity extends AppCompatActivity {
-    Button updateButton;
+    Button updateButton, backButton;
     EditText oldPwText, newPwText, confirmPwText;
     EditProfilePresenter editProfilePresenter;
     ProgressDialog dialog;
@@ -31,6 +32,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     ImageView pictureView;
     HashMap<String, String> user;
     ProfilePicturePresenter profilePicturePresenter;
+    TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
         dialog = new ProgressDialog(ChangePasswordActivity.this);
         oldPwText = (EditText) findViewById(R.id.oldPwText);
         newPwText = (EditText) findViewById(R.id.newPwText);
+        backButton = (Button) findViewById(R.id.backButton);
         confirmPwText = (EditText) findViewById(R.id.confirmPwText);
         pictureView = (ImageView) findViewById(R.id.imageView);
+        statusText = (TextView) findViewById(R.id.statusText);
+
 
         editProfilePresenter = new EditProfilePresenter(this, dialog);
         user = editProfilePresenter.getUserMap();
@@ -53,6 +58,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
         oldPwText.requestFocus();
 
         updatePersonalDetails();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                backToListing.putExtra("Previous", "profile");
+                startActivity(backToListing);
+            }
+        });
+
 
         updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +74,17 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // change password
                 if (oldPwText.length() <= 0) {
-                    oldPwText.setError("Password missing!");
+                    statusText.setVisibility(View.VISIBLE);
+                    statusText.setText("   Password missing!   ");
                 } else if (oldPwText.length() < 8) {
-                    oldPwText.setError("Password must contain at least 8 characters!");
+                    statusText.setVisibility(View.VISIBLE);
+                    statusText.setText("   Password must contain at least 8 characters!   ");
                 } else if (!newPwText.getText().toString().equals(confirmPwText.getText().toString())) {
-                    confirmPwText.setError("New passwords do not match!");
+                    statusText.setVisibility(View.VISIBLE);
+                    statusText.setText("   New passwords do not match!   ");
                 } else if (newPwText.length() < 8) {
-                    newPwText.setError("Password must contain at least 8 characters!");
+                    statusText.setVisibility(View.VISIBLE);
+                    statusText.setText("   Password must contain at least 8 characters!   ");
                 } else {
                     editProfilePresenter.changePassword(oldPwText.getText().toString(), newPwText.getText().toString(),
                             confirmPwText.getText().toString(), email, authToken);
@@ -94,9 +112,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
-                    oldPwText.setError("Password missing!");
+                    //statusText.setVisibility(View.VISIBLE);
+                    //setText("   Password missing!   ");
                 } else if (s.length() < 8) {
-                    oldPwText.setError("Password must contain at least 8 characters!");
+                    //statusText.setVisibility(View.VISIBLE);
+                    //statusText.setText("   Password must contain at least 8 characters!   ");
                 }
             }
         };
@@ -116,9 +136,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
-                    newPwText.setError("Password missing!");
+                    //statusText.setVisibility(View.VISIBLE);
+                    //statusText.setText("   Password missing!   ");
                 } else if (s.length() < 8) {
-                    newPwText.setError("Password must contain at least 8 characters!");
+                    //statusText.setVisibility(View.VISIBLE);
+                    //statusText.setText("   Password must contain at least 8 characters!   ");
                 }
             }
         };
@@ -138,7 +160,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!newPwText.getText().toString().equals(confirmPwText.getText().toString())) {
-                    confirmPwText.setError("New passwords do not match!");
+                    //statusText.setVisibility(View.VISIBLE);
+                    //statusText.setText("   New passwords do not match!   ");
                 }
             }
         };
@@ -173,5 +196,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }*/
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "profile");
+        startActivity(backToListing);
     }
 }

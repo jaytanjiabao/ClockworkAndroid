@@ -1,12 +1,15 @@
 package com.android.clockwork.view.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 
 public class ViewCompletedJobActivity extends AppCompatActivity {
     //ProgressDialog dialog;
+    Button backButton;
     ArrayList<Post> postList;
     ListView listView;
     ViewCompletedJobPresenter viewCompletedJobPresenter;
@@ -33,8 +37,19 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
         //dialog = new ProgressDialog(this);
         listView = (ListView) findViewById(R.id.list);
         postList = new ArrayList<Post>();
+        backButton = (Button) findViewById(R.id.backButton);
         viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,false);
         viewCompletedJobPresenter.getCompletedJobList();
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                backToListing.putExtra("Previous", "profile");
+                startActivity(backToListing);
+            }
+        });
     }
 
     @Override
@@ -68,5 +83,12 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
         }else {
             listView.setBackground(getResources().getDrawable(R.drawable.ratings_new));
         }
+    }
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "profile");
+        startActivity(backToListing);
     }
 }

@@ -39,7 +39,7 @@ import java.util.HashMap;
 public class ViewJobActivity extends AppCompatActivity {
     Post post;
     ProgressDialog dialog;
-    Button applyButton;
+    Button applyButton,backButton;
     ApplyJobPresenter applyJobPresenter;
     HashMap<String,String> user;
     public final static String PAR_KEY = "KEY";
@@ -55,8 +55,8 @@ public class ViewJobActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        backButton = (Button) findViewById(R.id.backButton);
         dialog = new ProgressDialog(ViewJobActivity.this);
 
         jobActionPresenter = new JobActionPresenter(this, dialog);
@@ -71,6 +71,15 @@ public class ViewJobActivity extends AppCompatActivity {
         shareButton.setShareContent(content);
 
         user = applyJobPresenter.getSessionInfo();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                backToListing.putExtra("Previous", "home");
+                startActivity(backToListing);
+            }
+        });
     }
 
     public void initializeScreen() {
@@ -171,5 +180,11 @@ public class ViewJobActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "home");
+        startActivity(backToListing);
+    }
 
 }

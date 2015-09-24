@@ -46,14 +46,11 @@
         </activity>
         <activity
             android:name=".view.activity.EditProfileActivity"
-            android:label="Profile" >
+            android:label="Back" >
         </activity>
         <activity
             android:name=".view.activity.ViewJobActivity"
-            android:label="Job Listings" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.activity.MainActivity" />
+            android:label="Back" >
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -66,11 +63,11 @@
         </activity>
         <activity
             android:name=".view.activity.ChangePasswordActivity"
-            android:label="Profile" >
+            android:label="Back" >
         </activity>
         <activity
             android:name=".view.activity.ViewCompletedJobActivity"
-            android:label="Profile" >
+            android:label="Back" >
         </activity>
         <activity
             android:name=".view.activity.CompleteProfileActivity"
