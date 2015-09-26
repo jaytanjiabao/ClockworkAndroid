@@ -44,6 +44,7 @@ public class JobActionPresenter implements JobActionListener{
 
     public JobActionPresenter(Activity activity, ProgressDialog dialog) {
         this.activity = activity;
+        this.adapter = new DashboardAdapter(activity,postList);
         this.dialog = dialog;
         this.currentContext = activity.getApplicationContext();
         this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);

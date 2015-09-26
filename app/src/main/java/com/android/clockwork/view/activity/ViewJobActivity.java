@@ -88,6 +88,18 @@ public class ViewJobActivity extends AppCompatActivity {
         if (activity.equals("jobListing")) {
             post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
             applyButton = (Button) findViewById(R.id.applyButton);
+            if (post.getStatus().equalsIgnoreCase("pending")) {
+                applyButton.setText("WITHDRAW APPLICATION");
+                applyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        jobActionPresenter.withdrawJobApplication(post.getId());
+                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        backToListing.putExtra("Previous", "dashboard");
+                        startActivity(backToListing);
+                    }
+                });
+            }
             applyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
