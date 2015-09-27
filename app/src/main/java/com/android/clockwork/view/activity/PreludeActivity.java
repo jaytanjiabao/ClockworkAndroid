@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -59,7 +60,7 @@ public class PreludeActivity extends AppCompatActivity {
 
         loginPresenter = new LoginPresenter(this,progressBar,statusText);
         fbLoginPresenter = new FBLoginPresenter(this,progressBar,statusText);
-
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         mCallbackManager = CallbackManager.Factory.create();
         mTokenTracker  = new AccessTokenTracker() {

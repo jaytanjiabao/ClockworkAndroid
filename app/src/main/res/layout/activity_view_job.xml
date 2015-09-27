@@ -163,14 +163,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:id="@+id/relativeLayout2">
 
         <com.facebook.share.widget.ShareButton
             android:padding="5dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/fbbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
             android:id="@+id/shareButton"/>
 
     </RelativeLayout>
@@ -186,3 +191,4 @@
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
+

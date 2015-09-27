@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.clockwork.R;
 import com.android.clockwork.presenter.RegisterPresenter;
@@ -16,23 +18,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText emailText, nameText, pwText;
     RegisterPresenter registerPresenter;
+    ProgressBar progressBar;
+    TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        registerPresenter = new RegisterPresenter(this);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        statusText = (TextView) findViewById(R.id.statusText);
+        registerPresenter = new RegisterPresenter(this,progressBar,statusText);
 
         emailText = (EditText)findViewById(R.id.emailText);
         nameText = (EditText)findViewById(R.id.nameText);
         pwText = (EditText)findViewById(R.id.pwText);
 
+
         final Button submitBtn = (Button)findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerPresenter.register(emailText.getText().toString(),pwText.getText().toString(),nameText.getText().toString());
+                if(nameText.getText().toString().equals("")) {
+                    statusText.setVisibility(View.VISIBLE);
+                    statusText.setText("   Please enter your name!   ");
+                }else {
+                    registerPresenter.register(emailText.getText().toString(), pwText.getText().toString(), nameText.getText().toString());
+                }
             }
         });
     }
@@ -66,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed () {
-        Intent backToListing = new Intent(this.getApplicationContext(), PreludeActivity.class);
-        startActivity(backToListing);
+        Intent backToHome = new Intent(this.getApplicationContext(), PreludeActivity.class);
+        startActivity(backToHome);
     }
 }

@@ -3,9 +3,13 @@ package com.android.clockwork.model;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.clockwork.presenter.RegisterListener;
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.http.HttpResponse;
@@ -20,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -37,9 +42,13 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     SessionManager sessionManager;
     HttpResponse httpResponse;
     int statusCode;
+    ProgressBar progressBar;
+    TextView statusText;
 
-    public RegisterManager (Context currentContext) {
+    public RegisterManager (Context currentContext, ProgressBar progressBar, TextView statusText) {
         this.currentContext = currentContext;
+        this.progressBar = progressBar;
+        this.statusText = statusText;
     }
 
     public void register(String email, String passWord, String userName, RegisterListener registerListener) {
@@ -49,6 +58,14 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         this.userName = userName;
         this.account_Type = "job_seeker";
         this.registerListener = registerListener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressBar.setVisibility(View.VISIBLE);
+        statusText.setVisibility(View.VISIBLE);
+        statusText.setText("   Registering Account...   ");
     }
 
     public String POST(String url){
@@ -112,6 +129,9 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        System.out.println("Hoi hoi: "+result);
+        progressBar.setVisibility(View.INVISIBLE);
+        statusText.setVisibility(View.INVISIBLE);
         if (statusCode == 201) {
             sessionManager = new SessionManager(currentContext);
             Gson gson = new Gson();
@@ -137,10 +157,35 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             registerListener.onSuccess();
         }else {
-
+            Gson gson = new Gson();
+            Type hashType = new TypeToken<HashMap<String, Object>>(){}.getType();
+            HashMap userHash = gson.fromJson(result, hashType);
+            LinkedTreeMap<String, Object> errors = (LinkedTreeMap<String, Object>)userHash.get("errors");
+            ArrayList<String> a_email = (ArrayList<String>)errors.get("email");
+            String errorEmail = "";
+            String errorPassword = "";
+            if(a_email != null) {
+                errorEmail = a_email.get(0);
+            }
+            ArrayList<String> a_passWord = (ArrayList<String>)errors.get("password");
+            if(a_passWord != null) {
+                errorPassword = a_passWord.get(0);
+            }
+            System.out.println(errorEmail + "  " +errorPassword);
+            if(errorEmail.equalsIgnoreCase("can't be blank")|| errorPassword.equalsIgnoreCase("can't be blank")){
+                statusText.setVisibility(View.VISIBLE);
+                statusText.setText("   Email/Password can't be blank!  ");
+            }else if(errorEmail.equalsIgnoreCase("has already been taken")){
+                statusText.setVisibility(View.VISIBLE);
+                statusText.setText("   Email has already been taken!  ");
+            }else if(errorPassword.equalsIgnoreCase("is too short (minimum is 8 characters)")) {
+                statusText.setVisibility(View.VISIBLE);
+                statusText.setText("   Password must be at least 8 characters!  ");
+            }else{
+                statusText.setVisibility(View.VISIBLE);
+                statusText.setText("   Invalid Email!  ");
+            }
         }
-
-
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));

@@ -6,10 +6,13 @@
     android:alpha="1"
     tools:context="com.android.clockwork.view.activity.PreludeActivity">
 
+
     <RelativeLayout
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
         <ProgressBar
@@ -18,7 +21,7 @@
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal|bottom"
             android:visibility="invisible"
-            android:layout_above="@+id/linearLayout3"
+            android:layout_above="@+id/emailText"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -36,79 +39,72 @@
             android:layout_above="@+id/progressBar"
             android:layout_centerHorizontal="true" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
+        <EditText
+            android:layout_width="280dp"
+            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:alpha="0.85"
+            android:hint="Email"
+            android:gravity="center_horizontal"
             android:background="@drawable/rounded_corner"
-            android:layout_gravity="right|bottom"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/emailText"
+            android:layout_above="@+id/passwordText"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:gravity="center_horizontal"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:id="@+id/passwordText"
+            android:layout_above="@+id/loginButton"
+            android:layout_alignStart="@+id/emailText"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_width="280dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button"
+            android:layout_above="@+id/registerButton"
+            android:layout_alignStart="@+id/passwordText"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/registerButton"
+            android:text="Register"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_width="280dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button"
+            android:layout_above="@+id/fblogin_button"
+            android:layout_alignStart="@+id/loginButton"
+            android:layout_marginBottom="5dp"/>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fblogin_button"
+            android:layout_width="280dp"
+            android:layout_height="30dp"
+            android:background="@drawable/fbbutton"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/linearLayout3">
-
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/emailText"
-                android:layout_gravity="center" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/passwordText"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Login"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/button"/>
-
-            <Button
-                android:id="@+id/registerButton"
-                android:layout_marginBottom="10dp"
-                android:text="Register"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/button"/>
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/fblogin_button"
-                android:layout_below="@+id/registerButton"
-                android:layout_marginBottom="10dp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
+            android:layout_alignStart="@+id/registerButton"
+            android:layout_marginBottom="20dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView4"
             android:src="@drawable/clockwork_header"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp" />
+            android:layout_above="@+id/textView8"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,8 +113,11 @@
             android:textSize="18dp"
             android:text="TIME TO EARN MONEY"
             android:id="@+id/textView8"
-            android:layout_below="@+id/imageView4"
-            android:layout_centerHorizontal="true" />
+            android:layout_above="@+id/statusText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="138dp"/>
 
     </RelativeLayout>
+
+
 </RelativeLayout>

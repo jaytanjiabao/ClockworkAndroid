@@ -119,9 +119,9 @@ public class LoginManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        progressBar.setVisibility(View.GONE);
-        statusText.setVisibility(View.GONE);
-        System.out.println("Jay is a " + result);
+
+        progressBar.setVisibility(View.INVISIBLE);
+        statusText.setVisibility(View.INVISIBLE);
         statusText.setText("");
         if(statusCode!=401) {
             sessionManager = new SessionManager(currentContext);
