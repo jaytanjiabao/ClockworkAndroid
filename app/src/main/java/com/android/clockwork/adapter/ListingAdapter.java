@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListingAdapter extends BaseAdapter {
 
@@ -53,7 +56,17 @@ public class ListingAdapter extends BaseAdapter {
         // set text
         jobTitle.setText(p.getHeader().toUpperCase());
         hiringCo.setText(p.getCompany().toUpperCase());
-        startDate.setText("" + p.getJobDate());
+
+        SimpleDateFormat read = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat write = new SimpleDateFormat("d MMM yyyy");
+        try {
+            Date date = read.parse(p.getJobDate());
+            startDate.setText(write.format(date));
+        } catch (ParseException pe) {
+            Log.d("Parse Exception", pe.getMessage());
+            startDate.setText("" + p.getJobDate());
+        }
+
         if (p.getDuration() > 1) {
             days.setText(p.getDuration() + " days");
         } else {
