@@ -34,6 +34,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ViewJobActivity extends AppCompatActivity {
@@ -165,7 +168,17 @@ public class ViewJobActivity extends AppCompatActivity {
         hiringCo.setText(post.getCompany().toUpperCase());
         location.setText(post.getLocation());
         description.setText(post.getDescription());
-        jobDate.setText(post.getDuration() + " days starting on " + post.getJobDate());
+
+        SimpleDateFormat read = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat write = new SimpleDateFormat("d MMM yyyy");
+        try {
+            Date date = read.parse(post.getJobDate());
+            jobDate.setText("You will work for " + post.getDuration() + " days starting on " + write.format(date));
+        } catch (ParseException pe) {
+            Log.d("Parse Exception", pe.getMessage());
+        }
+
+        //jobDate.setText("You will work for " + post.getDuration() + " days starting on " + post.getJobDate());
         duration.setText(post.getStart_time() + " to " + post.getEnd_time());
 
         if (post.getSalary() % 1 == 0) {

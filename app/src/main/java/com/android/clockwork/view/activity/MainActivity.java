@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint("Search for a job..");
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
@@ -101,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_search:
                 return true;
-            //case R.id.action_settings:
-            //    return true;
+            case R.id.action_notification:
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

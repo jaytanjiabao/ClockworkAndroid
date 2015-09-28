@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:text="JOB TITLE"
             android:textColor="@color/pink"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:textStyle="bold"
             android:text="COMPANY NAME"
             android:id="@+id/companyText"
@@ -61,7 +61,7 @@
             android:gravity="right"
             android:layout_marginRight="5dp"
             android:text="$10.0"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textColor="@color/pink"
             android:textStyle="bold"
             android:layout_alignTop="@+id/jobText"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-5dp"
             android:layout_marginRight="5dp"
-            android:textSize="15dp"
+            android:textSize="12dp"
             android:textColor="@color/pink"
             android:textStyle="bold"
             android:text="per hour"
@@ -84,14 +84,17 @@
             android:id="@+id/applyButton"
             android:text="Apply for Job"
             android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:layout_margin="10dp"
+            android:textSize="12sp"
             android:background="@drawable/view_job_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/textView5"
             android:layout_toEndOf="@+id/imageView"
-            android:layout_below="@+id/textView5" />
+            android:layout_below="@+id/textView5"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignBottom="@+id/imageView" />
 
     </RelativeLayout>
 
@@ -127,7 +130,7 @@
             android:textColor="@color/pink"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:text="7 days starting on date"
+            android:text="You will work for 7 days starting on date"
             android:id="@+id/startText" />
 
         <TextView
