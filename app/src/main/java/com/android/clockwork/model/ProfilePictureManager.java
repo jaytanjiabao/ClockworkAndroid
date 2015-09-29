@@ -33,7 +33,9 @@ public class ProfilePictureManager extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... urls) {
         Bitmap map = null;
         for (String url : urls) {
-            map = downloadImage(url);
+            if(url!= null) {
+                map = downloadImage(url);
+            }
         }
         return map;
     }
@@ -41,8 +43,11 @@ public class ProfilePictureManager extends AsyncTask<String, Void, Bitmap> {
     // Sets the Bitmap returned by doInBackground
     @Override
     protected void onPostExecute(Bitmap result) {
-        RoundImage roundImage = new RoundImage(result);
-        picture.setImageDrawable(roundImage);
+        if(result != null) {
+            RoundImage roundImage = new RoundImage(result);
+            picture.setImageDrawable(roundImage);
+        }
+
     }
 
     // Creates Bitmap from InputStream and returns it
