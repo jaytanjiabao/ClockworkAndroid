@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.clockwork.R;
 import com.android.clockwork.model.SessionManager;
@@ -20,6 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar4);
+        pb.setVisibility(View.VISIBLE);
         sessionManager = new SessionManager(getApplicationContext());
         new Handler().postDelayed(new Runnable() {
             @Override
