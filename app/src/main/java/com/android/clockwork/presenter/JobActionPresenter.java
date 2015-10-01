@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.android.clockwork.adapter.DashboardAdapter;
 import com.android.clockwork.model.APIManager;
 import com.android.clockwork.model.AcceptJobManager;
+import com.android.clockwork.model.CheckJobManager;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.model.WithdrawJobManager;
@@ -18,16 +19,17 @@ import java.util.HashMap;
 /**
  * Created by jiabao.tan.2012 on 8/9/2015.
  */
-public class JobActionPresenter implements JobActionListener{
+public class JobActionPresenter implements JobActionListener {
     Activity activity;
     ProgressDialog dialog;
     WithdrawJobManager withdrawJobManager;
     AcceptJobManager acceptJobManager;
+    CheckJobManager checkJobManager;
     Context currentContext;
     SessionManager sessionManager;
     DashboardAdapter adapter;
     ArrayList<Post> postList;
-    String action;
+    String action, status = "null";
     int position;
     APIManager apiManager;
 
@@ -38,6 +40,7 @@ public class JobActionPresenter implements JobActionListener{
         this.currentContext = activity.getApplicationContext();
         this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);
         this.acceptJobManager = new AcceptJobManager(this, this.dialog);
+        this.checkJobManager = new CheckJobManager(this, this.dialog);
         this.sessionManager = new SessionManager(currentContext);
         apiManager = new APIManager();
     }
@@ -49,6 +52,7 @@ public class JobActionPresenter implements JobActionListener{
         this.currentContext = activity.getApplicationContext();
         this.withdrawJobManager = new WithdrawJobManager(this, this.dialog);
         this.acceptJobManager = new AcceptJobManager(this, this.dialog);
+        this.checkJobManager = new CheckJobManager(this, this.dialog);
         this.sessionManager = new SessionManager(currentContext);
         apiManager = new APIManager();
     }
@@ -69,11 +73,22 @@ public class JobActionPresenter implements JobActionListener{
         withdrawJobManager.execute(apiManager.withdrawJob());
     }
 
+    public void checkJobApplication(int id){
+        HashMap<String, String> usermap = getUserMap();
+        action = "check";
+        checkJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
+        checkJobManager.execute(apiManager.checkJobStatus());
+    }
+
     public void acceptJobOffer(int id){
         HashMap<String, String> usermap = getUserMap();
         action = "accept";
         acceptJobManager.setCredentials(usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN), usermap.get(SessionManager.KEY_EMAIL), id);
         acceptJobManager.execute(apiManager.acceptJob());
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public HashMap<String, String> getUserMap() {
@@ -94,6 +109,8 @@ public class JobActionPresenter implements JobActionListener{
         } else if (action.equalsIgnoreCase("accept")) {
             Toast.makeText(activity.getBaseContext(), "You have accepted the job and will be contacted by the employer shortly!", Toast.LENGTH_LONG).show();
             adapter.notifyDataSetChanged();
+        } else if (action.equalsIgnoreCase("check")) {
+            status = string;
         }
     }
 }

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(1);
             } else if(previous.equalsIgnoreCase("profile")){
                 viewPager.setCurrentItem(2);
-            }else {
+            }else if(previous.equalsIgnoreCase("jobListing")){
                 viewPager.setCurrentItem(0);
             }
         }

@@ -107,7 +107,12 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     public void displayAppliedJobListing(DashboardPresenter presenter) {
         dashboardAdapter = presenter.getDashboardAdapter();
         appliedList = dashboardPresenter.appliedJobList();
-        listView.setAdapter(dashboardAdapter);
+        if (appliedList.size() != 0) {
+            listView.setAdapter(dashboardAdapter);
+        } else {
+            listView.setBackground(getResources().getDrawable(R.drawable.no_job));
+        }
+
         swipeRefreshLayout.setRefreshing(false);
     }
 }

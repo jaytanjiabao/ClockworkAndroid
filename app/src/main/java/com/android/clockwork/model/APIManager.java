@@ -55,4 +55,6 @@ public class APIManager {
         return baseURL + "api/v1/users/get_completed_jobs";
     }
 
+    public String checkJobStatus() { return baseURL + "/api/v1/posts/get_status"; }
+
 }

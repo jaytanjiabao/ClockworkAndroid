@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.clockwork.R;
 import com.android.clockwork.adapter.ListingAdapter;
 import com.android.clockwork.model.Post;
+import com.android.clockwork.presenter.JobActionPresenter;
 import com.android.clockwork.presenter.JobListingPresenter;
 import com.android.clockwork.view.JobListingView;
 import com.android.clockwork.view.activity.MainActivity;
@@ -86,7 +86,6 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
         JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
         presenter.getAllJobListings();
     }
-
 
     @Override
     public void displayJobListing(JobListingPresenter presenter) {

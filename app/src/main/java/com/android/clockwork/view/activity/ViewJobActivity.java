@@ -64,11 +64,13 @@ public class ViewJobActivity extends AppCompatActivity {
 
         jobActionPresenter = new JobActionPresenter(this, dialog);
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
+        post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
+
         initializeScreen();
 
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentTitle("Interested to be a " + post.getHeader() + " at " + post.getCompany() + "? Check it out at Clockwork!")
-                .setContentUrl(Uri.parse("http://clockworksmu.herokuapp.com/post.jsp?id="+post.getId()))
+                .setContentUrl(Uri.parse("http://clockworksmu.herokuapp.com/post.jsp?id=" + post.getId()))
                 .build();
         ShareButton shareButton = (ShareButton)findViewById(R.id.shareButton);
         shareButton.setShareContent(content);
@@ -89,7 +91,6 @@ public class ViewJobActivity extends AppCompatActivity {
         Intent intent = getIntent();
         activity = intent.getStringExtra("Activity");
         if (activity.equals("jobListing")) {
-            post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
             applyButton = (Button) findViewById(R.id.applyButton);
             if (post.getStatus().equalsIgnoreCase("pending")) {
                 applyButton.setText("WITHDRAW APPLICATION");
@@ -98,10 +99,23 @@ public class ViewJobActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         jobActionPresenter.withdrawJobApplication(post.getId());
                         Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                        backToListing.putExtra("Previous", "dashboard");
+                        backToListing.putExtra("Previous", "jobListing");
                         startActivity(backToListing);
                     }
                 });
+            }else if (post.getStatus().equalsIgnoreCase("offered")) {
+                applyButton.setText("ACCEPT JOB OFFER");
+                applyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        jobActionPresenter.acceptJobOffer(post.getId());
+                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        backToListing.putExtra("Previous", "jobListing");
+                        startActivity(backToListing);
+                    }
+                });
+            } else if (post.getStatus().equalsIgnoreCase("hired")) {
+                applyButton.setText("YOU HAVE BEEN HIRED");
             }
             applyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
