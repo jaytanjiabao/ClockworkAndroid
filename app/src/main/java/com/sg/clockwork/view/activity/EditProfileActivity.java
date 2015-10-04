@@ -6,7 +6,6 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +32,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Activity", "Initializing");
         super.onCreate(savedInstanceState);
         setContentView(com.sg.clockwork.R.layout.activity_edit_profile);
         Toolbar toolbar = (Toolbar) findViewById(com.sg.clockwork.R.id.toolbar);
@@ -69,10 +67,10 @@ public class EditProfileActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Activity", "Before executing..");
+
                 editProfilePresenter.updateProfile(nameText.getText().toString(), addressText.getText().toString(),
                         contactText.getText().toString(), email, authToken);
-                Log.d("Activity", "After executing..");
+
                 String accountType = user.get(SessionManager.KEY_ACCOUNTYPE);
                 String avatarPath = user.get(SessionManager.KEY_AVATAR);
                 int id = userID.get(SessionManager.KEY_ID);

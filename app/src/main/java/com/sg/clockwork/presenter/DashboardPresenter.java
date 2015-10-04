@@ -1,9 +1,8 @@
 package com.sg.clockwork.presenter;
 
-import android.app.ProgressDialog;
+
 import android.support.v4.app.FragmentActivity;
 import android.content.Context;
-import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.sg.clockwork.adapter.DashboardAdapter;
@@ -25,7 +24,6 @@ import java.util.HashMap;
 public class DashboardPresenter implements DashboardListener {
     ArrayList<Post> appliedList;
     FragmentActivity fragmentActivity;
-    ProgressDialog dialog;
     SessionManager sessionManager;
     Context currentContext;
     AppliedJobsManager appliedJobsManager;
@@ -38,7 +36,6 @@ public class DashboardPresenter implements DashboardListener {
     public DashboardPresenter(DashboardView dashboardView, ArrayList<Post> appliedList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.dashboardView = dashboardView;
         this.appliedList = appliedList;
-        //this.dialog = dialog;
         this.progressBar = progressBar;
         this.appliedJobsManager = new AppliedJobsManager(this,progressBar);
         this.fragmentActivity = fragmentActivity;
@@ -61,7 +58,6 @@ public class DashboardPresenter implements DashboardListener {
     }
 
     public ArrayList<Post> createGsonFromString(String string) {
-        Log.d("Dashboard Listing", string);
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Post>>(){}.getType();
         appliedList = gson.fromJson(string, listType);

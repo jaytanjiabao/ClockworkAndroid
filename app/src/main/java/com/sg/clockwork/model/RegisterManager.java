@@ -2,7 +2,6 @@ package com.sg.clockwork.model;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -110,7 +109,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
 
         // 11. return result
@@ -128,7 +127,6 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println("Hoi hoi: "+result);
         progressBar.setVisibility(View.INVISIBLE);
         statusText.setVisibility(View.INVISIBLE);
         if (statusCode == 201) {
@@ -170,7 +168,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             if(a_passWord != null) {
                 errorPassword = a_passWord.get(0);
             }
-            System.out.println(errorEmail + "  " +errorPassword);
+
             if(errorEmail.equalsIgnoreCase("can't be blank")|| errorPassword.equalsIgnoreCase("can't be blank")){
                 statusText.setVisibility(View.VISIBLE);
                 statusText.setText("   Email/Password can't be blank!  ");

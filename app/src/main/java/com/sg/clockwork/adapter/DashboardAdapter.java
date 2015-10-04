@@ -108,10 +108,8 @@ public class DashboardAdapter extends BaseAdapter {
         Menu m = popup.getMenu();
         inflater.inflate(com.sg.clockwork.R.menu.menu_dashboard_item, m);
         if (p.getStatus().equalsIgnoreCase("pending")) {
-            Log.d("Status", p.getStatus());
             m.removeItem(com.sg.clockwork.R.id.accept);
         } else if (p.getStatus().equalsIgnoreCase("offered")) {
-            Log.d("Status", p.getStatus());
             m.removeItem(com.sg.clockwork.R.id.withdraw);
         } else if (p.getStatus().equalsIgnoreCase("hired")) {
             m.removeItem(com.sg.clockwork.R.id.withdraw);
@@ -163,7 +161,6 @@ public class DashboardAdapter extends BaseAdapter {
                                 clashedStringCo += i.getHeader() + ",";
                             }
                             clashedStringCo = clashedStringCo.substring(0, clashedStringCo.length() - 1);
-                            System.out.println(clashedStringCo);
                             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
                             builder.setTitle("WARNING");

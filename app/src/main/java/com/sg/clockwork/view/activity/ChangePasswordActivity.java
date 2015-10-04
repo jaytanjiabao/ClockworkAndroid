@@ -111,11 +111,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
-                    //statusText.setVisibility(View.VISIBLE);
-                    //setText("   Password missing!   ");
+
                 } else if (s.length() < 8) {
-                    //statusText.setVisibility(View.VISIBLE);
-                    //statusText.setText("   Password must contain at least 8 characters!   ");
+
                 }
             }
         };
@@ -135,11 +133,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() <= 0) {
-                    //statusText.setVisibility(View.VISIBLE);
-                    //statusText.setText("   Password missing!   ");
+
                 } else if (s.length() < 8) {
-                    //statusText.setVisibility(View.VISIBLE);
-                    //statusText.setText("   Password must contain at least 8 characters!   ");
+
                 }
             }
         };
@@ -159,8 +155,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!newPwText.getText().toString().equals(confirmPwText.getText().toString())) {
-                    //statusText.setVisibility(View.VISIBLE);
-                    //statusText.setText("   New passwords do not match!   ");
+
                 }
             }
         };

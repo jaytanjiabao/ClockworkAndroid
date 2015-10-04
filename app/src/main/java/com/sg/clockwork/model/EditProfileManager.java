@@ -3,7 +3,6 @@ package com.sg.clockwork.model;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.sg.clockwork.presenter.EditProfileListener;
 import com.google.gson.Gson;
@@ -97,7 +96,7 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        Log.d("Manager", result);
+
         sessionManager = new SessionManager(currentContext);
         if(changeProfilePicture){
             Gson gson = new Gson();
@@ -170,7 +169,7 @@ public class EditProfileManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
         return result;
     }

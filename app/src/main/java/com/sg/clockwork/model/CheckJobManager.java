@@ -2,7 +2,6 @@ package com.sg.clockwork.model;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.sg.clockwork.presenter.JobActionListener;
 
@@ -86,7 +85,7 @@ public class CheckJobManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
 
         // 9. return result

@@ -28,7 +28,6 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
     ArrayList<Post> appliedList;
     ListView listView;
     DashboardPresenter dashboardPresenter;
-    //ProgressDialog dialog;
     DashboardAdapter dashboardAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
     ProgressBar progressBar;
@@ -41,7 +40,6 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
         progressBar = (ProgressBar) fragmentView.findViewById(R.id.progressBar3);
         appliedList = new ArrayList<Post>();
 
-        //dialog = new ProgressDialog(getActivity());
         dashboardPresenter = new DashboardPresenter(this, appliedList, getActivity(),progressBar);
         dashboardPresenter.getAppliedJobList();
 

@@ -1,7 +1,6 @@
 package com.sg.clockwork.model;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -22,23 +21,18 @@ import java.io.InputStreamReader;
  */
 public class JobListingManager extends AsyncTask<String, Void, String> {
     JobListingListener jobListingListener;
-    //ProgressDialog dialog;
     ProgressBar progressBar;
 
     public JobListingManager(JobListingListener jobListingListener, ProgressBar progressBar) {
         this.jobListingListener = jobListingListener;
         this.progressBar = progressBar;
-        //this.dialog = dialog;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressBar.setVisibility(View.VISIBLE);
-/*        dialog.setTitle("Retrieving job listings");
-        dialog.setMessage("Loading...");
-        dialog.setIndeterminate(false);
-        dialog.show();*/
+
     }
 
     @Override
@@ -48,10 +42,9 @@ public class JobListingManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        Log.d("Manager onPostExecute", result);
         progressBar.setVisibility(View.GONE);
         jobListingListener.onSuccess(result);
-        //dialog.dismiss();
+
     }
 
     public String GET(String url){
@@ -67,7 +60,7 @@ public class JobListingManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
         return result;
     }

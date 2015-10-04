@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,59 +92,6 @@ public class ViewJobActivity extends AppCompatActivity {
         activity = intent.getStringExtra("Activity");
         if (activity.equals("jobListing")) {
            applyButton = (Button) findViewById(com.sg.clockwork.R.id.applyButton);
-            /*if (post.getStatus().equalsIgnoreCase("pending")) {
-                applyButton.setText("WITHDRAW APPLICATION");
-                applyButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        jobActionPresenter.withdrawJobApplication(post.getId());
-                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                        backToListing.putExtra("Previous", "jobListing");
-                        startActivity(backToListing);
-                    }
-                });
-            }else if (post.getStatus().equalsIgnoreCase("offered")) {
-                applyButton.setText("ACCEPT JOB OFFER");
-                applyButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        for (Post checkClashingPost : appliedList) {
-                            if(checkClashingPost == post){
-                                System.out.println("yes!!!");
-                                continue;
-                            }
-                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                            Date startDate = null;
-                            Date endDate = null;
-                            Date retrievedStartDate = null;
-                            Date retrievedEndDate = null;
-                            try {
-                                startDate = formatter.parse(post.getJobDate());
-                                endDate = formatter.parse(post.getEnd_date());
-                                retrievedStartDate = formatter.parse(checkClashingPost.getJobDate());
-                                retrievedEndDate = formatter.parse(checkClashingPost.getEnd_date());
-                                System.out.println(startDate +" " + endDate +" "+ retrievedStartDate + " " +retrievedEndDate);
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            if ((startDate.before(retrievedEndDate) || startDate.equals(retrievedEndDate)) && (endDate.after(retrievedStartDate) || endDate.equals(retrievedStartDate))){
-                                clashingList.add(checkClashingPost);
-                            }
-                        }
-                        if(clashingList != null) {
-                            for(Post i : clashingList) {
-                                System.out.println("Clashing posts are: " +i.getHeader());
-                            }
-                        }
-                        jobActionPresenter.acceptJobOffer(post.getId());
-                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                        backToListing.putExtra("Previous", "jobListing");
-                        startActivity(backToListing);
-                    }
-                });
-            } else if (post.getStatus().equalsIgnoreCase("hired")) {
-                applyButton.setText("YOU HAVE BEEN HIRED");
-            }*/
             applyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -209,7 +155,6 @@ public class ViewJobActivity extends AppCompatActivity {
                         if (clashingList != null) {
                             for (Post i : clashingList) {
                                 clashedStringCo += i.getHeader() + ",";
-                                Log.d("Length is ", "" + clashedStringCo.length());
                             }
                             clashedStringCo = clashedStringCo.substring(0, clashedStringCo.length() - 1);
                             System.out.println(clashedStringCo);
@@ -281,7 +226,7 @@ public class ViewJobActivity extends AppCompatActivity {
             Date date = read.parse(post.getJobDate());
             jobDate.setText("You will work for " + post.getDuration() + " days starting on " + write.format(date));
         } catch (ParseException pe) {
-            Log.d("Parse Exception", pe.getMessage());
+
         }
 
         //jobDate.setText("You will work for " + post.getDuration() + " days starting on " + post.getJobDate());

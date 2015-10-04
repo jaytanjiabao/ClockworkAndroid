@@ -2,7 +2,6 @@ package com.sg.clockwork.model;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.sg.clockwork.presenter.ApplyJobListener;
 
@@ -56,7 +55,6 @@ public class ApplyJobManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println("Helllloooo: " +result);
         applyJobListener.onSuccess(result);
         dialog.dismiss();
     }
@@ -83,7 +81,7 @@ public class ApplyJobManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
 
         // 9. return result

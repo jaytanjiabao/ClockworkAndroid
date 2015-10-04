@@ -3,7 +3,6 @@ package com.sg.clockwork.model;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.sg.clockwork.presenter.LogoutListener;
 
@@ -60,7 +59,7 @@ public class LogoutManager extends AsyncTask<String, Void, String> {
                 result = "Did not work!";
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
         }
 
         // 11. return result

@@ -207,7 +207,6 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 1) {
-                Log.d("Activity", "Before executing..");
                 File f = new File(Environment.getExternalStorageDirectory().toString());
                 for (File temp : f.listFiles()) {
                     if (temp.getName().equals("temp.jpg")) {
@@ -238,7 +237,6 @@ public class ProfileFragment extends Fragment {
                         resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
                         outFile.flush();
                         editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), file, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
-                        Log.d("Activity", "After executing..");
                         outFile.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -251,7 +249,6 @@ public class ProfileFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-                Log.d("Activity", "Before executing..");
                 Uri selectedImage = data.getData();
                 String[] filePath = { MediaStore.Images.Media.DATA };
                 Cursor c = getActivity().getApplicationContext().getContentResolver().query(selectedImage, filePath, null, null, null);
@@ -268,7 +265,6 @@ public class ProfileFragment extends Fragment {
                 matrix.postScale(scaleWidth, scaleHeight);
                 Bitmap resizedBitmap = Bitmap.createBitmap(thumbnail, 0, 0, width, height,matrix,false);
 
-                Log.w("path of image from ***", picturePath + "");
 
                 File filesDir = getActivity().getApplicationContext().getFilesDir();
                 File imageFile = new File(filesDir, userID.get(SessionManager.KEY_ID) + "_avatar" + ".jpg");
@@ -279,11 +275,10 @@ public class ProfileFragment extends Fragment {
                     resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
                     os.flush();
                     editProfilePresenter.changeProfilePicture(user.get(SessionManager.KEY_EMAIL), imageFile, user.get(SessionManager.KEY_AUTHENTICATIONTOKEN));
-                    Log.d("Activity", "After executing..");
                     os.close();
 
                 } catch (Exception e) {
-                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+
                 }
             }
         }

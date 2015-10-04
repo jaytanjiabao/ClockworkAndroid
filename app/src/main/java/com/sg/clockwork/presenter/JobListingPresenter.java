@@ -1,7 +1,6 @@
 package com.sg.clockwork.presenter;
 
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.sg.clockwork.adapter.ListingAdapter;
@@ -26,14 +25,13 @@ public class JobListingPresenter implements JobListingListener {
     ArrayList<Post> postList;
     ListingAdapter listingAdapter;
     FragmentActivity fragmentActivity;
-    //ProgressDialog dialog;
+
     ProgressBar progressBar;
     APIManager apiManager;
 
     public JobListingPresenter(JobListingView jobListingView, ArrayList<Post> postList, FragmentActivity fragmentActivity, ProgressBar progressBar) {
         this.jobListingView = jobListingView;
         this.postList = postList;
-        //this.dialog = dialog;
         this.progressBar = progressBar;
         this.jobListingManager = new JobListingManager(this, progressBar);
         this.fragmentActivity = fragmentActivity;
@@ -42,13 +40,12 @@ public class JobListingPresenter implements JobListingListener {
     }
 
     public void getAllJobListings() {
-        Log.d("Presenter", "Executing API call..");
+
         jobListingManager.execute(apiManager.jobListing());
     }
 
     public void searchJobListing(String searchTerm) {
         try {
-            Log.d("Presenter", "Executing API call..");
             String requestURL = apiManager.searchJob();
             requestURL += URLEncoder.encode(searchTerm, "UTF-8");
             jobListingManager.execute(requestURL);
@@ -66,7 +63,7 @@ public class JobListingPresenter implements JobListingListener {
 
     @Override
     public void onSuccess(String result) {
-        Log.d("Presenter", result);
+
         ArrayList<Post> postList = createGsonFromString(result);
         setListingAdapter(new ListingAdapter(fragmentActivity, postList));
         jobListingView.displayJobListing(this);

@@ -46,26 +46,26 @@ public class EditProfilePresenter implements EditProfileListener {
     }
 
     public void updateProfile(String name, String address, String contact, String email, String authToken) {
-        Log.d("Manager", "Before executing..");
+
         editProfileManager.setProfileDetails(name, address, contact, email, authToken);
         editProfileManager.execute(apiManager.editProfile());
-        Log.d("Manager", "After executing..");
+
     }
 
     public void changePassword(String oldPassword, String newPassword, String retypedPassword, String email, String authToken) {
-        Log.d("Manager", "Before executing..");
+
         editProfileManager.preparePasswordChange(true);
         editProfileManager.setPasswordDetails(oldPassword, newPassword, retypedPassword, email, authToken);
         editProfileManager.execute(apiManager.editProfile());
-        Log.d("Manager", "After executing..");
+
     }
 
     public void changeProfilePicture(String email, File file, String authToken) {
-        Log.d("Manager", "Before executing..");
+
         editProfileManager.prepareProfilePicChange(true);
         editProfileManager.setProfilePictureDetails(email, file, authToken);
         editProfileManager.execute(apiManager.editProfile());
-        Log.d("Manager", "After executing..");
+
     }
 
     public HashMap<String, String> getUserMap() {

@@ -22,7 +22,6 @@ import java.util.HashMap;
 public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
     ArrayList<Post> completedList;
     ViewCompletedJobActivity viewCompletedJobActivity;
-    //ProgressDialog dialog;
     SessionManager sessionManager;
     Context currentContext;
     ViewCompletedJobManager viewCompletedJobManager;
@@ -34,7 +33,6 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
 
     public ViewCompletedJobPresenter(ArrayList<Post> completedList, ViewCompletedJobActivity viewCompletedJobActivity, boolean rating) {
         this.completedList = completedList;
-        //this.dialog = dialog;
         this.viewCompletedJobManager = new ViewCompletedJobManager(this);
         this.viewCompletedJobActivity = viewCompletedJobActivity;
         currentContext = viewCompletedJobActivity.getApplicationContext();
@@ -45,7 +43,6 @@ public class ViewCompletedJobPresenter implements ViewCompletedJobListener{
 
     public ViewCompletedJobPresenter(ArrayList<Post> completedList, ProfileFragment viewCompletedJobActivity, boolean rating) {
         this.completedList = completedList;
-        //this.dialog = dialog;
         this.viewCompletedJobManager = new ViewCompletedJobManager(this);
         this.fragmentActivity = viewCompletedJobActivity;
         currentContext = viewCompletedJobActivity.getActivity().getApplicationContext();

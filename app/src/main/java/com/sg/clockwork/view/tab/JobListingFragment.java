@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,6 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
         postList = new ArrayList<Post>();
         String search = MainActivity.searchTerm;
 
-        Log.d("Fragment", "Creating Presenter");
         jobListingPresenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
         if (search.equals("")) {
             jobListingPresenter.getAllJobListings();

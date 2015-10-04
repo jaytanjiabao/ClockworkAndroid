@@ -63,7 +63,6 @@ public class ListingAdapter extends BaseAdapter {
             Date date = read.parse(p.getJobDate());
             startDate.setText(write.format(date));
         } catch (ParseException pe) {
-            Log.d("Parse Exception", pe.getMessage());
             startDate.setText("" + p.getJobDate());
         }
 
