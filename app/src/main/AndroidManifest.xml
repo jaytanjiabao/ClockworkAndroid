@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.clockwork" >
+    package="com.sg.clockwork" >
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
@@ -21,7 +21,7 @@
             android:value="@string/app_id" />
 
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name="com.sg.clockwork.view.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.sg.clockwork.view.activity.MainActivity"
             android:screenOrientation="portrait"
             android:label="Clockwork" >
 
@@ -43,18 +43,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.PreludeActivity"
+            android:name="com.sg.clockwork.view.activity.PreludeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             android:label="Clockwork" >
         </activity>
         <activity
-            android:name=".view.activity.EditProfileActivity"
+            android:name="com.sg.clockwork.view.activity.EditProfileActivity"
             android:screenOrientation="portrait"
             android:label="Back" >
         </activity>
         <activity
-            android:name=".view.activity.ViewJobActivity"
+            android:name="com.sg.clockwork.view.activity.ViewJobActivity"
             android:screenOrientation="portrait"
             android:label="Back" >
         </activity>
@@ -64,23 +64,23 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".view.activity.RegisterActivity"
+            android:name="com.sg.clockwork.view.activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             android:label="Back" >
         </activity>
         <activity
-            android:name=".view.activity.ChangePasswordActivity"
+            android:name="com.sg.clockwork.view.activity.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:label="Back" >
         </activity>
         <activity
-            android:name=".view.activity.ViewCompletedJobActivity"
+            android:name="com.sg.clockwork.view.activity.ViewCompletedJobActivity"
             android:screenOrientation="portrait"
             android:label="Back" >
         </activity>
         <activity
-            android:name=".view.activity.CompleteProfileActivity"
+            android:name="com.sg.clockwork.view.activity.CompleteProfileActivity"
             android:screenOrientation="portrait"
             android:label="Back" >
         </activity>
