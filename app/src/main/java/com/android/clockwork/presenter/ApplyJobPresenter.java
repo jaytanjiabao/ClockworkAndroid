@@ -47,7 +47,7 @@ public class ApplyJobPresenter implements ApplyJobListener {
 
     @Override
     public void onSuccess(String string) {
-        if (string.substring(0, 2).equalsIgnoreCase("bad")) {
+        if (string.substring(0, 3).equalsIgnoreCase("bad")) {
             Toast.makeText(fragmentActivity.getBaseContext(), string.substring(string.indexOf("-") + 2), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(fragmentActivity.getBaseContext(), "You have successfully applied for the job!", Toast.LENGTH_LONG).show();

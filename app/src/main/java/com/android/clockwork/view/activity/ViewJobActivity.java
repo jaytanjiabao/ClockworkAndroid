@@ -1,6 +1,8 @@
 package com.android.clockwork.view.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +25,7 @@ import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.model.SessionManager;
 import com.android.clockwork.presenter.ApplyJobPresenter;
+import com.android.clockwork.presenter.DashboardPresenter;
 import com.android.clockwork.presenter.JobActionPresenter;
 import com.android.clockwork.presenter.ProfilePicturePresenter;
 import com.android.clockwork.view.tab.DashboardFragment;
@@ -36,6 +40,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -49,6 +54,9 @@ public class ViewJobActivity extends AppCompatActivity {
     ProfilePicturePresenter profilePicturePresenter;
     JobActionPresenter jobActionPresenter;
     String activity = "null";
+    ArrayList<Post> appliedList;
+    ArrayList<Post> clashingList;
+    String clashedStringCo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,8 @@ public class ViewJobActivity extends AppCompatActivity {
         jobActionPresenter = new JobActionPresenter(this, dialog);
         applyJobPresenter = new ApplyJobPresenter(this, dialog);
         post = getIntent().getParcelableExtra(JobListingFragment.PAR_KEY);
+        appliedList = getIntent().getParcelableArrayListExtra("appliedList");
+        clashingList = new ArrayList<Post>();
 
         initializeScreen();
 
@@ -91,8 +101,8 @@ public class ViewJobActivity extends AppCompatActivity {
         Intent intent = getIntent();
         activity = intent.getStringExtra("Activity");
         if (activity.equals("jobListing")) {
-            applyButton = (Button) findViewById(R.id.applyButton);
-            if (post.getStatus().equalsIgnoreCase("pending")) {
+           applyButton = (Button) findViewById(R.id.applyButton);
+            /*if (post.getStatus().equalsIgnoreCase("pending")) {
                 applyButton.setText("WITHDRAW APPLICATION");
                 applyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,6 +118,34 @@ public class ViewJobActivity extends AppCompatActivity {
                 applyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        for (Post checkClashingPost : appliedList) {
+                            if(checkClashingPost == post){
+                                System.out.println("yes!!!");
+                                continue;
+                            }
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            Date startDate = null;
+                            Date endDate = null;
+                            Date retrievedStartDate = null;
+                            Date retrievedEndDate = null;
+                            try {
+                                startDate = formatter.parse(post.getJobDate());
+                                endDate = formatter.parse(post.getEnd_date());
+                                retrievedStartDate = formatter.parse(checkClashingPost.getJobDate());
+                                retrievedEndDate = formatter.parse(checkClashingPost.getEnd_date());
+                                System.out.println(startDate +" " + endDate +" "+ retrievedStartDate + " " +retrievedEndDate);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            if ((startDate.before(retrievedEndDate) || startDate.equals(retrievedEndDate)) && (endDate.after(retrievedStartDate) || endDate.equals(retrievedStartDate))){
+                                clashingList.add(checkClashingPost);
+                            }
+                        }
+                        if(clashingList != null) {
+                            for(Post i : clashingList) {
+                                System.out.println("Clashing posts are: " +i.getHeader());
+                            }
+                        }
                         jobActionPresenter.acceptJobOffer(post.getId());
                         Intent backToListing = new Intent(view.getContext(), MainActivity.class);
                         backToListing.putExtra("Previous", "jobListing");
@@ -116,7 +154,7 @@ public class ViewJobActivity extends AppCompatActivity {
                 });
             } else if (post.getStatus().equalsIgnoreCase("hired")) {
                 applyButton.setText("YOU HAVE BEEN HIRED");
-            }
+            }*/
             applyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -136,6 +174,7 @@ public class ViewJobActivity extends AppCompatActivity {
             });
         } else {
             post = getIntent().getParcelableExtra(DashboardFragment.PAR_KEY);
+
             applyButton = (Button) findViewById(R.id.applyButton);
             if (post.getStatus().equalsIgnoreCase("pending")) {
                     applyButton.setText("WITHDRAW APPLICATION");
@@ -153,12 +192,74 @@ public class ViewJobActivity extends AppCompatActivity {
                 applyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        jobActionPresenter.acceptJobOffer(post.getId());
-                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                        backToListing.putExtra("Previous", "dashboard");
-                        startActivity(backToListing);
+
+                        for (Post checkClashingPost : appliedList) {
+                            if (checkClashingPost.getId() == (post.getId())) {
+                                continue;
+                            }
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            Date startDate = null;
+                            Date endDate = null;
+                            Date retrievedStartDate = null;
+                            Date retrievedEndDate = null;
+                            try {
+                                startDate = formatter.parse(post.getJobDate());
+                                endDate = formatter.parse(post.getEnd_date());
+                                retrievedStartDate = formatter.parse(checkClashingPost.getJobDate());
+                                retrievedEndDate = formatter.parse(checkClashingPost.getEnd_date());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            if ((startDate.before(retrievedEndDate) || startDate.equals(retrievedEndDate)) && (endDate.after(retrievedStartDate) || endDate.equals(retrievedStartDate))) {
+                                clashingList.add(checkClashingPost);
+                            }
+                        }
+
+                        if (clashingList != null) {
+                            for (Post i : clashingList) {
+                                clashedStringCo += i.getHeader() + ",";
+                                Log.d("Length is ", "" + clashedStringCo.length());
+                            }
+                            clashedStringCo = clashedStringCo.substring(0, clashedStringCo.length() - 1);
+                            System.out.println(clashedStringCo);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ViewJobActivity.this);
+
+                            builder.setTitle("WARNING");
+                            builder.setMessage(Html.fromHtml("Accepting this job offer will cause the following applications to be dropped: " + "<br><br>" +
+                                    "<b>" + clashedStringCo + "</b>"));
+
+                            builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    clashingList = new ArrayList<Post>();
+                                    clashedStringCo = "";
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    clashingList = new ArrayList<Post>();
+                                    clashedStringCo = "";
+                                    jobActionPresenter.acceptJobOffer(post.getId());
+                                    Intent backToListing = new Intent(getApplicationContext(), MainActivity.class);
+                                    backToListing.putExtra("Previous", "dashboard");
+                                    startActivity(backToListing);
+                                    dialog.dismiss();
+                                }
+                            });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        } else {
+                            jobActionPresenter.acceptJobOffer(post.getId());
+                            Intent backToListing = new Intent(getApplicationContext(), MainActivity.class);
+                            backToListing.putExtra("Previous", "dashboard");
+                            startActivity(backToListing);
+                        }
                     }
                 });
+
             } else if (post.getStatus().equalsIgnoreCase("hired")) {
                 applyButton.setText("YOU HAVE BEEN HIRED");
             }

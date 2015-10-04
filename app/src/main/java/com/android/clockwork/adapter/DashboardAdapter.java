@@ -1,12 +1,15 @@
 package com.android.clockwork.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,10 +24,14 @@ import android.widget.TextView;
 import com.android.clockwork.R;
 import com.android.clockwork.model.Post;
 import com.android.clockwork.presenter.JobActionPresenter;
+import com.android.clockwork.view.activity.MainActivity;
 import com.android.clockwork.view.activity.ViewJobActivity;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by jiabao.tan.2012 on 2/9/2015.
@@ -38,11 +45,14 @@ public class DashboardAdapter extends BaseAdapter {
     int arrayPosition;
     View view;
     JobActionPresenter jobActionPresenter;
+    ArrayList<Post> clashingList;
+    String clashedStringCo = "";
 
     public DashboardAdapter(Activity activity, ArrayList<Post> arrayList) {
         this.activity = activity;
         this.postList = arrayList;
         this.dialog = new ProgressDialog(activity);
+        clashingList = new ArrayList<Post>();
     }
 
     @Override
@@ -128,7 +138,69 @@ public class DashboardAdapter extends BaseAdapter {
                         notifyDataSetChanged();
                         return true;
                     case R.id.accept:
-                        jobActionPresenter.acceptJobOffer(p.getId());
+                        for (Post checkClashingPost : postList) {
+                            if (checkClashingPost.getId() == (p.getId())) {
+                                continue;
+                            }
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            Date startDate = null;
+                            Date endDate = null;
+                            Date retrievedStartDate = null;
+                            Date retrievedEndDate = null;
+                            try {
+                                startDate = formatter.parse(p.getJobDate());
+                                endDate = formatter.parse(p.getEnd_date());
+                                retrievedStartDate = formatter.parse(checkClashingPost.getJobDate());
+                                retrievedEndDate = formatter.parse(checkClashingPost.getEnd_date());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            if ((startDate.before(retrievedEndDate) || startDate.equals(retrievedEndDate)) && (endDate.after(retrievedStartDate) || endDate.equals(retrievedStartDate))) {
+                                clashingList.add(checkClashingPost);
+                            }
+                        }
+
+                        if (clashingList != null) {
+                            for (Post i : clashingList) {
+                                clashedStringCo += i.getHeader() + ",";
+                            }
+                            clashedStringCo = clashedStringCo.substring(0, clashedStringCo.length() - 1);
+                            System.out.println(clashedStringCo);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+                            builder.setTitle("WARNING");
+                            builder.setMessage(Html.fromHtml("Accepting this job offer will cause the following applications to be dropped: " + "<br><br>" +
+                                    "<b>" + clashedStringCo + "</b>"));
+
+                            builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    clashingList = new ArrayList<Post>();
+                                    clashedStringCo = "";
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    clashingList = new ArrayList<Post>();
+                                    clashedStringCo = "";
+                                    jobActionPresenter.acceptJobOffer(p.getId());
+                                    dialog.dismiss();
+                                    Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                                    backToListing.putExtra("Previous", "dashboard");
+                                    view.getContext().startActivity(backToListing);
+                                }
+                            });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        } else {
+                            jobActionPresenter.acceptJobOffer(p.getId());
+                            Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                            backToListing.putExtra("Previous", "dashboard");
+                            view.getContext().startActivity(backToListing);
+                         }
                         notifyDataSetChanged();
                         return true;
                     default:

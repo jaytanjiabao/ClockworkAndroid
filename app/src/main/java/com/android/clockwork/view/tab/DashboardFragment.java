@@ -65,6 +65,7 @@ public class DashboardFragment extends Fragment implements DashboardView, SwipeR
                 Bundle bundle = new Bundle();
                 dashboardAdapter = (DashboardAdapter) listView.getAdapter();
                 Post p = (Post) dashboardAdapter.getItem(position);
+                bundle.putParcelableArrayList("appliedList", appliedList);
                 bundle.putParcelable(PAR_KEY, (Post) dashboardAdapter.getItem(position));
 
                 Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);
