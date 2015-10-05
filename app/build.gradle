@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'ClockworkKey'
             keyPassword 'Ningcaichen1991'
-            storeFile file('C:/Users/Hoi Chuen/keystore/Clockwork.jks')
+            storeFile file('C:/Clockwork.jks')
             storePassword 'Ningcaichen1991'
         }
     }
