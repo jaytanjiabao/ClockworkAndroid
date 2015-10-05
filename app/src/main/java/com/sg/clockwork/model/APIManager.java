@@ -5,7 +5,7 @@ package com.sg.clockwork.model;
  */
 public class APIManager {
 
-    final String baseURL = "https://clockwork-api.herokuapp.com/";
+    final String baseURL = "https://staging-clockwork-api.herokuapp.com/";
 
     public String applyJob() {
         return baseURL + "api/v1/users/apply";
