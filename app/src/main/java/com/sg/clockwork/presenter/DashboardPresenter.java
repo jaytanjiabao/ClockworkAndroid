@@ -73,6 +73,7 @@ public class DashboardPresenter implements DashboardListener {
                 withoutCompletedJob.add(p);
             }
         }
+        this.appliedList = withoutCompletedJob;
         setListingAdapter(new DashboardAdapter(fragmentActivity, withoutCompletedJob));
         dashboardView.displayAppliedJobListing(this);
     }
