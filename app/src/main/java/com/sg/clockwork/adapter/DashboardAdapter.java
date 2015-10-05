@@ -20,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.sg.clockwork.R;
 import com.sg.clockwork.model.Post;
 import com.sg.clockwork.presenter.JobActionPresenter;
 import com.sg.clockwork.view.activity.MainActivity;
@@ -109,11 +110,13 @@ public class DashboardAdapter extends BaseAdapter {
         inflater.inflate(com.sg.clockwork.R.menu.menu_dashboard_item, m);
         if (p.getStatus().equalsIgnoreCase("pending")) {
             m.removeItem(com.sg.clockwork.R.id.accept);
+            m.removeItem(com.sg.clockwork.R.id.reject);
         } else if (p.getStatus().equalsIgnoreCase("offered")) {
             m.removeItem(com.sg.clockwork.R.id.withdraw);
         } else if (p.getStatus().equalsIgnoreCase("hired")) {
             m.removeItem(com.sg.clockwork.R.id.withdraw);
             m.removeItem(com.sg.clockwork.R.id.accept);
+            m.removeItem(com.sg.clockwork.R.id.reject);
         }
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -122,7 +125,6 @@ public class DashboardAdapter extends BaseAdapter {
                     case com.sg.clockwork.R.id.view:
                         Bundle bundle = new Bundle();
                         bundle.putParcelable(PAR_KEY, p);
-
                         Intent viewJobActivity = new Intent(view.getContext(), ViewJobActivity.class);
                         viewJobActivity.putExtra("Activity", "dashboard");
                         viewJobActivity.putExtras(bundle);
@@ -131,6 +133,17 @@ public class DashboardAdapter extends BaseAdapter {
                     case com.sg.clockwork.R.id.withdraw:
                         jobActionPresenter.withdrawJobApplication(p.getId());
                         postList.remove(arrayPosition);
+                        Intent backTo = new Intent(view.getContext(), MainActivity.class);
+                        backTo.putExtra("Previous", "dashboard");
+                        view.getContext().startActivity(backTo);
+                        notifyDataSetChanged();
+                        return true;
+                    case com.sg.clockwork.R.id.reject:
+                        jobActionPresenter.withdrawJobApplication(p.getId());
+                        postList.remove(arrayPosition);
+                        Intent backToList = new Intent(view.getContext(), MainActivity.class);
+                        backToList.putExtra("Previous", "dashboard");
+                        view.getContext().startActivity(backToList);
                         notifyDataSetChanged();
                         return true;
                     case com.sg.clockwork.R.id.accept:

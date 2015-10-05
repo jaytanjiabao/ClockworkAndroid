@@ -8,7 +8,11 @@
         android:orderInCategory="2"
         android:title="Withdraw Application"/>
     <item
-        android:id="@+id/accept"
+        android:id="@+id/reject"
         android:orderInCategory="3"
+        android:title="Reject Offer"/>
+    <item
+        android:id="@+id/accept"
+        android:orderInCategory="4"
         android:title="Accept Job Offer"/>
 </menu>

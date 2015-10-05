@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sg.clockwork.R;
 import com.sg.clockwork.model.Post;
 import com.sg.clockwork.model.SessionManager;
 import com.sg.clockwork.presenter.ApplyJobPresenter;
@@ -37,7 +38,7 @@ import java.util.HashMap;
 public class ViewJobActivity extends AppCompatActivity {
     Post post;
     ProgressDialog dialog;
-    Button applyButton,backButton;
+    Button applyButton,backButton,rejectButton;
     ApplyJobPresenter applyJobPresenter;
     HashMap<String,String> user;
     public final static String PAR_KEY = "KEY";
@@ -111,7 +112,7 @@ public class ViewJobActivity extends AppCompatActivity {
             });
         } else {
             post = getIntent().getParcelableExtra(DashboardFragment.PAR_KEY);
-
+            rejectButton = (Button)findViewById(com.sg.clockwork.R.id.rejectJobOffer);
             applyButton = (Button) findViewById(com.sg.clockwork.R.id.applyButton);
             if (post.getStatus().equalsIgnoreCase("pending")) {
                     applyButton.setText("WITHDRAW APPLICATION");
@@ -193,6 +194,17 @@ public class ViewJobActivity extends AppCompatActivity {
                             backToListing.putExtra("Previous", "dashboard");
                             startActivity(backToListing);
                         }
+                    }
+                });
+
+                rejectButton.setVisibility(View.VISIBLE);
+                rejectButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        jobActionPresenter.withdrawJobApplication(post.getId());
+                        Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                        backToListing.putExtra("Previous", "dashboard");
+                        startActivity(backToListing);
                     }
                 });
 

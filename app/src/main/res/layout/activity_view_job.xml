@@ -80,21 +80,14 @@
             android:layout_below="@+id/salary"
             android:layout_alignParentEnd="true" />
 
-        <Button
-            android:id="@+id/applyButton"
-            android:text="Apply for Job"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            android:background="@drawable/view_job_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView5"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_below="@+id/textView5"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignBottom="@+id/imageView" />
+        <com.facebook.share.widget.ShareButton
+            android:padding="5dp"
+            android:background="@drawable/fbbutton"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:id="@+id/shareButton"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView" />
 
     </RelativeLayout>
 
@@ -164,22 +157,38 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/rounded_corner"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:id="@+id/relativeLayout2">
 
-        <com.facebook.share.widget.ShareButton
-            android:padding="5dp"
-            android:background="@drawable/fbbutton"
-            android:layout_centerHorizontal="true"
+
+        <Button
+            android:id="@+id/applyButton"
+            android:text="Apply for Job"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:background="@drawable/view_job_button"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:id="@+id/shareButton"/>
+            android:layout_above="@+id/rejectJobOffer"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/rejectJobOffer"
+            android:text="Reject Offer"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/view_job_button"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/applyButton"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
