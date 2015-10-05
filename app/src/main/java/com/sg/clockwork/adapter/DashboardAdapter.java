@@ -169,7 +169,7 @@ public class DashboardAdapter extends BaseAdapter {
                             }
                         }
 
-                        if (clashingList != null) {
+                        if (clashingList.size()!= 0) {
                             for (Post i : clashingList) {
                                 clashedStringCo += i.getHeader() + ",";
                             }
