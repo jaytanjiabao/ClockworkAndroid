@@ -67,7 +67,13 @@ public class DashboardPresenter implements DashboardListener {
     @Override
     public void onSuccess(String result) {
         this.appliedList = createGsonFromString(result);
-        setListingAdapter(new DashboardAdapter(fragmentActivity, appliedList));
+        ArrayList<Post> withoutCompletedJob = new ArrayList<Post>();
+        for (Post p: appliedList) {
+            if (!p.getStatus().equalsIgnoreCase("completed")) {
+                withoutCompletedJob.add(p);
+            }
+        }
+        setListingAdapter(new DashboardAdapter(fragmentActivity, withoutCompletedJob));
         dashboardView.displayAppliedJobListing(this);
     }
 
