@@ -71,7 +71,7 @@ public class ViewJobActivity extends AppCompatActivity {
 
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentTitle("Interested to be a " + post.getHeader() + " at " + post.getCompany() + "? Check it out at Clockwork!")
-                .setContentUrl(Uri.parse("http://clockworksmu.herokuapp.com/post.jsp?id=" + post.getId()))
+                .setContentUrl(Uri.parse("http://staging-clockworksmu.herokuapp.com/post.jsp?id=" + post.getId()))
                 .build();
         ShareButton shareButton = (ShareButton)findViewById(com.sg.clockwork.R.id.shareButton);
         shareButton.setShareContent(content);
