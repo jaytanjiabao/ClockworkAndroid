@@ -183,7 +183,7 @@
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/view_job_button"
+            android:background="@drawable/view_job_reject"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
