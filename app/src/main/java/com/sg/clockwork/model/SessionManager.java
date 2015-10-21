@@ -53,6 +53,10 @@ public class SessionManager {
 
     public static final String KEY_NATIONALITY = "nationality";
 
+    public static final String KEY_REGID = "GCM_REG_ID";
+
+    public static final String KEY_NRIC = "nric";
+
     public static String status = "";
 
     // Constructor
@@ -62,7 +66,52 @@ public class SessionManager {
         editor = pref.edit();
     }
 
+    // update GCM REG ID
+    public void updateGCMCredentials(String regId) {
+        editor.putString(KEY_REGID, regId);
+        editor.commit();
+    }
+
     //Create login session
+    public void createUserLoginSession(String nric, int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact,String dob, String nationality){
+        // Storing login value as TRUE
+        editor.putBoolean(IS_USER_LOGIN, true);
+
+        editor.putString(KEY_NRIC, nric);
+
+        //Storing ID in pref
+        editor.putInt(KEY_ID, id);
+
+        editor.putString(KEY_DOB, dob);
+
+        editor.putString(KEY_NATIONALITY, nationality);
+
+        //Storing accountType in pref
+        editor.putString(KEY_ACCOUNTYPE, accountType);
+
+        //Storing passWord in pref
+        //editor.putString(KEY_PASSWORD, passWord);
+
+        //Storing authenticationToken in pref
+        editor.putString(KEY_AUTHENTICATIONTOKEN, authenticationToken);
+
+        // Storing name in pref
+        editor.putString(KEY_NAME, userName);
+
+        // Storing email in pref
+        editor.putString(KEY_EMAIL, email);
+
+        editor.putString(KEY_AVATAR, avatarPath);
+
+        editor.putString(KEY_ADDRESS, address);
+
+        editor.putString(KEY_CONTACT, contact);
+
+        // commit changes
+        editor.commit();
+    }
+
+    // method overload for facebook
     public void createUserLoginSession(int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact,String dob, String nationality){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);

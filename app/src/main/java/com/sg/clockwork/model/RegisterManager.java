@@ -35,7 +35,7 @@ import java.util.List;
 public class RegisterManager extends AsyncTask<String, Void, String> {
 
     Context currentContext;
-    String email, passWord, passWord_confirmation, account_Type, userName;
+    String email, passWord, passWord_confirmation, account_Type, userName, nric;
     RegisterListener registerListener;
     SessionManager sessionManager;
     HttpResponse httpResponse;
@@ -49,7 +49,8 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         this.statusText = statusText;
     }
 
-    public void register(String email, String passWord, String userName, RegisterListener registerListener) {
+    public void register(String nric, String email, String passWord, String userName, RegisterListener registerListener) {
+        this.nric = nric;
         this.email = email;
         this.passWord = passWord;
         this.passWord_confirmation = passWord;
@@ -80,7 +81,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
 
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
-
+            pairs.add(new BasicNameValuePair("user[nric]", nric));
             pairs.add(new BasicNameValuePair("user[email]", email));
             pairs.add(new BasicNameValuePair("user[password]", passWord));
             pairs.add(new BasicNameValuePair("user[password_confirmation]", passWord_confirmation));
@@ -136,6 +137,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             HashMap userHash = gson.fromJson(result, hashType);
             Double idDouble = (Double)userHash.get("id");
             int id = idDouble.intValue();
+            String nric = (String)userHash.get("nric");
             String username = (String)userHash.get("username");
             String email = (String)userHash.get("email");
             String accountType = (String)userHash.get("account_type");
@@ -151,7 +153,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             }
             String dob = (String) userHash.get("date_of_birth");
             String nationality = (String) userHash.get("nationality");
-            sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
+            sessionManager.createUserLoginSession(nric, id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             registerListener.onSuccess();
         }else {
             Gson gson = new Gson();
@@ -184,6 +186,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             }
         }
     }
+
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
         String line = "";
@@ -195,7 +198,4 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         return result;
 
     }
-
-
-
 }

@@ -3,13 +3,26 @@
     package="com.sg.clockwork" >
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission
+        android:name="com.sg.clockwork.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.sg.clockwork.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -31,11 +44,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="Clockwork" >
-
-            <meta-data android:name="android.app.searchable"
+            android:name=".view.activity.MainActivity"
+            android:label="Clockwork"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
 
             <intent-filter>
@@ -43,20 +56,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.PreludeActivity"
+            android:name=".view.activity.PreludeActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize" >
             android:label="Clockwork" >
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.EditProfileActivity"
-            android:screenOrientation="portrait"
-            android:label="Back" >
+            android:name=".view.activity.EditProfileActivity"
+            android:label="Back"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.ViewJobActivity"
-            android:screenOrientation="portrait"
-            android:label="Back" >
+            android:name=".view.activity.ViewJobActivity"
+            android:label="Back"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -64,26 +77,36 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.sg.clockwork.view.activity.RegisterActivity"
+            android:name=".view.activity.RegisterActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize" >
             android:label="Back" >
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.ChangePasswordActivity"
-            android:screenOrientation="portrait"
-            android:label="Back" >
+            android:name=".view.activity.ChangePasswordActivity"
+            android:label="Back"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.ViewCompletedJobActivity"
-            android:screenOrientation="portrait"
-            android:label="Back" >
+            android:name=".view.activity.ViewCompletedJobActivity"
+            android:label="Back"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.sg.clockwork.view.activity.CompleteProfileActivity"
-            android:screenOrientation="portrait"
-            android:label="Back" >
+            android:name=".view.activity.CompleteProfileActivity"
+            android:label="Back"
+            android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".notification.MyActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+
+        </activity>
+
+        <service android:name=".notification.GCMNotificationIntentService" />
+
     </application>
 
 </manifest>

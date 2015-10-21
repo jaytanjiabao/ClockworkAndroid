@@ -2,95 +2,172 @@
 <items version="2" >
 
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a78bfd2ec508b123ee7c03f4006ba7996ef9a8dc">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-67ea52f28fb32f3498dd6a0a840271570f89193a.jar" />
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-d04468136c7dde7536890d0df38b28467de78c13.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-359ffd854db669a14e84a4f282bcf8cbd6c25552.jar" />
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-a253c2459e5a42a63e1f6eeb9ca98f1b454f3575.jar" />
     </item>
     <item
-        jar="C:\Users\jiabao.tan.2012\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\bolts-android-1.2.0-257bd14e8c833ae1d1ffd394cb70e28615a40cfd.jar" />
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-e5fdde830f10ea51636e95a29edea1a7898b7fde.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.baoyz.swipemenulistview\library\1.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="73784bc5c6aaa8c48746c80a8d238a0cfd74ef6c">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-5da51e042611b86f1f2db527619a468372842f2e.jar" />
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-68f1514e6fde0bf0c45f7f3b9bd8032a537a7807.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-355b16983cb898c4c6e35a167ca548f02f1c5086.jar" />
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-56c2e7c0e5949116aee7d8ff8dfb22c70f399bd9.jar" />
     </item>
     <item
-        jar="C:\Users\jiabao.tan.2012\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\support-annotations-22.2.1-5cea207cb74b57008d7ad7df7ffe86a2dfc6698c.jar" />
+        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-af4e40180e8e61a91415f3412e8c290ef30d343c.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\internal_impl-22.2.1-bd64c41f75715d71bc58948980fb6f97a6bf4c8d.jar" />
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-c789f267eea56f93e382470cabf4a0deec1b06cc.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\libs\httpcore-4.3.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="11393498b38e9695d0850cac26fde5613ae268b9">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\httpcore-4.3-553eed291597f3febefdd99d6e3a28fc2b9a5801.jar" />
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-39d470cf761a964719c8f4e68c90073cd0211ec6.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\libs\httpmime-4.3.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\httpmime-4.3-7f7174b1183b7389749751eb90c813326c7503f1.jar" />
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-87706447e8a1e3f1615720962dd2d739b0213296.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-a26b2b3156d381556055ff6d0a9457a253c71a84.jar" />
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-ab6e30578bc53bc961619df899336766bc560861.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-6cb8a07fb7493290629104c95a067dfe36c94921.jar" />
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-e37c57f62f6e2c75d13dd803fdd04c405b9a91f4.jar" />
     </item>
     <item
-        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-564abe803f6c051d7fdca1ff03098931bc73c792.jar" />
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-d470528fe7fba3aa760117a5a78e4ae3ff0e8551.jar" />
     </item>
     <item
-        jar="C:\Users\jiabao.tan.2012\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\gson-2.3.1-4c83d4eb43bd9c595330691968acdc3e2cd60915.jar" />
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-22f98fd128296c993cd601205b692d5b8a2b2ccb.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-f37c13566ebf3857a76efc42539da1a2dc97c61d.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-173c1c4cae2d937c86345c0081a246b828d7b455.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-91181e7b4b5a31855f4cc6e4c9bd38dd1d6e6033.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-02c7b399ed9fbc234737588a8d688e3547109e89.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-942d39c16d0405e48a077b13167d974a71afcae5.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-143bf9d6870a95893f3dee8e0357e2bbf761605d.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-e44c0729c1b4f9cb09bf14553c0f4ad9f1accf5a.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-b0eaf9fb0f313c608f9dae8e2346cc92ccc037df.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-a0043da2cc9b9e9f0c67e5e0dcfc82e20c8a3cca.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\classes-97d6f05dfb2818e66642d478c78b0023930e791a.jar" />
+    </item>
+    <item
+        jar="D:\GithubCW\ClockworkAndroid\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="D:\GithubCW\ClockworkAndroid\app\build\intermediates\pre-dexed\release\internal_impl-22.2.0-16facd03d4b62c84c5cc598273fc2a58f4cdecb2.jar" />
     </item>
 
 </items>

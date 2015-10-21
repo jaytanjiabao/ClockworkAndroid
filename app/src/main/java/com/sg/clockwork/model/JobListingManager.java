@@ -44,7 +44,6 @@ public class JobListingManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         progressBar.setVisibility(View.GONE);
         jobListingListener.onSuccess(result);
-
     }
 
     public String GET(String url){

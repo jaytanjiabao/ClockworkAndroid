@@ -35,12 +35,11 @@ public class JobListingPresenter implements JobListingListener {
         this.progressBar = progressBar;
         this.jobListingManager = new JobListingManager(this, progressBar);
         this.fragmentActivity = fragmentActivity;
-        apiManager = new APIManager();
+        this.apiManager = new APIManager();
 
     }
 
     public void getAllJobListings() {
-
         jobListingManager.execute(apiManager.jobListing());
     }
 
@@ -63,7 +62,6 @@ public class JobListingPresenter implements JobListingListener {
 
     @Override
     public void onSuccess(String result) {
-
         ArrayList<Post> postList = createGsonFromString(result);
         setListingAdapter(new ListingAdapter(fragmentActivity, postList));
         jobListingView.displayJobListing(this);

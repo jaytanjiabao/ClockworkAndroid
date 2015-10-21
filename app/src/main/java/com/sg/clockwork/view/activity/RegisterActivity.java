@@ -15,7 +15,7 @@ import com.sg.clockwork.presenter.RegisterPresenter;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText emailText, nameText, pwText;
+    EditText emailText, nameText, pwText, nric;
     RegisterPresenter registerPresenter;
     ProgressBar progressBar;
     TextView statusText;
@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         statusText = (TextView) findViewById(com.sg.clockwork.R.id.statusText);
         registerPresenter = new RegisterPresenter(this,progressBar,statusText);
 
+        nric = (EditText)findViewById(com.sg.clockwork.R.id.nric);
         emailText = (EditText)findViewById(com.sg.clockwork.R.id.emailText);
         nameText = (EditText)findViewById(com.sg.clockwork.R.id.nameText);
         pwText = (EditText)findViewById(com.sg.clockwork.R.id.pwText);
@@ -41,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                     statusText.setVisibility(View.VISIBLE);
                     statusText.setText("   Please enter your name!   ");
                 }else {
-                    registerPresenter.register(emailText.getText().toString(), pwText.getText().toString(), nameText.getText().toString());
+                    registerPresenter.register(nric.getText().toString(), emailText.getText().toString(), pwText.getText().toString(), nameText.getText().toString());
                 }
             }
         });
