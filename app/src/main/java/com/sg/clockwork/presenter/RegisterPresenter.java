@@ -38,7 +38,7 @@ public class RegisterPresenter implements RegisterListener {
         gcmPresenter.registerGCM();
         this.registerManager = new RegisterManager(currentContext,progressBar,statusText);
         registerManager.execute(apiManager.fbLogin_Register());
-        registerManager.register(nric, email, passWord, name, this);
+        registerManager.register(nric, email, passWord, name, this, id);
     }
 
     public void getRegId(String id) {
@@ -46,17 +46,17 @@ public class RegisterPresenter implements RegisterListener {
     }
 
     public void onSuccess() {
-        this.gcmServerManager = new GCMServerManager(registerActivity.getApplicationContext(), this, registerActivity);
+        this.gcmServerManager = new GCMServerManager(currentContext, this, registerActivity);
         gcmServerManager.prepareId(id);
         gcmServerManager.execute(apiManager.registerGCMIDToServer());
     }
 
     public void completeRegistration(boolean status) {
         if (status) {
-            Toast.makeText(registerActivity.getApplicationContext(), "Successfully registered to server", Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext, "Successfully registered to server", Toast.LENGTH_LONG).show();
             navigateBackHome();
         } else {
-            Toast.makeText(registerActivity.getApplicationContext(), "Failed to register to server", Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext, "Failed to register to server", Toast.LENGTH_LONG).show();
         }
     }
 

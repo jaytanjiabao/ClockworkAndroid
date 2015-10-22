@@ -35,7 +35,7 @@ import java.util.List;
 public class RegisterManager extends AsyncTask<String, Void, String> {
 
     Context currentContext;
-    String email, passWord, passWord_confirmation, account_Type, userName, nric;
+    String email, passWord, passWord_confirmation, account_Type, userName, nric, regId;
     RegisterListener registerListener;
     SessionManager sessionManager;
     HttpResponse httpResponse;
@@ -49,7 +49,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         this.statusText = statusText;
     }
 
-    public void register(String nric, String email, String passWord, String userName, RegisterListener registerListener) {
+    public void register(String nric, String email, String passWord, String userName, RegisterListener registerListener, String id) {
         this.nric = nric;
         this.email = email;
         this.passWord = passWord;
@@ -57,6 +57,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         this.userName = userName;
         this.account_Type = "job_seeker";
         this.registerListener = registerListener;
+        this.regId = id;
     }
 
     @Override
@@ -153,7 +154,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
             }
             String dob = (String) userHash.get("date_of_birth");
             String nationality = (String) userHash.get("nationality");
-            sessionManager.createUserLoginSession(nric, id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
+            sessionManager.createUserLoginSession(regId, nric, id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
             registerListener.onSuccess();
         }else {
             Gson gson = new Gson();
