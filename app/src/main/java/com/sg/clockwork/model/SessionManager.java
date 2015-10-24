@@ -73,10 +73,11 @@ public class SessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(String nric, int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact,String dob, String nationality){
+    public void createUserLoginSession(String regId, String nric, int id, String userName, String email, String accountType,String authenticationToken, String avatarPath, String address, String contact,String dob, String nationality){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
+        editor.putString(KEY_REGID, regId);
         editor.putString(KEY_NRIC, nric);
 
         //Storing ID in pref

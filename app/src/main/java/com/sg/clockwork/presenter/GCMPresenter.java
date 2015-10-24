@@ -23,12 +23,20 @@ public class GCMPresenter {
     GCMManager gcmManager;
     GCMServerManager gcmServerManager;
     RegisterPresenter registerPresenter;
+    LoginPresenter loginPresenter;
 
     public GCMPresenter(Activity activity, APIManager apiManager, RegisterPresenter registerPresenter) {
         this.activity = activity;
         this.apiManager = apiManager;
         gcm = GoogleCloudMessaging.getInstance(activity);
         this.registerPresenter = registerPresenter;
+    }
+
+    public GCMPresenter(Activity activity, APIManager apiManager, LoginPresenter loginPresenter) {
+        this.activity = activity;
+        this.apiManager = apiManager;
+        gcm = GoogleCloudMessaging.getInstance(activity);
+        this.loginPresenter = loginPresenter;
     }
 
     public void registerGCM() {
