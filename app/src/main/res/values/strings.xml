@@ -19,4 +19,6 @@
     <string name="title_activity_view_completed_job">ViewCompletedJobActivity</string>
     <string name="title_activity_complete_profile">CompleteProfileActivity</string>
     <string name="title_activity_my">MyActivity</string>
+    <string name="title_activity_badge">BadgeActivity</string>
+    <string name="title_activity_quiz">QuizActivity</string>
 </resources>

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.sg.clockwork.view.tab.JobListingFragment;
 import com.sg.clockwork.view.tab.DashboardFragment;
 import com.sg.clockwork.view.tab.ProfileFragment;
+import com.sg.clockwork.view.tab.RewardsFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
@@ -29,6 +30,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 ProfileFragment tab3 = new ProfileFragment();
                 return tab3;
+            case 3:
+                RewardsFragment tab4 = new RewardsFragment();
+                return tab4;
+
             default:
                 return null;
         }
@@ -36,6 +41,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
+
         return mNumOfTabs;
     }
 }
