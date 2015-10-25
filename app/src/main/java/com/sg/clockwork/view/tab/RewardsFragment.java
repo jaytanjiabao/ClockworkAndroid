@@ -14,8 +14,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.sg.clockwork.R;
+import com.sg.clockwork.model.Rewards;
+import com.sg.clockwork.presenter.ViewBadgesPresenter;
 import com.sg.clockwork.view.activity.BadgeActivity;
 import com.sg.clockwork.view.activity.QuizActivity;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,6 +31,8 @@ public class RewardsFragment extends Fragment {
     Button improveButton, badgesButton;
     ImageView imageView;
     ListView listView;
+    ArrayList<Rewards> scoreList;
+    ViewBadgesPresenter viewBadgesPresenter;
 
 
     @Override
@@ -36,6 +42,12 @@ public class RewardsFragment extends Fragment {
         badgesButton = (Button) fragmentView.findViewById(R.id.badgeButton);
         imageView = (ImageView) fragmentView.findViewById(R.id.imageView);
         listView = (ListView) fragmentView.findViewById(R.id.listView);
+        scoreList = new ArrayList<Rewards>();
+        viewBadgesPresenter = new ViewBadgesPresenter(scoreList,this);
+        viewBadgesPresenter.getScores();
+
+
+
         improveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
