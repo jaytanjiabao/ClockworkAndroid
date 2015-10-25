@@ -35,11 +35,11 @@ public class RegisterPresenter implements RegisterListener {
         this.gcmPresenter = new GCMPresenter(registerActivity, apiManager, this);
     }
 
-    public void register(String nric, String email, String passWord, String name) {
+    public void register(String email, String passWord, String name) {
         gcmPresenter.registerGCM();
         this.registerManager = new RegisterManager(currentContext,progressBar,statusText);
         registerManager.execute(apiManager.fbLogin_Register());
-        registerManager.register(nric, email, passWord, name, this, id);
+        registerManager.register(email, passWord, name, this, id);
     }
 
     public void getRegId(String id) {

@@ -16,7 +16,7 @@
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal|bottom"
             android:visibility="invisible"
-            android:layout_above="@+id/nric"
+            android:layout_above="@+id/nameText"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -34,79 +34,64 @@
             android:layout_above="@+id/progressBar"
             android:layout_centerHorizontal="true" />
 
-            <EditText
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded_corner"
-                android:hint="NRIC"
-                android:gravity="center_horizontal"
-                android:inputType="text"
-                android:ems="10"
-                android:id="@+id/nric"
-                android:layout_gravity="center"
-                android:layout_above="@+id/nameText"
-                android:layout_marginBottom="5dp"/>
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_corner"
+            android:hint="Name"
+            android:gravity="center_horizontal"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/nameText"
+            android:layout_gravity="center"
+            android:layout_above="@+id/emailText"
+            android:layout_marginBottom="5dp"/>
 
-            <EditText
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded_corner"
-                android:hint="Name"
-                android:gravity="center_horizontal"
-                android:inputType="text"
-                android:ems="10"
-                android:id="@+id/nameText"
-                android:layout_gravity="center"
-                android:layout_above="@+id/emailText"
-                android:layout_marginBottom="5dp"/>
+        <EditText
+            android:layout_width="280dp"
+            android:background="@drawable/rounded_corner"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:gravity="center_horizontal"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/emailText"
+            android:layout_above="@+id/pwText"
+            android:layout_alignStart="@id/nameText"
+            android:layout_marginBottom="5dp"/>
 
-            <EditText
-                android:layout_width="280dp"
-                android:background="@drawable/rounded_corner"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:gravity="center_horizontal"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/emailText"
-                android:layout_above="@+id/pwText"
-                android:layout_alignStart="@id/nameText"
-                android:layout_marginBottom="5dp"/>
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:hint="Password"
+            android:gravity="center_horizontal"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/pwText"
+            android:layout_above="@+id/submitBtn"
+            android:layout_alignStart="@+id/emailText"
+            android:layout_marginBottom="5dp"/>
 
-            <EditText
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_corner"
-                android:hint="Password"
-                android:gravity="center_horizontal"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/pwText"
-                android:layout_above="@+id/submitBtn"
-                android:layout_alignStart="@+id/emailText"
-                android:layout_marginBottom="5dp"/>
-
-            <Button
-                android:id="@+id/submitBtn"
-                android:text="Sign me up!"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:layout_width="280dp"
-                android:layout_height="30dp"
-                android:background="@drawable/button"
-                android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/pwText"
-                android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/submitBtn"
+            android:text="Sign me up!"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_width="280dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/pwText"
+            android:layout_marginBottom="20dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:id="@+id/imageView4"
             android:src="@drawable/clockwork_header"
-            android:layout_alignParentTop="true"
+            android:layout_above="@+id/textView8"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -116,8 +101,9 @@
             android:textSize="18dp"
             android:text="TIME TO EARN MONEY"
             android:id="@+id/textView8"
-            android:layout_below="@+id/imageView4"
-            android:layout_centerHorizontal="true" />
+            android:layout_above="@+id/statusText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="170dp"/>
 
     </RelativeLayout>
 

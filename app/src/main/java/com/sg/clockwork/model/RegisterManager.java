@@ -35,7 +35,7 @@ import java.util.List;
 public class RegisterManager extends AsyncTask<String, Void, String> {
 
     Context currentContext;
-    String email, passWord, passWord_confirmation, account_Type, userName, nric, regId;
+    String email, passWord, passWord_confirmation, account_Type, userName, regId;
     RegisterListener registerListener;
     SessionManager sessionManager;
     HttpResponse httpResponse;
@@ -49,8 +49,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
         this.statusText = statusText;
     }
 
-    public void register(String nric, String email, String passWord, String userName, RegisterListener registerListener, String id) {
-        this.nric = nric;
+    public void register(String email, String passWord, String userName, RegisterListener registerListener, String id) {
         this.email = email;
         this.passWord = passWord;
         this.passWord_confirmation = passWord;
@@ -82,7 +81,6 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
 
             List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 
-            pairs.add(new BasicNameValuePair("user[nric]", nric));
             pairs.add(new BasicNameValuePair("user[email]", email));
             pairs.add(new BasicNameValuePair("user[password]", passWord));
             pairs.add(new BasicNameValuePair("user[password_confirmation]", passWord_confirmation));
