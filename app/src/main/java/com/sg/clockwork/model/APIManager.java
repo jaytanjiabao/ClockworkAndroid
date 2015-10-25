@@ -59,4 +59,8 @@ public class APIManager {
 
     public String registerGCMIDToServer() { return baseURL + "/api/v1/notifications/register"; }
 
+    public String getBadges () {return baseURL + "/api/v1/gamify/get_badges";}
+
+    public String getScores () {return baseURL + "/api/v1/gamify/get_score";}
+
 }

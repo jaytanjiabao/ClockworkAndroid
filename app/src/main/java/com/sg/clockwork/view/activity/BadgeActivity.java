@@ -11,11 +11,20 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.sg.clockwork.R;
+import com.sg.clockwork.adapter.BadgesAdapter;
+import com.sg.clockwork.model.Post;
+import com.sg.clockwork.model.Rewards;
+import com.sg.clockwork.presenter.ViewBadgesPresenter;
+
+import java.util.ArrayList;
 
 public class BadgeActivity extends AppCompatActivity {
 
     Button backButton;
     ListView listView;
+    ArrayList<Rewards> badgeList;
+    ViewBadgesPresenter viewBadgesPresenter;
+    BadgesAdapter badgesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,9 @@ public class BadgeActivity extends AppCompatActivity {
         });
 
         listView = (ListView) findViewById(R.id.list);
+        badgeList = new ArrayList<Rewards>();
+        viewBadgesPresenter = new ViewBadgesPresenter(badgeList,this);
+        viewBadgesPresenter.getBadges();
 
     }
 
@@ -57,5 +69,19 @@ public class BadgeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void displayBadgeListing() {
+        badgesAdapter = viewBadgesPresenter.getBadgesAdapter();
+        badgeList = viewBadgesPresenter.badgeList();
+        listView.setAdapter(badgesAdapter);
+
+    }
+
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "rewards");
+        startActivity(backToListing);
     }
 }
