@@ -8,77 +8,61 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.provider.Settings;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.sg.clockwork.R;
+import com.sg.clockwork.view.activity.MainActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class GCMNotificationIntentService extends IntentService {
 
-    public static final int NOTIFICATION_ID = 1;
-    private NotificationManager mNotificationManager;
+    public static final int NOTIFICATION_ID = 1000;
+    NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
 
     public GCMNotificationIntentService() {
-        super("GcmIntentService");
+        super(GCMNotificationIntentService.class.getName());
     }
-
-    public static final String TAG = "GCMNotificationIntentService";
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.d("Intent Notification", "Received and handling intent");
         Bundle extras = intent.getExtras();
-        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
-
-        String messageType = gcm.getMessageType(intent);
-        Log.e("test recieve", "------------------------------ Catch");
-
         if (!extras.isEmpty()) {
-            if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR
-                    .equals(messageType)) {
-                sendNotification("Send error: " + extras.toString());
-            } else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
-                    .equals(messageType)) {
-                sendNotification("Deleted messages on server: "
-                        + extras.toString());
-            } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
-                    .equals(messageType)) {
-
-                for (int i = 0; i < 3; i++) {
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                    }
-
-                }
-                sendNotification(""+extras.get(Config.MESSAGE_KEY));
-            }
+            // read extras as sent from server
+            Log.d("Has extras", extras.toString());
+            String title = extras.getString("title");
+            String message = extras.getString("message");
+            sendNotification(message, title);
         }
+        // Release the wake lock provided by the WakefulBroadcastReceiver.
         GCMBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String msg) {
-        mNotificationManager = (NotificationManager) this
-                .getSystemService(Context.NOTIFICATION_SERVICE);
+    private void sendNotification(String message, String title) {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent in = new Intent(this, GetIntent.class);
-        in.putExtra("Notif", msg);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                in, 0);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("Previous", "dashboard");
 
-        int numMessages = 0;
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        String messageTitle = title;
+        if (messageTitle == null) {
+            messageTitle = "Clockwork";
+        }
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-                this).setSmallIcon(R.drawable.good)
-                .setContentTitle("Trinity Tuts")
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
-                .setAutoCancel(true)
-                .setContentText(msg)
-                .setNumber(++numMessages);
+                this).setSmallIcon(R.drawable.cw)
+                .setContentTitle(messageTitle)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setContentText(message);
 
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());

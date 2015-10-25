@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.sg.clockwork.notification.Config;
+import com.sg.clockwork.presenter.FBLoginPresenter;
 import com.sg.clockwork.presenter.GCMPresenter;
 import com.sg.clockwork.presenter.LoginPresenter;
 import com.sg.clockwork.presenter.RegisterPresenter;
@@ -37,9 +38,9 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
     RegisterPresenter registerPresenter;
     RegisterActivity registerActivity;
     LoginPresenter loginPresenter;
+    FBLoginPresenter fbLoginPresenter;
     PreludeActivity preludeActivity;
-    SessionManager sessionManager;
-    String regId;
+    String regId, email, authToken;
     HttpResponse httpResponse;
     int statusCode;
 
@@ -55,8 +56,16 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
         this.preludeActivity = preludeActivity;
     }
 
-    public void prepareId(String id) {
+    public GCMServerManager(Context currentContext, FBLoginPresenter fbLoginPresenter, PreludeActivity preludeActivity) {
+        this.currentContext = currentContext;
+        this.fbLoginPresenter = fbLoginPresenter;
+        this.preludeActivity = preludeActivity;
+    }
+
+    public void prepareId(String id, String email, String authToken) {
         this.regId = id;
+        this.email = email;
+        this.authToken = authToken;
     }
 
     @Override
@@ -68,9 +77,7 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
     public String POST(String url){
         InputStream inputStream = null;
         String result = "";
-        sessionManager = new SessionManager(currentContext);
         String deviceId = regId;
-        String email = sessionManager.KEY_EMAIL;
         String deviceType = "android";
         try {
             // 1. create HttpClient
@@ -88,7 +95,7 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
             // 6. set httpPost Entity
             httpPost.setEntity(new UrlEncodedFormEntity(pairs));
             // 7. Set some headers to inform server about the type of the content
-            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Authentication-Token", authToken);
             // 8. Execute POST request to the given URL
             httpResponse = httpclient.execute(httpPost);
             statusCode = httpResponse.getStatusLine().getStatusCode();
@@ -115,19 +122,26 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         // return to presenter
-        if (registerActivity != null) {
+        if (registerPresenter != null) {
             Toast.makeText(registerActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
             if (statusCode == 200) {
                 registerPresenter.completeRegistration(true);
             } else {
                 registerPresenter.completeRegistration(false);
             }
-        } else {
+        } else if (loginPresenter != null) {
             Toast.makeText(preludeActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
             if (statusCode == 200) {
                 loginPresenter.completeRegistration(true);
             } else {
                 loginPresenter.completeRegistration(false);
+            }
+        } else {
+            Toast.makeText(preludeActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            if (statusCode == 200) {
+                fbLoginPresenter.completeRegistration(true);
+            } else {
+                fbLoginPresenter.completeRegistration(false);
             }
         }
     }

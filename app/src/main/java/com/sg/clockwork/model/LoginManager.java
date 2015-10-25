@@ -145,7 +145,7 @@ public class LoginManager extends AsyncTask<String, Void, String> {
                 String dob = (String) userHash.get("date_of_birth");
                 String nationality = (String) userHash.get("nationality");
                 sessionManager.createUserLoginSession(id, username, email, accountType, authenticationToken, avatar_path, address, contact, dob, nationality);
-                listener.onSuccess();
+                listener.onSuccess(email, authenticationToken);
             }else {
                 statusText.setVisibility(View.VISIBLE);
                 statusText.setText("   Employers, please use the web version!  ");

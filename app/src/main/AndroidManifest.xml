@@ -105,8 +105,22 @@
 
         </activity>
 
-        <service android:name=".notification.GCMNotificationIntentService" />
+        <!-- For receiving GCM message and registration success -->
+        <receiver
+            android:name=".notification.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.sg.clockwork" />
+            </intent-filter>
+        </receiver>
 
+        <service android:name=".notification.GCMNotificationIntentService" />
+        <!-- make sure to add google-play-services_lib from  project properties->android->library-->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

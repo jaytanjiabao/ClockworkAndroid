@@ -156,9 +156,7 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
         String dob = (String) userHash.get("date_of_birth");
         String nationality = (String) userHash.get("nationality");
         sessionManager.createUserLoginSession(id, username, email, accountType,authenticationToken, avatar_path,address,contact,dob,nationality);
-        fbLoginListener.onSuccess();
-
-
+        fbLoginListener.onSuccess(email, authenticationToken);
     }
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
