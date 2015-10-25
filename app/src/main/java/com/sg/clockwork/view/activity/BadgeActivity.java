@@ -11,46 +11,36 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.sg.clockwork.R;
-import com.sg.clockwork.adapter.CompletedJobAdapter;
-import com.sg.clockwork.model.Post;
-import com.sg.clockwork.presenter.ViewCompletedJobPresenter;
 
-import java.util.ArrayList;
+public class BadgeActivity extends AppCompatActivity {
 
-public class ViewCompletedJobActivity extends AppCompatActivity {
     Button backButton;
-    ArrayList<Post> postList;
     ListView listView;
-    ViewCompletedJobPresenter viewCompletedJobPresenter;
-    CompletedJobAdapter completedJobAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_completed_job);
+        setContentView(R.layout.activity_badge);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        listView = (ListView) findViewById(R.id.list);
-        postList = new ArrayList<Post>();
         backButton = (Button) findViewById(R.id.backButton);
-        viewCompletedJobPresenter = new ViewCompletedJobPresenter(postList,this,false);
-        viewCompletedJobPresenter.getCompletedJobList();
-
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                backToListing.putExtra("Previous", "profile");
+                backToListing.putExtra("Previous", "reward");
                 startActivity(backToListing);
             }
         });
+
+        listView = (ListView) findViewById(R.id.list);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_completed_job, menu);
+        getMenuInflater().inflate(R.menu.menu_badge, menu);
         return true;
     }
 
@@ -62,28 +52,10 @@ public class ViewCompletedJobActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-/*        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void displayCompletedJobListing() {
-        completedJobAdapter = viewCompletedJobPresenter.getCompletedJobAdapter();
-        postList = viewCompletedJobPresenter.completedJobList();
-
-        if(postList.size()!= 0) {
-            listView.setAdapter(completedJobAdapter);
-        }else {
-            listView.setBackground(getResources().getDrawable(R.drawable.ratings_new));
-        }
-    }
-
-    @Override
-    public void onBackPressed () {
-        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
-        backToListing.putExtra("Previous", "profile");
-        startActivity(backToListing);
     }
 }
