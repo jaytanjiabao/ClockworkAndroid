@@ -40,17 +40,21 @@ public class LoginPresenter implements LoginListener {
         loginManager.login(userEmail, userPassword, this);
     }
 
-    public void onSuccess() {
+    public void getRegId(String id) {
+        this.id = id;
+    }
+
+    public void onSuccess(String email, String authToken) {
         this.gcmServerManager = new GCMServerManager(currentContext, this, preludeActivity);
-        gcmServerManager.prepareId(id);
+        gcmServerManager.prepareId(id, email, authToken);
         gcmServerManager.execute(apiManager.registerGCMIDToServer());
     }
 
     public void completeRegistration (boolean status) {
         if (status) {
-            Toast.makeText(preludeActivity.getApplicationContext(), "Successfully registered to server", Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext, "Successfully registered to server", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(preludeActivity.getApplicationContext(), "Failed to register to server", Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext, "Failed to register to server", Toast.LENGTH_LONG).show();
         }
         preludeActivity.navigateToHome();
     }

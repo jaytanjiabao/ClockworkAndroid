@@ -24,12 +24,20 @@ public class GCMPresenter {
     GCMServerManager gcmServerManager;
     RegisterPresenter registerPresenter;
     LoginPresenter loginPresenter;
+    FBLoginPresenter fbLoginPresenter;
 
     public GCMPresenter(Activity activity, APIManager apiManager, RegisterPresenter registerPresenter) {
         this.activity = activity;
         this.apiManager = apiManager;
         gcm = GoogleCloudMessaging.getInstance(activity);
         this.registerPresenter = registerPresenter;
+    }
+
+    public GCMPresenter(Activity activity, APIManager apiManager, FBLoginPresenter fbLoginPresenter) {
+        this.activity = activity;
+        this.apiManager = apiManager;
+        gcm = GoogleCloudMessaging.getInstance(activity);
+        this.fbLoginPresenter = fbLoginPresenter;
     }
 
     public GCMPresenter(Activity activity, APIManager apiManager, LoginPresenter loginPresenter) {
@@ -46,7 +54,13 @@ public class GCMPresenter {
 
     public void onSuccess(String regId) {
         //Toast.makeText(activity.getApplicationContext(), "REG ID: " + regId, Toast.LENGTH_LONG).show();
-        registerPresenter.getRegId(regId);
+        if (loginPresenter != null) {
+            loginPresenter.getRegId(regId);
+        } else if (registerPresenter != null) {
+            registerPresenter.getRegId(regId);
+        } else {
+            fbLoginPresenter.getRegId(regId);
+        }
     }
 
 //    pull from shared preferences

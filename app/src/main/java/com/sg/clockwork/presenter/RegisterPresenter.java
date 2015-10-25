@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.sg.clockwork.model.APIManager;
 import com.sg.clockwork.model.GCMServerManager;
 import com.sg.clockwork.model.RegisterManager;
+import com.sg.clockwork.model.SessionManager;
 import com.sg.clockwork.view.activity.RegisterActivity;
 
 /**
@@ -45,19 +46,20 @@ public class RegisterPresenter implements RegisterListener {
         this.id = id;
     }
 
-    public void onSuccess() {
+    public void onSuccess(String email, String authToken) {
         this.gcmServerManager = new GCMServerManager(currentContext, this, registerActivity);
-        gcmServerManager.prepareId(id);
+        SessionManager sessionManager = new SessionManager(currentContext);
+        gcmServerManager.prepareId(id, email, authToken);
         gcmServerManager.execute(apiManager.registerGCMIDToServer());
     }
 
     public void completeRegistration(boolean status) {
         if (status) {
             Toast.makeText(currentContext, "Successfully registered to server", Toast.LENGTH_LONG).show();
-            navigateBackHome();
         } else {
             Toast.makeText(currentContext, "Failed to register to server", Toast.LENGTH_LONG).show();
         }
+        navigateBackHome();
     }
 
     public void navigateBackHome() {
