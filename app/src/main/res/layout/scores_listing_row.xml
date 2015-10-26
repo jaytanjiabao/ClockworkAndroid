@@ -35,13 +35,28 @@
 
             <!-- Salary -->
             <TextView
-                android:id="@+id/salary"
+                android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
+                android:gravity="right"
+                android:text="100"
+                android:layout_marginRight="5dp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+
+                android:layout_alignTop="@+id/quizTitle"
+                android:layout_toLeftOf="@+id/pointsDisplay"/>
+
+            <!-- Salary -->
+            <TextView
+                android:id="@+id/pointsDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingRight="8dp"
                 android:gravity="right"
-                android:text="40 pts"
+                android:text="pts"
                 android:layout_marginRight="5dp"
                 android:textSize="25dp"
                 android:textColor="@color/black"
@@ -49,6 +64,7 @@
 
                 android:layout_alignTop="@+id/quizTitle"
                 android:layout_alignParentEnd="true" />
+
 
         </RelativeLayout>
 

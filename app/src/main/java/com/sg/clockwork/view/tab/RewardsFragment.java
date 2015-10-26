@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.sg.clockwork.R;
+import com.sg.clockwork.adapter.ScoresAdapter;
 import com.sg.clockwork.model.Rewards;
 import com.sg.clockwork.presenter.ViewBadgesPresenter;
 import com.sg.clockwork.view.activity.BadgeActivity;
@@ -33,6 +34,7 @@ public class RewardsFragment extends Fragment {
     ListView listView;
     ArrayList<Rewards> scoreList;
     ViewBadgesPresenter viewBadgesPresenter;
+    ScoresAdapter scoresAdapter;
 
 
     @Override
@@ -69,6 +71,13 @@ public class RewardsFragment extends Fragment {
         });
 
         return fragmentView;
+    }
+
+    public void displayScoreListing() {
+        scoresAdapter = viewBadgesPresenter.getScoresAdapter();
+        scoreList = viewBadgesPresenter.badgeList();
+        listView.setAdapter(scoresAdapter);
+
     }
 
 }

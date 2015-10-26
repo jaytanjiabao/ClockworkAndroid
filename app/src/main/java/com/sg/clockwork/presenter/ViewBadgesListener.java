@@ -5,4 +5,6 @@ package com.sg.clockwork.presenter;
  */
 public interface ViewBadgesListener {
     public void onSuccess(String string);
+
+    public void onSuccessScore(String string);
 }

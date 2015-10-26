@@ -8,9 +8,16 @@ public class Rewards {
     private String criteria;
     private String status;
     private String badge_id;
+    private String type;
+    private String score;
 
     public Rewards() {
 
+    }
+
+    public Rewards(String type, String score) {
+        this.type = type;
+        this.score = score;
     }
 
     public Rewards(String name, String criteria,String status, String badge_id) {
@@ -21,6 +28,23 @@ public class Rewards {
         this.badge_id = badge_id;
 
     }
+
+    public String getType () {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore (String score) {
+        this.score = score;
+    }
+
 
     public String getName() {
         return name;
@@ -56,4 +80,5 @@ public class Rewards {
     public void setBadge_id(String badge_id) {
         this.badge_id = badge_id;
     }
+
 }

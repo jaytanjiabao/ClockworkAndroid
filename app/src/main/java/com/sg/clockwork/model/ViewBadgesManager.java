@@ -27,9 +27,15 @@ public class ViewBadgesManager extends AsyncTask<String, Void, String> {
 
     ViewBadgesListener viewBadgesListener;
     String email, authToken;
+    boolean scoreOrNot = false;
 
     public ViewBadgesManager(ViewBadgesListener viewBadgesListener) {
         this.viewBadgesListener = viewBadgesListener;
+    }
+
+    public ViewBadgesManager(ViewBadgesListener viewBadgesListener,boolean scoreOrNot) {
+        this.viewBadgesListener = viewBadgesListener;
+        this.scoreOrNot = scoreOrNot;
     }
 
     public void setCredentials(String email, String authToken) {
@@ -50,8 +56,12 @@ public class ViewBadgesManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-        System.out.println("hoi hoi" + result);
-        viewBadgesListener.onSuccess(result);
+        if(!scoreOrNot) {
+            viewBadgesListener.onSuccess(result);
+        }else {
+            result = result.substring(10,result.length()-1);
+            viewBadgesListener.onSuccessScore(result);
+        }
 
     }
 

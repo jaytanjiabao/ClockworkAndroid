@@ -6,6 +6,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sg.clockwork.adapter.BadgesAdapter;
+import com.sg.clockwork.adapter.ScoresAdapter;
 import com.sg.clockwork.model.APIManager;
 import com.sg.clockwork.model.Post;
 import com.sg.clockwork.model.Rewards;
@@ -30,6 +31,7 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
     ViewBadgesManager viewBadgesManager;
     HashMap<String, String> usermap;
     BadgesAdapter badgesAdapter;
+    ScoresAdapter scoresAdapter;
     APIManager apiManager;
     RewardsFragment rewardsFragment;
 
@@ -48,7 +50,7 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
         apiManager = new APIManager();
         currentContext = rewardsFragment.getActivity().getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
-        this.viewBadgesManager = new ViewBadgesManager(this);
+        this.viewBadgesManager = new ViewBadgesManager(this,true);
     }
 
     public void getBadges() {
@@ -77,10 +79,18 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
     @Override
     public void onSuccess(String result) {
         this.badgeList = createGsonFromString(result);
-        setListingAdapter(new BadgesAdapter(badgeActivity, badgeList,currentContext));
+        setListingAdapter(new BadgesAdapter(badgeActivity, badgeList, currentContext));
         badgeActivity.displayBadgeListing();
 
     }
+
+    @Override
+    public void onSuccessScore(String result) {
+        this.badgeList = createGsonFromString(result);
+        setScoresAdapter(new ScoresAdapter(rewardsFragment.getActivity(), badgeList));
+        rewardsFragment.displayScoreListing();
+    }
+
 
     public ArrayList<Rewards> badgeList() {
         return badgeList;
@@ -90,9 +100,14 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
         this.badgesAdapter = badgesAdapter;
     }
 
+    public void setScoresAdapter(ScoresAdapter scoresAdapter) {
+        this.scoresAdapter = scoresAdapter;
+    }
+
     public BadgesAdapter getBadgesAdapter() {
         return badgesAdapter;
     }
 
+    public ScoresAdapter getScoresAdapter() { return scoresAdapter; }
 
 }
