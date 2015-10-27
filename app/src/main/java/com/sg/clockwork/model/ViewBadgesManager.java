@@ -1,6 +1,8 @@
 package com.sg.clockwork.model;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.sg.clockwork.presenter.ViewBadgesListener;
 import com.sg.clockwork.presenter.ViewCompletedJobListener;
@@ -28,14 +30,16 @@ public class ViewBadgesManager extends AsyncTask<String, Void, String> {
     ViewBadgesListener viewBadgesListener;
     String email, authToken;
     boolean scoreOrNot = false;
+    ProgressBar progressBar;
 
     public ViewBadgesManager(ViewBadgesListener viewBadgesListener) {
         this.viewBadgesListener = viewBadgesListener;
     }
 
-    public ViewBadgesManager(ViewBadgesListener viewBadgesListener,boolean scoreOrNot) {
+    public ViewBadgesManager(ViewBadgesListener viewBadgesListener,boolean scoreOrNot, ProgressBar progressBar) {
         this.viewBadgesListener = viewBadgesListener;
         this.scoreOrNot = scoreOrNot;
+        this.progressBar = progressBar;
     }
 
     public void setCredentials(String email, String authToken) {
@@ -46,6 +50,9 @@ public class ViewBadgesManager extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if(scoreOrNot) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -60,6 +67,7 @@ public class ViewBadgesManager extends AsyncTask<String, Void, String> {
             viewBadgesListener.onSuccess(result);
         }else {
             result = result.substring(10,result.length()-1);
+            progressBar.setVisibility(View.INVISIBLE);
             viewBadgesListener.onSuccessScore(result);
         }
 

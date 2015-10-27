@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.sg.clockwork.R;
 import com.sg.clockwork.adapter.ScoresAdapter;
@@ -35,6 +36,7 @@ public class RewardsFragment extends Fragment {
     ArrayList<Rewards> scoreList;
     ViewBadgesPresenter viewBadgesPresenter;
     ScoresAdapter scoresAdapter;
+    ProgressBar progressBar;
 
 
     @Override
@@ -44,8 +46,9 @@ public class RewardsFragment extends Fragment {
         badgesButton = (Button) fragmentView.findViewById(R.id.badgeButton);
         imageView = (ImageView) fragmentView.findViewById(R.id.imageView);
         listView = (ListView) fragmentView.findViewById(R.id.listView);
+        progressBar = (ProgressBar) fragmentView.findViewById(R.id.progressBar3);
         scoreList = new ArrayList<Rewards>();
-        viewBadgesPresenter = new ViewBadgesPresenter(scoreList,this);
+        viewBadgesPresenter = new ViewBadgesPresenter(scoreList,this, progressBar);
         viewBadgesPresenter.getScores();
 
 

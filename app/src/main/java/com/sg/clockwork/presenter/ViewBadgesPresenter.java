@@ -1,6 +1,7 @@
 package com.sg.clockwork.presenter;
 
 import android.content.Context;
+import android.widget.ProgressBar;
 
 
 import com.google.gson.Gson;
@@ -34,6 +35,7 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
     ScoresAdapter scoresAdapter;
     APIManager apiManager;
     RewardsFragment rewardsFragment;
+    ProgressBar progressBar;
 
     public ViewBadgesPresenter (ArrayList<Rewards> badgeList, BadgeActivity badgeActivity){
         this.badgeList = badgeList;
@@ -44,13 +46,14 @@ public class ViewBadgesPresenter implements ViewBadgesListener {
         this.viewBadgesManager = new ViewBadgesManager(this);
     }
 
-    public ViewBadgesPresenter (ArrayList<Rewards> badgeList, RewardsFragment rewardsFragment) {
+    public ViewBadgesPresenter (ArrayList<Rewards> badgeList, RewardsFragment rewardsFragment, ProgressBar progressBar) {
         this.badgeList = badgeList;
         this.rewardsFragment = rewardsFragment;
         apiManager = new APIManager();
         currentContext = rewardsFragment.getActivity().getApplicationContext();
         this.sessionManager = new SessionManager(currentContext);
-        this.viewBadgesManager = new ViewBadgesManager(this,true);
+        this.progressBar = progressBar;
+        this.viewBadgesManager = new ViewBadgesManager(this,true,progressBar);
     }
 
     public void getBadges() {

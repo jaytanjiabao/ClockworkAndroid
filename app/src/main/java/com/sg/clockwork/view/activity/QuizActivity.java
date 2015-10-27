@@ -14,6 +14,7 @@ import com.sg.clockwork.R;
 public class QuizActivity extends AppCompatActivity {
 
     Button backButton;
+    //ViewQuizPresenter viewQuizPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,9 @@ public class QuizActivity extends AppCompatActivity {
                 startActivity(backToListing);
             }
         });
+        //viewQuizPresenter = new ViewQuizPresenter ( );
+
+
     }
 
     @Override
