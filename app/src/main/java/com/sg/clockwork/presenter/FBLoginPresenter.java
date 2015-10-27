@@ -54,11 +54,6 @@ public class FBLoginPresenter implements FBLoginListener {
     }
 
     public void completeRegistration(boolean status) {
-        if (status) {
-            Toast.makeText(currentContext, "Successfully registered to server", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(currentContext, "Failed to register to server", Toast.LENGTH_LONG).show();
-        }
         navigateToHome();
     }
 
