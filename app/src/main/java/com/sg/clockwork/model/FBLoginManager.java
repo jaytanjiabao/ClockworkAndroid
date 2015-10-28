@@ -169,7 +169,5 @@ public class FBLoginManager extends AsyncTask<String, Void, String> {
         return result;
 
     }
-
-
 }
 

@@ -33,11 +33,9 @@ public class GCMNotificationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d("Intent Notification", "Received and handling intent");
         Bundle extras = intent.getExtras();
         if (!extras.isEmpty()) {
             // read extras as sent from server
-            Log.d("Has extras", extras.toString());
             String title = extras.getString("title");
             String message = extras.getString("message");
             sendNotification(message, title);

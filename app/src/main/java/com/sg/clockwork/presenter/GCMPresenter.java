@@ -53,7 +53,6 @@ public class GCMPresenter {
     }
 
     public void onSuccess(String regId) {
-        //Toast.makeText(activity.getApplicationContext(), "REG ID: " + regId, Toast.LENGTH_LONG).show();
         if (loginPresenter != null) {
             loginPresenter.getRegId(regId);
         } else if (registerPresenter != null) {
@@ -62,16 +61,4 @@ public class GCMPresenter {
             fbLoginPresenter.getRegId(regId);
         }
     }
-
-//    pull from shared preferences
-//    private String getRegistrationId(Context context) {
-//        final SharedPreferences prefs = getSharedPreferences(
-//                MyActivity.class.getSimpleName(), Context.MODE_PRIVATE);
-//        String registrationId = prefs.getString(REG_ID, "");
-//        if (registrationId.isEmpty()) {
-//            Log.i(TAG, "Registration not found.");
-//            return "";
-//        }
-//        return registrationId;
-//    }
 }

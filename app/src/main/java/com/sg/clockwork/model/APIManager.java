@@ -63,4 +63,7 @@ public class APIManager {
 
     public String getScores () {return baseURL + "/api/v1/gamify/get_score";}
 
+    public String getQuiz () {return baseURL + "/api/v1/gamify/get_quiz";}
+
+    public String recordQuiz (){ return baseURL + "/api/v1/gamify/record_quiz";}
 }

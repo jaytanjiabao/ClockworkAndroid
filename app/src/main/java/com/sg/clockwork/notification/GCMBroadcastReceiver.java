@@ -15,7 +15,6 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         // Attach component of GCMNotificationIntentService that will handle the intent in background thread
-        Log.d("Received Broadcast", "Received and sending intent");
         ComponentName comp = new ComponentName(context.getPackageName(), GCMNotificationIntentService.class.getName());
         // Start the service, keeping the device awake while it is launching.
         startWakefulService(context, (intent.setComponent(comp)));

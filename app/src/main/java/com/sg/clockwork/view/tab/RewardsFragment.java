@@ -20,6 +20,7 @@ import com.sg.clockwork.model.Rewards;
 import com.sg.clockwork.presenter.ViewBadgesPresenter;
 import com.sg.clockwork.view.activity.BadgeActivity;
 import com.sg.clockwork.view.activity.QuizActivity;
+import com.sg.clockwork.view.activity.QuizCatalogue;
 
 import java.util.ArrayList;
 
@@ -57,7 +58,7 @@ public class RewardsFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent badges = new Intent(view.getContext(), QuizActivity.class);
+                Intent badges = new Intent(view.getContext(), QuizCatalogue.class);
                 startActivity(badges);
 
             }

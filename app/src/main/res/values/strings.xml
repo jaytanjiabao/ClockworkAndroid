@@ -21,4 +21,6 @@
     <string name="title_activity_my">MyActivity</string>
     <string name="title_activity_badge">BadgeActivity</string>
     <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_quiz_catalogue">QuizCatalogue</string>
+    <string name="title_activity_complete_quiz">CompleteQuizActivity</string>
 </resources>
