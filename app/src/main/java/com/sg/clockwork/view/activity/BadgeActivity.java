@@ -37,7 +37,7 @@ public class BadgeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                backToListing.putExtra("Previous", "reward");
+                backToListing.putExtra("Previous", "rewards");
                 startActivity(backToListing);
             }
         });

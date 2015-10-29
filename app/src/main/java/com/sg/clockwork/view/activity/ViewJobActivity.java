@@ -82,7 +82,7 @@ public class ViewJobActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent backToListing = new Intent(view.getContext(), MainActivity.class);
-                backToListing.putExtra("Previous", "home");
+                backToListing.putExtra("Previous", "jobListing");
                 startActivity(backToListing);
             }
         });

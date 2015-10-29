@@ -174,7 +174,7 @@ public class CompleteProfileActivity extends AppCompatActivity implements View.O
     @Override
     public void onBackPressed () {
         Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
-        backToListing.putExtra("Previous", "home");
+        backToListing.putExtra("Previous", "jobListing");
         startActivity(backToListing);
     }
 }
