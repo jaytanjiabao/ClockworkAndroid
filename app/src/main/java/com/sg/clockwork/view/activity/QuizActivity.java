@@ -74,6 +74,10 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (quizList.get(flag).getAnswer().equalsIgnoreCase("a")) {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#a4c639"));
                         review.setText("You chose the Correct Answer!");
                         optionA.setBackgroundColor(Color.parseColor("#a4c639"));
@@ -83,6 +87,10 @@ public class QuizActivity extends AppCompatActivity {
                         correct++;
                         flag++;
                     } else {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#eb123a"));
                         review.setText("Uh oh. The Correct Answer is highlighted in Green");
                         optionA.setBackgroundColor(Color.parseColor("#eb123a"));
@@ -103,6 +111,10 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (quizList.get(flag).getAnswer().equalsIgnoreCase("b")) {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#a4c639"));
                         review.setText("You chose the Correct Answer!");
                         optionB.setBackgroundColor(Color.parseColor("#a4c639"));
@@ -112,6 +124,10 @@ public class QuizActivity extends AppCompatActivity {
                         correct++;
                         flag++;
                     } else {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#eb123a"));
                         review.setText("Uh oh. The Correct Answer is highlighted in Green");
                         optionB.setBackgroundColor(Color.parseColor("#eb123a"));
@@ -132,6 +148,10 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (quizList.get(flag).getAnswer().equalsIgnoreCase("c")) {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#a4c639"));
                         review.setText("You chose the Correct Answer!");
                         optionC.setBackgroundColor(Color.parseColor("#a4c639"));
@@ -141,6 +161,10 @@ public class QuizActivity extends AppCompatActivity {
                         correct++;
                         flag++;
                     } else {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#eb123a"));
                         review.setText("Uh oh. The Correct Answer is highlighted in Green");
                         optionC.setBackgroundColor(Color.parseColor("#eb123a"));
@@ -161,6 +185,10 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (quizList.get(flag).getAnswer().equalsIgnoreCase("d")) {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#a4c639"));
                         review.setText("You chose the Correct Answer!");
                         optionD.setBackgroundColor(Color.parseColor("#a4c639"));
@@ -170,6 +198,10 @@ public class QuizActivity extends AppCompatActivity {
                         correct++;
                         flag++;
                     } else {
+                        optionA.setEnabled(false);
+                        optionB.setEnabled(false);
+                        optionC.setEnabled(false);
+                        optionD.setEnabled(false);
                         review.setTextColor(Color.parseColor("#eb123a"));
                         review.setText("Uh oh. The Correct Answer is highlighted in Green");
                         optionD.setBackgroundColor(Color.parseColor("#eb123a"));
@@ -190,6 +222,10 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (flag < quizList.size()) {
+                        optionA.setEnabled(true);
+                        optionB.setEnabled(true);
+                        optionC.setEnabled(true);
+                        optionD.setEnabled(true);
                         review.setText(" ");
                         nextQuestion.setVisibility(View.INVISIBLE);
                         optionA.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -215,8 +251,6 @@ public class QuizActivity extends AppCompatActivity {
 
         }
 
-
-
     }
 
     @Override
@@ -241,5 +275,11 @@ public class QuizActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed () {
+        Intent backToListing = new Intent(this.getApplicationContext(), MainActivity.class);
+        backToListing.putExtra("Previous", "rewards");
+        startActivity(backToListing);
+    }
 
 }

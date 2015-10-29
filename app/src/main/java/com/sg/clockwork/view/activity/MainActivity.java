@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(com.sg.clockwork.R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Job Listings"));
         tabLayout.addTab(tabLayout.newTab().setText("My Dashboard"));
-        tabLayout.addTab(tabLayout.newTab().setText("My Profile"));
         tabLayout.addTab(tabLayout.newTab().setText("My Rewards"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Profile"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(com.sg.clockwork.R.id.pager);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             previous = getIntent().getStringExtra("Previous");
             if (previous.equalsIgnoreCase("dashboard")) {
                 viewPager.setCurrentItem(1);
-            }else if(previous.equalsIgnoreCase("profile")){
+            }else if(previous.equalsIgnoreCase("rewards")){
                 viewPager.setCurrentItem(2);
             }else if(previous.equalsIgnoreCase("jobListing")) {
                 viewPager.setCurrentItem(0);

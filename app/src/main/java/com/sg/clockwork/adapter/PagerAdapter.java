@@ -28,11 +28,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 DashboardFragment tab2 = new DashboardFragment();
                 return tab2;
             case 2:
-                ProfileFragment tab3 = new ProfileFragment();
-                return tab3;
-            case 3:
                 RewardsFragment tab4 = new RewardsFragment();
                 return tab4;
+            case 3:
+                ProfileFragment tab3 = new ProfileFragment();
+                return tab3;
+
 
             default:
                 return null;

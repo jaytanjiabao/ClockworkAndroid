@@ -22,14 +22,12 @@ public class ScoresAdapter extends BaseAdapter {
     private Activity activity;
     private ArrayList<Rewards> badgeList = new ArrayList<Rewards>();
     private static LayoutInflater inflater = null;
-    ProgressDialog dialog;
     Rewards p;
     int arrayPosition;
 
     public ScoresAdapter(Activity activity, ArrayList<Rewards> arrayList) {
         this.activity = activity;
         this.badgeList = arrayList;
-        this.dialog = new ProgressDialog(activity);
     }
 
     @Override
