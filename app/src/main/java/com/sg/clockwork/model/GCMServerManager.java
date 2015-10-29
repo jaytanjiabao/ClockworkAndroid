@@ -123,21 +123,18 @@ public class GCMServerManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         // return to presenter
         if (registerPresenter != null) {
-            Toast.makeText(registerActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
             if (statusCode == 200) {
                 registerPresenter.completeRegistration(true);
             } else {
                 registerPresenter.completeRegistration(false);
             }
         } else if (loginPresenter != null) {
-            Toast.makeText(preludeActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
             if (statusCode == 200) {
                 loginPresenter.completeRegistration(true);
             } else {
                 loginPresenter.completeRegistration(false);
             }
         } else {
-            Toast.makeText(preludeActivity.getApplicationContext(), result, Toast.LENGTH_LONG).show();
             if (statusCode == 200) {
                 fbLoginPresenter.completeRegistration(true);
             } else {

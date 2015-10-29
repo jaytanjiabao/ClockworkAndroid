@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case com.sg.clockwork.R.id.action_search:
                 return true;
-            case com.sg.clockwork.R.id.action_notification:
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
