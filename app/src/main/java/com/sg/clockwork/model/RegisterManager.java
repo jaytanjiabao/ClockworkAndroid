@@ -127,6 +127,7 @@ public class RegisterManager extends AsyncTask<String, Void, String> {
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
+        System.out.println(result);
         progressBar.setVisibility(View.INVISIBLE);
         statusText.setVisibility(View.INVISIBLE);
         if (statusCode == 201) {
