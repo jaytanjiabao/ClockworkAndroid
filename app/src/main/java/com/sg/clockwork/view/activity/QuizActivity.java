@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         setSupportActionBar(toolbar);
         quizList = new ArrayList<Quiz>();
-        rightQuestions = "[";
+        rightQuestions = "";
         backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,7 +240,6 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         marks = "Score: " + correct + "/" + quizList.size();
                         rightQuestions = rightQuestions.substring(0, rightQuestions.length() - 1);
-                        rightQuestions = rightQuestions + "]";
                         Intent completeQuiz = new Intent(view.getContext(), CompleteQuizActivity.class);
                         startActivity(completeQuiz);
                     }
