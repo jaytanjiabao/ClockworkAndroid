@@ -3,6 +3,12 @@ package com.sg.clockwork.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by jiabao.tan.2012 on 2/8/2015.
  */
@@ -250,5 +256,85 @@ public class Post implements Parcelable {
 
     public void setEnd_time(String end_time) {
         this.end_time = end_time;
+    }
+
+    public static Comparator<Post> SalaryComparator = new Comparator<Post>() {
+        @Override
+        public int compare(Post p1, Post p2) {
+            double salary1 = p1.salary;
+            double salary2 = p2.salary;
+
+            if (salary1 > salary2){
+                return -1;
+            } else if (salary1 < salary2){
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<Post> OldestComparator = new Comparator<Post>() {
+        @Override
+        public int compare(Post p1, Post p2) {
+            try {
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                Date startDate1 = df.parse(p1.job_date);
+                Date startDate2 = df.parse(p2.job_date);
+
+                if (startDate1.before(startDate2)) {
+                    return -1;
+                } else if (startDate2.before(startDate1)) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<Post> LatestComparator = new Comparator<Post>() {
+        @Override
+        public int compare(Post p1, Post p2) {
+            try {
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                Date postingDate1 = df.parse(p1.posting_date);
+                Date postingDate2 = df.parse(p2.posting_date);
+
+                if (postingDate1.before(postingDate2)) {
+                    return 1;
+                } else if (postingDate2.before(postingDate1)) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Post other = (Post) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 }
