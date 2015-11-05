@@ -14,6 +14,7 @@ import com.sg.clockwork.presenter.ViewQuizPresenter;
 public class QuizCatalogue extends AppCompatActivity {
 
     ViewQuizPresenter viewQuizPresenter;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,15 @@ public class QuizCatalogue extends AppCompatActivity {
             }
         });
 
+        backButton = (Button) findViewById(com.sg.clockwork.R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToListing = new Intent(view.getContext(), MainActivity.class);
+                backToListing.putExtra("Previous", "rewards");
+                startActivity(backToListing);
+            }
+        });
 
     }
 

@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import com.sg.clockwork.model.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 4000;
     SessionManager sessionManager;
 
 

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(com.sg.clockwork.R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Job Listings"));
-        tabLayout.addTab(tabLayout.newTab().setText("My Dashboard"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Board"));
         tabLayout.addTab(tabLayout.newTab().setText("My Rewards"));
         tabLayout.addTab(tabLayout.newTab().setText("My Profile"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

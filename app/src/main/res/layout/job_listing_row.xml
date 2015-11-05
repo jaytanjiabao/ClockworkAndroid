@@ -87,18 +87,6 @@
                 android:layout_below="@+id/salary"
                 android:layout_alignParentEnd="true" />
 
-            <!-- Location Text -->
-            <TextView
-                android:id="@+id/required"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="You will work for"
-                android:textSize="12dip"
-                android:textColor="@color/black"
-                android:layout_below="@+id/location"
-                android:layout_alignParentStart="true" />
-
             <TextView
                 android:id="@+id/days"
                 android:layout_width="wrap_content"
@@ -109,8 +97,7 @@
                 android:textColor="@color/pink"
                 android:textStyle="bold"
                 android:paddingLeft="3dp"
-                android:layout_alignTop="@+id/required"
-                android:layout_toEndOf="@+id/required"/>
+                android:layout_below="@+id/location"/>
 
             <TextView
                 android:id="@+id/starting"
