@@ -69,7 +69,7 @@
 
         <Button
             android:id="@+id/improveButton"
-            android:text="Improve"
+            android:text="Quizzes"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             android:background="@drawable/view_job_button"

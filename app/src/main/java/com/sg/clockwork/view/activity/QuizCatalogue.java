@@ -27,6 +27,7 @@ public class QuizCatalogue extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewQuizPresenter.getQuiz();
+
             }
         });
 

@@ -239,7 +239,11 @@ public class QuizActivity extends AppCompatActivity {
                         optionD.setText(quizList.get(flag).getChoice_d());
                     } else {
                         marks = "Score: " + correct + "/" + quizList.size();
-                        rightQuestions = rightQuestions.substring(0, rightQuestions.length() - 1);
+                        if(correct != 0) {
+                            rightQuestions = rightQuestions.substring(0, rightQuestions.length() - 1);
+                        }else {
+                            rightQuestions = " ";
+                        }
                         Intent completeQuiz = new Intent(view.getContext(), CompleteQuizActivity.class);
                         startActivity(completeQuiz);
                     }
