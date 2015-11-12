@@ -258,7 +258,7 @@ public class Post implements Parcelable {
         this.end_time = end_time;
     }
 
-    public static Comparator<Post> SalaryComparator = new Comparator<Post>() {
+    public static Comparator<Post> salaryComparator = new Comparator<Post>() {
         @Override
         public int compare(Post p1, Post p2) {
             double salary1 = p1.salary;
@@ -274,7 +274,7 @@ public class Post implements Parcelable {
         }
     };
 
-    public static Comparator<Post> OldestComparator = new Comparator<Post>() {
+    public static Comparator<Post> oldestComparator = new Comparator<Post>() {
         @Override
         public int compare(Post p1, Post p2) {
             try {
@@ -295,7 +295,7 @@ public class Post implements Parcelable {
         }
     };
 
-    public static Comparator<Post> LatestComparator = new Comparator<Post>() {
+    public static Comparator<Post> latestComparator = new Comparator<Post>() {
         @Override
         public int compare(Post p1, Post p2) {
             try {

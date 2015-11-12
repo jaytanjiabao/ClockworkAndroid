@@ -11,12 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.design.widget.TabLayout;
+import android.widget.Toast;
 
 import com.sg.clockwork.adapter.PagerAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
     public static String searchTerm = "";
+    public static String sortBy = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
             searchTerm = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
         }
+        if (getIntent().getStringExtra("Sort") != null) {
+            String action = getIntent().getStringExtra("Sort");
+            if (action.equalsIgnoreCase("salary")) {
+                sortBy = "salary";
+            } else if (action.equalsIgnoreCase("start")) {
+                sortBy = "start";
+            } else if (action.equalsIgnoreCase("recent")) {
+                sortBy = "recent";
+            } else {
+                sortBy = "";
+            }
+        }
     }
 
     @Override
@@ -101,6 +115,21 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (item.getItemId()) {
             case com.sg.clockwork.R.id.action_search:
+                return true;
+            case com.sg.clockwork.R.id.menuSortSalary:
+                Intent reload = new Intent(getApplicationContext(), MainActivity.class);
+                reload.putExtra("Sort", "salary");
+                startActivity(reload);
+                return true;
+            case com.sg.clockwork.R.id.menuSortPostingDate:
+                Intent reload2 = new Intent(getApplicationContext(), MainActivity.class);
+                reload2.putExtra("Sort", "start");
+                startActivity(reload2);
+                return true;
+            case com.sg.clockwork.R.id.menuSortStartDate:
+                Intent reload3 = new Intent(getApplicationContext(), MainActivity.class);
+                reload3.putExtra("Sort", "recent");
+                startActivity(reload3);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

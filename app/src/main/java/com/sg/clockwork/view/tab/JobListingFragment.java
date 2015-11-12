@@ -44,7 +44,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
 
         jobListingPresenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
         if (search.equals("")) {
-            jobListingPresenter.getAllJobListings();
+            jobListingPresenter.getAllJobListings(MainActivity.sortBy);
         } else {
             jobListingPresenter.searchJobListing(search);
             MainActivity.searchTerm = "";
@@ -80,7 +80,7 @@ public class JobListingFragment extends Fragment implements JobListingView, Swip
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
         JobListingPresenter presenter = new JobListingPresenter(this, postList, getActivity(),progressBar);
-        presenter.getAllJobListings();
+        presenter.getAllJobListings(MainActivity.sortBy);
     }
 
     @Override

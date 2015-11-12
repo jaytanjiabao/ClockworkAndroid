@@ -7,5 +7,23 @@
         android:icon="@drawable/search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item android:id="@+id/action_sort"
+        android:title="sort"
+        android:icon="@drawable/sort"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menuSortSalary"
+                android:title="Sort by Salary" />
+            <item
+                android:id="@+id/menuSortPostingDate"
+                android:title="Sort by Start Date" />
+            <item
+                android:id="@+id/menuSortStartDate"
+                android:title="Sort by Recent" />
+        </menu>
+    </item>
+
 </menu>
 

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by jiabao.tan.2012 on 18/8/2015.
@@ -25,6 +26,7 @@ public class JobListingPresenter implements JobListingListener {
     ArrayList<Post> postList;
     ListingAdapter listingAdapter;
     FragmentActivity fragmentActivity;
+    String sortBy = "";
 
     ProgressBar progressBar;
     APIManager apiManager;
@@ -39,7 +41,8 @@ public class JobListingPresenter implements JobListingListener {
 
     }
 
-    public void getAllJobListings() {
+    public void getAllJobListings(String sortBy) {
+        this.sortBy = sortBy;
         jobListingManager.execute(apiManager.jobListing());
     }
 
@@ -63,6 +66,15 @@ public class JobListingPresenter implements JobListingListener {
     @Override
     public void onSuccess(String result) {
         ArrayList<Post> postList = createGsonFromString(result);
+
+        if (sortBy.equalsIgnoreCase("salary")) {
+            Collections.sort(postList, Post.salaryComparator);
+        } else if (sortBy.equalsIgnoreCase("start")) {
+            Collections.sort(postList, Post.oldestComparator);
+        } else if (sortBy.equalsIgnoreCase("recent")) {
+            Collections.sort(postList, Post.latestComparator);
+        }
+
         setListingAdapter(new ListingAdapter(fragmentActivity, postList));
         jobListingView.displayJobListing(this);
     }
