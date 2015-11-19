@@ -30,6 +30,7 @@ public class QuizManager extends AsyncTask<String, Void, String>{
     ViewQuizListener viewQuizListener;
     String email, authToken,rightQuestions;
     boolean submitScore = false;
+    String category;
 
     public QuizManager(ViewQuizListener viewQuizListener) {
         this.viewQuizListener = viewQuizListener;
@@ -37,9 +38,10 @@ public class QuizManager extends AsyncTask<String, Void, String>{
 
 
 
-    public void setCredentials(String email, String authToken) {
+    public void setCredentials(String email, String authToken, String category) {
         this.email = email;
         this.authToken = authToken;
+        this.category = category;
     }
 
     public void setQuizCredentials(String email, String authToken, String rightQuestions, boolean score) {
@@ -80,7 +82,7 @@ public class QuizManager extends AsyncTask<String, Void, String>{
 
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
             nvps.add(new BasicNameValuePair("email", email));
-            nvps.add(new BasicNameValuePair("genre", "clean_up"));
+            nvps.add(new BasicNameValuePair("genre", category));
             if(submitScore) {
                 nvps.add(new BasicNameValuePair("questions", rightQuestions));
             }

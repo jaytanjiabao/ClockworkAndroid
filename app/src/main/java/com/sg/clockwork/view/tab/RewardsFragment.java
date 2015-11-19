@@ -56,8 +56,12 @@ public class RewardsFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent badges = new Intent(view.getContext(), QuizCatalogue.class);
-                startActivity(badges);
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("KEY", scoreList);
+                Intent quizzes = new Intent(view.getContext(), QuizCatalogue.class);
+                quizzes.putExtras(bundle);
+                startActivity(quizzes);
 
             }
         });

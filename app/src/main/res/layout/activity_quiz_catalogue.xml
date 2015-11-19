@@ -22,16 +22,6 @@
         android:layout_below="@+id/toolbar"
         android:layout_alignParentEnd="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clean up quiz"
-            android:id="@+id/buttonClick"
-            android:background="@drawable/feedback_button"
-            android:layout_below="@+id/textView9"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +30,16 @@
             android:id="@+id/textView9"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="30dp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView2"
+            android:layout_below="@+id/textView9"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
     <Button

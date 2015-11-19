@@ -1,9 +1,12 @@
 package com.sg.clockwork.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Hoi Chuen on 25/10/2015.
  */
-public class Rewards {
+public class Rewards implements Parcelable{
     private String name;
     private String criteria;
     private String status;
@@ -80,5 +83,38 @@ public class Rewards {
     public void setBadge_id(String badge_id) {
         this.badge_id = badge_id;
     }
+
+
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeString(criteria);
+        parcel.writeString(status);
+        parcel.writeString(badge_id);
+        parcel.writeString(type);
+        parcel.writeString(score);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Rewards> CREATOR = new Creator<Rewards>() {
+        public Rewards createFromParcel(Parcel source) {
+            Rewards Rewards = new Rewards();
+            Rewards.name = source.readString();
+            Rewards.criteria = source.readString();
+            Rewards.status = source.readString();
+            Rewards.badge_id = source.readString();
+            Rewards.type = source.readString();
+            Rewards.score = source.readString();
+
+
+            return Rewards;
+        }
+
+        public Rewards[] newArray(int size) {
+
+            return new Rewards[size];
+        }};
 
 }

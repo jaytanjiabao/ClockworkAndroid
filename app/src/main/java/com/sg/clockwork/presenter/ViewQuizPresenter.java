@@ -53,11 +53,11 @@ public class ViewQuizPresenter implements ViewQuizListener {
         this.quizManager = new QuizManager(this);
     }
 
-    public void getQuiz() {
+    public void getQuiz(String category) {
         usermap = sessionManager.getUserDetails();
         String email = usermap.get(SessionManager.KEY_EMAIL);
         String authToken = usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
-        quizManager.setCredentials(email, authToken);
+        quizManager.setCredentials(email, authToken,category);
         quizManager.execute (apiManager.getQuiz());
     }
 
@@ -65,7 +65,6 @@ public class ViewQuizPresenter implements ViewQuizListener {
         usermap = sessionManager.getUserDetails();
         String email = usermap.get(SessionManager.KEY_EMAIL);
         String authToken = usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
-        System.out.println("Right questions are: " + rightQuestions);
         quizManager.setQuizCredentials(email, authToken, rightQuestions, true);
         quizManager.execute (apiManager.recordQuiz());
     }
@@ -73,7 +72,6 @@ public class ViewQuizPresenter implements ViewQuizListener {
     @Override
     public void onSuccess(String result) {
         if(result.equalsIgnoreCase("No more quizzes available")){
-            //quizPage.setLayout();
             Intent startQuiz = new Intent(currentContext, QuizActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             currentContext.startActivity(startQuiz);

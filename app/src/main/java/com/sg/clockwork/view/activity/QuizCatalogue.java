@@ -6,28 +6,45 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.sg.clockwork.R;
+import com.sg.clockwork.adapter.CatalogueAdapter;
+import com.sg.clockwork.model.Rewards;
 import com.sg.clockwork.presenter.ViewQuizPresenter;
+
+import java.util.ArrayList;
 
 public class QuizCatalogue extends AppCompatActivity {
 
     ViewQuizPresenter viewQuizPresenter;
     Button backButton;
+    ArrayList<Rewards> catalouge;
+    ListView listView;
+    CatalogueAdapter catalogueAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_catalogue);
 
-        Button selectQuiz = (Button) findViewById(R.id.buttonClick);
-        viewQuizPresenter = new ViewQuizPresenter(this);
-        selectQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewQuizPresenter.getQuiz();
+        listView = (ListView)findViewById(R.id.listView2);
 
+        viewQuizPresenter = new ViewQuizPresenter(this);
+        this.catalouge =  getIntent().getParcelableArrayListExtra("KEY");
+        catalogueAdapter = new  CatalogueAdapter(this, catalouge);
+        listView.setAdapter(catalogueAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adptView, View view, int position, long arg3) {
+                Rewards quizType = (Rewards)catalogueAdapter.getItem(position);
+                String quizCategory = quizType.getType();
+                quizCategory = quizCategory.replaceAll(" ", "_");
+                quizCategory = quizCategory.toLowerCase();
+                viewQuizPresenter.getQuiz(quizCategory);
             }
         });
 
