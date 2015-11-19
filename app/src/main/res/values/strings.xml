@@ -10,6 +10,7 @@
     <color name="primary">#ac1d39</color>
     <color name="pink">#eb123a</color>
     <color name="grey">#e5e5e5</color>
+    <color name="logo_color">#cd4042</color>
     <string name="title_activity_prelude">PreludeActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_edit_profile">EditProfileActivity</string>
