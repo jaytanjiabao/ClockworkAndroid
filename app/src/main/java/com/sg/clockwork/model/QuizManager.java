@@ -44,11 +44,12 @@ public class QuizManager extends AsyncTask<String, Void, String>{
         this.category = category;
     }
 
-    public void setQuizCredentials(String email, String authToken, String rightQuestions, boolean score) {
+    public void setQuizCredentials(String email, String authToken, String rightQuestions, boolean score, String genre) {
         this.email = email;
         this.authToken = authToken;
         this.rightQuestions = rightQuestions;
         this.submitScore = score;
+        this.category = genre;
     }
 
     @Override

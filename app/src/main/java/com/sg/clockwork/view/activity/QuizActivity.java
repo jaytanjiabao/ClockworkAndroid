@@ -244,7 +244,10 @@ public class QuizActivity extends AppCompatActivity {
                         }else {
                             rightQuestions = " ";
                         }
+                        Bundle p = new Bundle();
+                        p.putString("quizScore", quizList.get(0).getGenre());
                         Intent completeQuiz = new Intent(view.getContext(), CompleteQuizActivity.class);
+                        completeQuiz.putExtras(p);
                         startActivity(completeQuiz);
                     }
 

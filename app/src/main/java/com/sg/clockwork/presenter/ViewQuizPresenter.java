@@ -61,11 +61,11 @@ public class ViewQuizPresenter implements ViewQuizListener {
         quizManager.execute (apiManager.getQuiz());
     }
 
-    public void recordQuiz (String rightQuestions) {
+    public void recordQuiz (String genre, String rightQuestions) {
         usermap = sessionManager.getUserDetails();
         String email = usermap.get(SessionManager.KEY_EMAIL);
         String authToken = usermap.get(SessionManager.KEY_AUTHENTICATIONTOKEN);
-        quizManager.setQuizCredentials(email, authToken, rightQuestions, true);
+        quizManager.setQuizCredentials(email, authToken, rightQuestions, true, genre);
         quizManager.execute (apiManager.recordQuiz());
     }
 

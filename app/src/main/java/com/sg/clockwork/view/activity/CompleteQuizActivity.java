@@ -20,6 +20,7 @@ public class CompleteQuizActivity extends AppCompatActivity {
     ViewQuizPresenter viewQuizPresenter;
     TextView scoreView;
     Button rewardsButton;
+    String genre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,14 @@ public class CompleteQuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complete_quiz);
         scoreView = (TextView)findViewById(R.id.quizScore);
         scoreView.setText(QuizActivity.marks);
+        genre = getIntent().getExtras().getString("quizScore");
+        System.out.println(genre);
         rewardsButton = (Button)findViewById(R.id.badgeButton);
         viewQuizPresenter = new ViewQuizPresenter(this);
         rewardsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewQuizPresenter.recordQuiz(QuizActivity.rightQuestions);
+                viewQuizPresenter.recordQuiz(genre,QuizActivity.rightQuestions);
             }
         });
     }
