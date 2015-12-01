@@ -28,6 +28,7 @@ public class CompleteQuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complete_quiz);
         scoreView = (TextView)findViewById(R.id.quizScore);
         scoreView.setText(QuizActivity.marks);
+        QuizActivity.correct = 0;
         genre = getIntent().getExtras().getString("quizScore");
         System.out.println(genre);
         rewardsButton = (Button)findViewById(R.id.badgeButton);

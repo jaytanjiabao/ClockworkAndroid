@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.sg.clockwork.R;
 import com.sg.clockwork.view.activity.MainActivity;
+import com.sg.clockwork.view.activity.ViewCompletedJobActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,19 +37,26 @@ public class GCMNotificationIntentService extends IntentService {
         Bundle extras = intent.getExtras();
         if (!extras.isEmpty()) {
             // read extras as sent from server
-            String title = extras.getString("title");
+            String title = "Clockwork";
             String message = extras.getString("message");
-            sendNotification(message, title);
+            String type = extras.getString("type");
+            sendNotification(message, title, type);
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GCMBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String message, String title) {
+    private void sendNotification(String message, String title, String type) {
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent intent = null;
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("Previous", "dashboard");
+        if (type != null && type.equalsIgnoreCase("rate")) {
+            intent = new Intent(this, ViewCompletedJobActivity.class);
+        } else {
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra("Previous", "dashboard");
+        }
+
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
         String messageTitle = title;
